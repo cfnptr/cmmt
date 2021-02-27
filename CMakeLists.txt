@@ -17,8 +17,8 @@ configure_file(
 	cmake/defines.h.in
 	cmmt/defines.h)
 
-add_library(cmmt STATIC INTERFACE)
+add_library(cmmt INTERFACE)
 
-target_include_directories(cmmt PUBLIC
+target_include_directories(cmmt INTERFACE
 	${PROJECT_BINARY_DIR}
 	${PROJECT_SOURCE_DIR}/include)
