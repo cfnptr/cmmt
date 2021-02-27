@@ -1,0 +1,7 @@
+#pragma once
+
+#define __CMMT__
+
+#define CMMT_VERSION_MAJOR @cmmt_VERSION_MAJOR@
+#define CMMT_VERSION_MINOR @cmmt_VERSION_MINOR@
+#define CMMT_VERSION_PATCH @cmmt_VERSION_PATCH@
