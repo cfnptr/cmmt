@@ -152,7 +152,7 @@ inline static bool isBoxInBox3F(
 		a.maximum.z >= b.minimum.z;
 }
 
-inline static struct Sphere2F powSphere2F(
+inline static struct Sphere2F spherePow2F(
 	struct Vec2F center,
 	float radiusPow)
 {
