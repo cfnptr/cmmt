@@ -67,20 +67,20 @@ inline static bool isPointInBox2F(
 	struct Vec2F point)
 {
 	return
-		box.minimum.x <= point.x &&
-		box.maximum.x >= point.x &&
-		box.minimum.y <= point.y &&
-		box.maximum.y >= point.y;
+		(box.minimum.x <= point.x &&
+		box.maximum.x >= point.x) &&
+		(box.minimum.y <= point.y &&
+		box.maximum.y >= point.y);
 }
 inline static bool isBoxInBox2F(
 	struct Box2F a,
 	struct Box2F b)
 {
 	return
-		a.minimum.x <= b.maximum.x &&
-		a.maximum.x >= b.minimum.x &&
-		a.minimum.y <= b.maximum.y &&
-		a.maximum.y >= b.minimum.y;
+		(a.minimum.x <= b.maximum.x &&
+		a.maximum.x >= b.minimum.x) &&
+		(a.minimum.y <= b.maximum.y &&
+		a.maximum.y >= b.minimum.y);
 }
 
 inline static struct Box3F box3F(
@@ -132,24 +132,24 @@ inline static bool isPointInBox3F(
 	struct Vec3F point)
 {
 	return
-		box.minimum.x <= point.x &&
-		box.maximum.x >= point.x &&
-		box.minimum.y <= point.y &&
-		box.maximum.y >= point.y &&
-		box.minimum.z <= point.z &&
-		box.maximum.z >= point.z;
+		(box.minimum.x <= point.x &&
+		box.maximum.x >= point.x) &&
+		(box.minimum.y <= point.y &&
+		box.maximum.y >= point.y) &&
+		(box.minimum.z <= point.z &&
+		box.maximum.z >= point.z);
 }
 inline static bool isBoxInBox3F(
 	struct Box3F a,
 	struct Box3F b)
 {
 	return
-		a.minimum.x <= b.maximum.x &&
-		a.maximum.x >= b.minimum.x &&
-		a.minimum.y <= b.maximum.y &&
-		a.maximum.y >= b.minimum.y &&
-		a.minimum.z <= b.maximum.z &&
-		a.maximum.z >= b.minimum.z;
+		(a.minimum.x <= b.maximum.x &&
+		a.maximum.x >= b.minimum.x) &&
+		(a.minimum.y <= b.maximum.y &&
+		a.maximum.y >= b.minimum.y) &&
+		(a.minimum.z <= b.maximum.z &&
+		a.maximum.z >= b.minimum.z);
 }
 
 inline static struct Sphere2F spherePow2F(
@@ -176,8 +176,10 @@ inline static bool isPointInSphere2F(
 	struct Vec2F point)
 {
 	return
-		(sphere.center.x * (sphere.center.x - point.x)) +
-		(sphere.center.y * (sphere.center.y - point.y)) <=
+		(point.x - sphere.center.x) *
+		(point.x - sphere.center.x) +
+		(point.y - sphere.center.y) *
+		(point.y - sphere.center.y) <=
 		sphere.radiusPow;
 }
 inline static bool isSphereInSphere2F(
@@ -185,21 +187,26 @@ inline static bool isSphereInSphere2F(
 	struct Sphere2F b)
 {
 	return
-		(a.center.x * (a.center.x - b.center.x)) +
-		(a.center.y * (a.center.y - b.center.y)) <=
+		(a.center.x - b.center.x) *
+		(a.center.x - b.center.x) +
+		(a.center.y - b.center.y) *
+		(a.center.y - b.center.y) <=
 		a.radiusPow + b.radiusPow;
 }
 inline static bool isSphereInBox2F(
 	struct Sphere2F sphere,
 	struct Box2F box)
 {
-	struct Vec2F point = vec2F(
-		fmaxf(box.minimum.x, fminf(sphere.center.x, box.maximum.x)),
-		fmaxf(box.minimum.y, fminf(sphere.center.y, box.maximum.y)));
+	float x = fmaxf(box.minimum.x,
+		fminf(sphere.center.x, box.maximum.x));
+	float y = fmaxf(box.minimum.y,
+		fminf(sphere.center.y, box.maximum.y));
 
 	return
-		(sphere.center.x * (sphere.center.x - point.x)) +
-		(sphere.center.y * (sphere.center.y - point.y)) <=
+		(x - sphere.center.x) *
+		(x - sphere.center.x) +
+		(y - sphere.center.y) *
+		(y - sphere.center.y) <=
 		sphere.radiusPow;
 }
 
@@ -227,9 +234,12 @@ inline static bool isPointInSphere3F(
 	struct Vec3F point)
 {
 	return
-		(sphere.center.x * (sphere.center.x - point.x)) +
-		(sphere.center.y * (sphere.center.y - point.y)) +
-		(sphere.center.z * (sphere.center.z - point.z)) <=
+		(point.x - sphere.center.x) *
+		(point.x - sphere.center.x) +
+		(point.y - sphere.center.y) *
+		(point.y - sphere.center.y) +
+		(point.z - sphere.center.z) *
+		(point.z - sphere.center.z) <=
 		sphere.radiusPow;
 }
 inline static bool isSphereInSphere3F(
@@ -237,23 +247,31 @@ inline static bool isSphereInSphere3F(
 	struct Sphere3F b)
 {
 	return
-		(a.center.x * (a.center.x - b.center.x)) +
-		(a.center.y * (a.center.y - b.center.y)) +
-		(a.center.z * (a.center.z - b.center.z))<=
+		(a.center.x - b.center.x) *
+		(a.center.x - b.center.x) +
+		(a.center.y - b.center.y) *
+		(a.center.y - b.center.y) +
+		(a.center.z - b.center.z) *
+		(a.center.z - b.center.z) <=
 		a.radiusPow + b.radiusPow;
 }
 inline static bool isSphereInBox3F(
 	struct Sphere3F sphere,
 	struct Box3F box)
 {
-	struct Vec3F point = vec3F(
-		fmaxf(box.minimum.x, fminf(sphere.center.x, box.maximum.x)),
-		fmaxf(box.minimum.y, fminf(sphere.center.y, box.maximum.y)),
-		fmaxf(box.minimum.z, fminf(sphere.center.z, box.maximum.z)));
+	float x = fmaxf(box.minimum.x,
+		fminf(sphere.center.x, box.maximum.x));
+	float y = fmaxf(box.minimum.y,
+		fminf(sphere.center.y, box.maximum.y));
+	float z = fmaxf(box.minimum.z,
+		fminf(sphere.center.z, box.maximum.z));
 
 	return
-		(sphere.center.x * (sphere.center.x - point.x)) +
-		(sphere.center.y * (sphere.center.y - point.y)) +
-		(sphere.center.z * (sphere.center.z - point.z)) <=
+		(x - sphere.center.x) *
+		(x - sphere.center.x) +
+		(y - sphere.center.y) *
+		(y - sphere.center.y) +
+		(z - sphere.center.z) *
+		(z - sphere.center.z) <=
 		sphere.radiusPow;
 }
