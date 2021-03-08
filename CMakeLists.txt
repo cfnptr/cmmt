@@ -19,6 +19,10 @@ configure_file(
 
 add_library(cmmt INTERFACE)
 
+if(CMAKE_SYSTEM_NAME MATCHES "Linux")
+	target_link_libraries(cmmt INTERFACE m)
+endif()
+
 target_include_directories(cmmt INTERFACE
 	${PROJECT_BINARY_DIR}
 	${PROJECT_SOURCE_DIR}/include)
