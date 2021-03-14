@@ -83,7 +83,7 @@ inline static bool isBoxInBox2F(
 		(a.minimum.y <= b.maximum.y &&
 		a.maximum.y >= b.minimum.y);
 }
-inline static float raycastBox2F(
+inline static float rayCastBox2F(
 	struct Box2F box,
 	struct Vec2F position,
 	struct Vec2F direction)
@@ -179,7 +179,7 @@ inline static bool isBoxInBox3F(
 		(a.minimum.z <= b.maximum.z &&
 		a.maximum.z >= b.minimum.z);
 }
-inline static float raycastBox3F(
+inline static float rayCastBox3F(
 	struct Box3F box,
 	struct Vec3F position,
 	struct Vec3F direction)
@@ -271,7 +271,7 @@ inline static bool isSphereInBox2F(
 		sphere.radiusPow;
 }
 
-inline static float raycastSphere2F(
+inline static float rayCastSphere2F(
 	struct Sphere2F sphere,
 	struct Vec2F position,
 	struct Vec2F direction)
@@ -358,7 +358,7 @@ inline static bool isSphereInBox3F(
 		(z - sphere.position.z)) <=
 		sphere.radiusPow;
 }
-inline static float raycastSphere3F(
+inline static float rayCastSphere3F(
 	struct Sphere3F sphere,
 	struct Vec3F position,
 	struct Vec3F direction)
