@@ -266,7 +266,7 @@ inline static float rayCastSphere2F(
 	struct Vec2F position,
 	struct Vec2F direction)
 {
-	float dist =
+	float distance =
 		((sphere.position.x - position.x) *
 		(sphere.position.x - position.x)) +
 		((sphere.position.y - position.y) *
@@ -275,12 +275,13 @@ inline static float rayCastSphere2F(
 		((sphere.position.x - position.x) * direction.x) +
 		((sphere.position.y - position.y) * direction.y);
 
-	if ((sphere.radiusPow - dist) + (dot * dot) < 0.0f)
+	if ((sphere.radiusPow - distance) + (dot * dot) < 0.0f)
 		return INFINITY;
 
-	return dist < sphere.radiusPow ?
-		dot + sqrtf(sphere.radiusPow - (dist - (dot * dot))) :
-		dot - sqrtf(sphere.radiusPow - (dist - (dot * dot)));
+	distance = distance < sphere.radiusPow ?
+		dot + sqrtf(sphere.radiusPow - (distance - (dot * dot))) :
+		dot - sqrtf(sphere.radiusPow - (distance - (dot * dot)));
+	return distance < 0.0f ? INFINITY : distance;
 }
 
 inline static struct Sphere3F sphere3F(
@@ -353,7 +354,7 @@ inline static float rayCastSphere3F(
 	struct Vec3F position,
 	struct Vec3F direction)
 {
-	float dist =
+	float distance =
 		((position.x - sphere.position.x) *
 		(position.x - sphere.position.x)) +
 		((position.y - sphere.position.y) *
@@ -365,10 +366,11 @@ inline static float rayCastSphere3F(
 		(position.y - sphere.position.y) * direction.y +
 		(position.z - sphere.position.z) * direction.z;
 
-	if (sphere.radiusPow - dist + (dot * dot) < 0.0f)
+	if (sphere.radiusPow - distance + (dot * dot) < 0.0f)
 		return INFINITY;
 
-	return dist < sphere.radiusPow ?
-		dot + sqrtf(sphere.radiusPow - (dist - (dot * dot))) :
-		dot - sqrtf(sphere.radiusPow - (dist - (dot * dot)));
+	distance = distance < sphere.radiusPow ?
+		dot + sqrtf(sphere.radiusPow - (distance - (dot * dot))) :
+		dot - sqrtf(sphere.radiusPow - (distance - (dot * dot)));
+	return distance < 0.0f ? INFINITY : distance;
 }
