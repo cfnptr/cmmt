@@ -100,13 +100,8 @@ inline static float rayCastBox2F(
 		fmaxf(minX, maxX),
 		fmaxf(minY, maxY));
 
-	// TODO:
-	// AABB is behind us
-	// if (max < 0) {
-	//     return -1;
-
-	if (min > max)
-		return -1.0f;
+	if (min > max || max < 0.0f)
+		return INFINITY;
 
 	return min < 0.0f ? max : min;
 }
@@ -202,13 +197,8 @@ inline static float rayCastBox3F(
 			fmaxf(minY, maxY)),
 		fmaxf(minZ, maxZ));
 
-	// TODO:
-	// AABB is behind us
-	// if (max < 0) {
-	//     return -1;
-
-	if (min > max)
-		return -1.0f;
+	if (min > max || max < 0.0f)
+		return INFINITY;
 
 	return min < 0.0f ? max : min;
 }
@@ -286,7 +276,7 @@ inline static float rayCastSphere2F(
 		((sphere.position.y - position.y) * direction.y);
 
 	if ((sphere.radiusPow - dist) + (dot * dot) < 0.0f)
-		return -1.0f;
+		return INFINITY;
 
 	return dist < sphere.radiusPow ?
 		dot + sqrtf(sphere.radiusPow - (dist - (dot * dot))) :
@@ -376,11 +366,9 @@ inline static float rayCastSphere3F(
 		(position.z - sphere.position.z) * direction.z;
 
 	if (sphere.radiusPow - dist + (dot * dot) < 0.0f)
-		return -1.0f;
-
-	float f = sqrtf(dist - (dot * dot));
+		return INFINITY;
 
 	return dist < sphere.radiusPow ?
-		dot + sqrtf(sphere.radiusPow - (f * f)) :
-		dot - sqrtf(sphere.radiusPow - (f * f));
+		dot + sqrtf(sphere.radiusPow - (dist - (dot * dot))) :
+		dot - sqrtf(sphere.radiusPow - (dist - (dot * dot)));
 }
