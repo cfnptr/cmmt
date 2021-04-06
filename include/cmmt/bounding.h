@@ -2,45 +2,45 @@
 #include <stdlib.h>
 #include "cmmt/vector.h"
 
-struct Box2F
+typedef struct Box2F
 {
-	struct Vec2F minimum;
-	struct Vec2F maximum;
-};
-struct Box3F
+	Vec2F minimum;
+	Vec2F maximum;
+} Box2F;
+typedef struct Box3F
 {
-	struct Vec3F minimum;
-	struct Vec3F maximum;
-};
+	Vec3F minimum;
+	Vec3F maximum;
+} Box3F;
 
-struct Sphere2F
+typedef struct Sphere2F
 {
-	struct Vec2F position;
+	Vec2F position;
 	float radiusPow;
-};
-struct Sphere3F
+} Sphere2F;
+typedef struct Sphere3F
 {
-	struct Vec3F position;
+	Vec3F position;
 	float radiusPow;
-};
+} Sphere3F;
 
-inline static struct Box2F box2F(
-	struct Vec2F minimum,
-	struct Vec2F maximum)
+inline static Box2F box2F(
+	Vec2F minimum,
+	Vec2F maximum)
 {
-	struct Box2F box;
+	Box2F box;
 	box.minimum = minimum;
 	box.maximum = maximum;
 	return box;
 }
-inline static struct Box2F posSizeBox2F(
-	struct Vec2F position,
-	struct Vec2F size)
+inline static Box2F posSizeBox2F(
+	Vec2F position,
+	Vec2F size)
 {
 	size.x /= 2.0f;
 	size.y /= 2.0f;
 
-	struct Box2F box;
+	Box2F box;
 	box.minimum = vec2F(
 		position.x - size.x,
 		position.y - size.y);
@@ -49,11 +49,11 @@ inline static struct Box2F posSizeBox2F(
 		position.y + size.y);
 	return box;
 }
-inline static struct Box2F posExtBox2F(
-	struct Vec2F position,
-	struct Vec2F extent)
+inline static Box2F posExtBox2F(
+	Vec2F position,
+	Vec2F extent)
 {
-	struct Box2F box;
+	Box2F box;
 	box.minimum = vec2F(
 		position.x - extent.x,
 		position.y - extent.y);
@@ -64,8 +64,8 @@ inline static struct Box2F posExtBox2F(
 }
 
 inline static bool isPointInBox2F(
-	struct Box2F box,
-	struct Vec2F point)
+	Box2F box,
+	Vec2F point)
 {
 	return
 		(box.minimum.x <= point.x &&
@@ -74,8 +74,8 @@ inline static bool isPointInBox2F(
 		box.maximum.y >= point.y);
 }
 inline static bool isBoxInBox2F(
-	struct Box2F a,
-	struct Box2F b)
+	Box2F a,
+	Box2F b)
 {
 	return
 		(a.minimum.x <= b.maximum.x &&
@@ -84,9 +84,9 @@ inline static bool isBoxInBox2F(
 		a.maximum.y >= b.minimum.y);
 }
 inline static float rayCastBox2F(
-	struct Box2F box,
-	struct Vec2F position,
-	struct Vec2F direction)
+	Box2F box,
+	Vec2F position,
+	Vec2F direction)
 {
 	float minX = (box.minimum.x - position.x) / direction.x;
 	float maxX = (box.maximum.x - position.x) / direction.x;
@@ -106,24 +106,24 @@ inline static float rayCastBox2F(
 	return min < 0.0f ? max : min;
 }
 
-inline static struct Box3F box3F(
-	struct Vec3F minimum,
-	struct Vec3F maximum)
+inline static Box3F box3F(
+	Vec3F minimum,
+	Vec3F maximum)
 {
-	struct Box3F box;
+	Box3F box;
 	box.minimum = minimum;
 	box.maximum = maximum;
 	return box;
 }
-inline static struct Box3F posSizeBox3F(
-	struct Vec3F position,
-	struct Vec3F size)
+inline static Box3F posSizeBox3F(
+	Vec3F position,
+	Vec3F size)
 {
 	size.x /= 2.0f;
 	size.y /= 2.0f;
 	size.z /= 2.0f;
 
-	struct Box3F box;
+	Box3F box;
 	box.minimum = vec3F(
 		position.x - size.x,
 		position.y - size.y,
@@ -134,11 +134,11 @@ inline static struct Box3F posSizeBox3F(
 		position.z + size.z);
 	return box;
 }
-inline static struct Box3F posExtBox3F(
-	struct Vec3F position,
-	struct Vec3F extent)
+inline static Box3F posExtBox3F(
+	Vec3F position,
+	Vec3F extent)
 {
-	struct Box3F box;
+	Box3F box;
 	box.minimum = vec3F(
 		position.x - extent.x,
 		position.y - extent.y,
@@ -151,8 +151,8 @@ inline static struct Box3F posExtBox3F(
 }
 
 inline static bool isPointInBox3F(
-	struct Box3F box,
-	struct Vec3F point)
+	Box3F box,
+	Vec3F point)
 {
 	return
 		(box.minimum.x <= point.x &&
@@ -163,8 +163,8 @@ inline static bool isPointInBox3F(
 		box.maximum.z >= point.z);
 }
 inline static bool isBoxInBox3F(
-	struct Box3F a,
-	struct Box3F b)
+	Box3F a,
+	Box3F b)
 {
 	return
 		(a.minimum.x <= b.maximum.x &&
@@ -175,9 +175,9 @@ inline static bool isBoxInBox3F(
 		a.maximum.z >= b.minimum.z);
 }
 inline static float rayCastBox3F(
-	struct Box3F box,
-	struct Vec3F position,
-	struct Vec3F direction)
+	Box3F box,
+	Vec3F position,
+	Vec3F direction)
 {
 	float minX = (box.minimum.x - position.x) / direction.x;
 	float maxX = (box.maximum.x - position.x) / direction.x;
@@ -203,28 +203,28 @@ inline static float rayCastBox3F(
 	return min < 0.0f ? max : min;
 }
 
-inline static struct Sphere2F sphere2F(
-	struct Vec2F position,
+inline static Sphere2F sphere2F(
+	Vec2F position,
 	float radiusPow)
 {
-	struct Sphere2F sphere;
+	Sphere2F sphere;
 	sphere.position = position;
 	sphere.radiusPow = radiusPow;
 	return sphere;
 }
-inline static struct Sphere2F spherePow2F(
-	struct Vec2F position,
+inline static Sphere2F spherePow2F(
+	Vec2F position,
 	float radius)
 {
-	struct Sphere2F sphere;
+	Sphere2F sphere;
 	sphere.position = position;
 	sphere.radiusPow = radius * radius;
 	return sphere;
 }
 
 inline static bool isPointInSphere2F(
-	struct Sphere2F sphere,
-	struct Vec2F point)
+	Sphere2F sphere,
+	Vec2F point)
 {
 	return
 		((point.x - sphere.position.x) *
@@ -234,8 +234,8 @@ inline static bool isPointInSphere2F(
 		sphere.radiusPow;
 }
 inline static bool isSphereInSphere2F(
-	struct Sphere2F a,
-	struct Sphere2F b)
+	Sphere2F a,
+	Sphere2F b)
 {
 	return
 		((a.position.x - b.position.x) *
@@ -245,8 +245,8 @@ inline static bool isSphereInSphere2F(
 		a.radiusPow + b.radiusPow;
 }
 inline static bool isSphereInBox2F(
-	struct Sphere2F sphere,
-	struct Box2F box)
+	Sphere2F sphere,
+	Box2F box)
 {
 	float x = fmaxf(box.minimum.x,
 		fminf(sphere.position.x, box.maximum.x));
@@ -262,9 +262,9 @@ inline static bool isSphereInBox2F(
 }
 
 inline static float rayCastSphere2F(
-	struct Sphere2F sphere,
-	struct Vec2F position,
-	struct Vec2F direction)
+	Sphere2F sphere,
+	Vec2F position,
+	Vec2F direction)
 {
 	float distance =
 		((sphere.position.x - position.x) *
@@ -284,28 +284,28 @@ inline static float rayCastSphere2F(
 	return distance < 0.0f ? INFINITY : distance;
 }
 
-inline static struct Sphere3F sphere3F(
-	struct Vec3F position,
+inline static Sphere3F sphere3F(
+	Vec3F position,
 	float radiusPow)
 {
-	struct Sphere3F sphere;
+	Sphere3F sphere;
 	sphere.position = position;
 	sphere.radiusPow = radiusPow;
 	return sphere;
 }
-inline static struct Sphere3F spherePow3F(
-	struct Vec3F position,
+inline static Sphere3F spherePow3F(
+	Vec3F position,
 	float radius)
 {
-	struct Sphere3F sphere;
+	Sphere3F sphere;
 	sphere.position = position;
 	sphere.radiusPow = radius * radius;
 	return sphere;
 }
 
 inline static bool isPointInSphere3F(
-	struct Sphere3F sphere,
-	struct Vec3F point)
+	Sphere3F sphere,
+	Vec3F point)
 {
 	return
 		((point.x - sphere.position.x) *
@@ -317,8 +317,8 @@ inline static bool isPointInSphere3F(
 		sphere.radiusPow;
 }
 inline static bool isSphereInSphere3F(
-	struct Sphere3F a,
-	struct Sphere3F b)
+	Sphere3F a,
+	Sphere3F b)
 {
 	return
 		((a.position.x - b.position.x) *
@@ -330,8 +330,8 @@ inline static bool isSphereInSphere3F(
 		a.radiusPow + b.radiusPow;
 }
 inline static bool isSphereInBox3F(
-	struct Sphere3F sphere,
-	struct Box3F box)
+	Sphere3F sphere,
+	Box3F box)
 {
 	float x = fmaxf(box.minimum.x,
 		fminf(sphere.position.x, box.maximum.x));
@@ -350,9 +350,9 @@ inline static bool isSphereInBox3F(
 		sphere.radiusPow;
 }
 inline static float rayCastSphere3F(
-	struct Sphere3F sphere,
-	struct Vec3F position,
-	struct Vec3F direction)
+	Sphere3F sphere,
+	Vec3F position,
+	Vec3F direction)
 {
 	float distance =
 		((position.x - sphere.position.x) *

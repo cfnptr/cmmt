@@ -1,26 +1,26 @@
 #pragma once
 #include "cmmt/matrix.h"
 
-struct Quat
+typedef struct Quat
 {
 	float x, y, z, w;
-};
+} Quat;
 
-inline static struct Quat quat(
+inline static Quat quat(
 	float x,
 	float y,
 	float z,
 	float w)
 {
-	struct Quat quaternion;
+	Quat quaternion;
 	quaternion.x = x;
 	quaternion.y = y;
 	quaternion.z = z;
 	quaternion.w = w;
 	return quaternion;
 }
-inline static struct Quat eulerQuat(
-	struct Vec3F eulerAngles)
+inline static Quat eulerQuat(
+	Vec3F eulerAngles)
 {
 	float sinX = sinf(eulerAngles.x * 0.5f);
 	float sinY = sinf(eulerAngles.y * 0.5f);
@@ -30,38 +30,38 @@ inline static struct Quat eulerQuat(
 	float cosY = cosf(eulerAngles.y * 0.5f);
 	float cosZ = cosf(eulerAngles.z * 0.5f);
 
-	struct Quat quaternion;
+	Quat quaternion;
 	quaternion.x = sinX * cosY * cosZ - cosX * sinY * sinZ;
 	quaternion.y = cosX * sinY * cosZ + sinX * cosY * sinZ;
 	quaternion.z = cosX * cosY * sinZ - sinX * sinY * cosZ;
 	quaternion.w = cosX * cosY * cosZ + sinX * sinY * sinZ;
 	return quaternion;
 }
-inline static struct Quat axisQuat(
+inline static Quat axisQuat(
 	float angle,
-	struct Vec3F axis)
+	Vec3F axis)
 {
 	float sin = sinf(angle * 0.5f);
 
-	struct Quat quaternion;
+	Quat quaternion;
 	quaternion.x = axis.x * sin;
 	quaternion.y = axis.y * sin;
 	quaternion.z = axis.z * sin;
 	quaternion.w = cosf(angle * 0.5f);
 	return quaternion;
 }
-inline static struct Quat zeroQuat()
+inline static Quat zeroQuat()
 {
-	struct Quat quaternion;
+	Quat quaternion;
 	quaternion.x = 0.0f;
 	quaternion.y = 0.0f;
 	quaternion.z = 0.0f;
 	quaternion.w = 0.0f;
 	return quaternion;
 }
-inline static struct Quat oneQuat()
+inline static Quat oneQuat()
 {
-	struct Quat quaternion;
+	Quat quaternion;
 	quaternion.x = 0.0f;
 	quaternion.y = 0.0f;
 	quaternion.z = 0.0f;
@@ -69,8 +69,8 @@ inline static struct Quat oneQuat()
 	return quaternion;
 }
 
-inline static struct Mat4F getQuatMatF4(
-	struct Quat quaternion)
+inline static Mat4F getQuatMatF4(
+	Quat quaternion)
 {
 	float xx = quaternion.x * quaternion.x;
 	float yy = quaternion.y * quaternion.y;
@@ -85,7 +85,7 @@ inline static struct Mat4F getQuatMatF4(
 	// TODO: investigate difference between
 	// current variant and transposed
 
-	struct Mat4F matrix;
+	Mat4F matrix;
 	matrix.m00 = 1.0f - 2.0f * (yy + zz);
 	matrix.m01 = 2.0f * (xy - wz);
 	matrix.m02 = 2.0f * (xz + wy);
@@ -112,29 +112,29 @@ inline static struct Mat4F getQuatMatF4(
 // TODO: quaternion vector multiplication
 // TODO: quaternion pitch, yaw, roll extraction
 
-inline static struct Quat dotQuat(
-	struct Quat a,
-	struct Quat b)
+inline static Quat dotQuat(
+	Quat a,
+	Quat b)
 {
-	struct Quat quaternion;
+	Quat quaternion;
 	quaternion.x = a.w * b.x + a.x * b.w + a.y * b.z - a.z * b.y;
 	quaternion.y = a.w * b.y + a.y * b.w + a.z * b.x - a.x * b.z;
 	quaternion.z = a.w * b.z + a.z * b.w + a.x * b.y - a.y * b.x;
 	quaternion.w = a.w * b.w - a.x * b.x - a.y * b.y - a.z * b.z;
 	return quaternion;
 }
-inline static struct Vec3F dotVecQuat3F(
-	struct Quat quaternion,
-	struct Vec3F vector)
+inline static Vec3F dotVecQuat3F(
+	Quat quaternion,
+	Vec3F vector)
 {
-	struct Vec3F qv = vec3F(
+	Vec3F qv = vec3F(
 		quaternion.x,
 		quaternion.y,
 		quaternion.z);
-	struct Vec3F cv = crossVec3F(
+	Vec3F cv = crossVec3F(
 		qv,
 		vector);
-	struct Vec3F ccv = crossVec3F(
+	Vec3F ccv = crossVec3F(
 		qv,
 		cv);
 
@@ -143,8 +143,8 @@ inline static struct Vec3F dotVecQuat3F(
 	vector.z = vector.z + ((cv.z * quaternion.w) + ccv.z) * 2.0f;
 	return vector;
 }
-inline static struct Quat normQuat(
-	struct Quat quaternion)
+inline static Quat normQuat(
+	Quat quaternion)
 {
 	float length = sqrtf(
 		(quaternion.x * quaternion.x) +
@@ -171,8 +171,8 @@ inline static struct Quat normQuat(
 }
 
 inline static bool compQuat(
-	struct Quat a,
-	struct Quat b)
+	Quat a,
+	Quat b)
 {
 	return
 		a.x == b.x &&

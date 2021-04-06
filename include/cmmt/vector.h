@@ -9,129 +9,129 @@
 #define BACK_AXIS_VALUE -1
 #define FRONT_AXIS_VALUE 1
 
-struct Vec2F
+typedef struct Vec2F
 {
 	float x, y;
-};
-struct Vec3F
+} Vec2F;
+typedef struct Vec3F
 {
 	float x, y, z;
-};
-struct Vec4F
+} Vec3F;
+typedef struct Vec4F
 {
 	float x, y, z, w;
-};
-struct Vec2I
+} Vec4F;
+typedef struct Vec2I
 {
 	int x, y;
-};
-struct Vec3I
+} Vec2I;
+typedef struct Vec3I
 {
 	int x, y, z;
-};
-struct Vec4I
+} Vec3I;
+typedef struct Vec4I
 {
 	int x, y, z, w;
-};
+} Vec4I;
 
-inline static struct Vec2F vec2F(
+inline static Vec2F vec2F(
 	float x,
 	float y)
 {
-	struct Vec2F vector;
+	Vec2F vector;
 	vector.x = x;
 	vector.y = y;
 	return vector;
 }
-inline static struct Vec2F valVec2F(
+inline static Vec2F valVec2F(
 	float value)
 {
-	struct Vec2F vector;
+	Vec2F vector;
 	vector.x = value;
 	vector.y = value;
 	return vector;
 }
-inline static struct Vec2F zeroVec2F()
+inline static Vec2F zeroVec2F()
 {
-	struct Vec2F vector;
+	Vec2F vector;
 	vector.x = 0.0f;
 	vector.y = 0.0f;
 	return vector;
 }
-inline static struct Vec2F oneVec2F()
+inline static Vec2F oneVec2F()
 {
-	struct Vec2F vector;
+	Vec2F vector;
 	vector.x = 1.0f;
 	vector.y = 1.0f;
 	return vector;
 }
-inline static struct Vec2F minOneVec2F()
+inline static Vec2F minOneVec2F()
 {
-	struct Vec2F vector;
+	Vec2F vector;
 	vector.x = -1.0f;
 	vector.y = -1.0f;
 	return vector;
 }
 
-inline static struct Vec2F addVec2F(
-	struct Vec2F a,
-	struct Vec2F b)
+inline static Vec2F addVec2F(
+	Vec2F a,
+	Vec2F b)
 {
 	a.x += b.x;
 	a.y += b.y;
 	return a;
 }
-inline static struct Vec2F subVec2F(
-	struct Vec2F a,
-	struct Vec2F b)
+inline static Vec2F subVec2F(
+	Vec2F a,
+	Vec2F b)
 {
 	a.x -= b.x;
 	a.y -= b.y;
 	return a;
 }
-inline static struct Vec2F mulVec2F(
-	struct Vec2F a,
-	struct Vec2F b)
+inline static Vec2F mulVec2F(
+	Vec2F a,
+	Vec2F b)
 {
 	a.x *= b.x;
 	a.y *= b.y;
 	return a;
 }
-inline static struct Vec2F divVec2F(
-	struct Vec2F a,
-	struct Vec2F b)
+inline static Vec2F divVec2F(
+	Vec2F a,
+	Vec2F b)
 {
 	a.x /= b.x;
 	a.y /= b.y;
 	return a;
 }
 
-inline static struct Vec2F addValVec2F(
-	struct Vec2F vector,
+inline static Vec2F addValVec2F(
+	Vec2F vector,
 	float value)
 {
 	vector.x += value;
 	vector.y += value;
 	return vector;
 }
-inline static struct Vec2F subValVec2F(
-	struct Vec2F vector,
+inline static Vec2F subValVec2F(
+	Vec2F vector,
 	float value)
 {
 	vector.x -= value;
 	vector.y -= value;
 	return vector;
 }
-inline static struct Vec2F mulValVec2F(
-	struct Vec2F vector,
+inline static Vec2F mulValVec2F(
+	Vec2F vector,
 	float value)
 {
 	vector.x *= value;
 	vector.y *= value;
 	return vector;
 }
-inline static struct Vec2F divValVec2F(
-	struct Vec2F vector,
+inline static Vec2F divValVec2F(
+	Vec2F vector,
 	float value)
 {
 	vector.x /= value;
@@ -140,53 +140,53 @@ inline static struct Vec2F divValVec2F(
 }
 
 inline static bool compVec2F(
-	struct Vec2F a,
-	struct Vec2F b)
+	Vec2F a,
+	Vec2F b)
 {
 	return
 		a.x == b.x &&
 		a.y == b.y;
 }
-inline static struct Vec2F negVec2F(
-	struct Vec2F vector)
+inline static Vec2F negVec2F(
+	Vec2F vector)
 {
 	vector.x = -vector.x;
 	vector.y = -vector.y;
 	return vector;
 }
 inline static float dotVec2F(
-	struct Vec2F a,
-	struct Vec2F b)
+	Vec2F a,
+	Vec2F b)
 {
 	return
 		(a.x * b.x) +
 		(a.y * b.y);
 }
 inline static float lenVec2F(
-	struct Vec2F vector)
+	Vec2F vector)
 {
 	return sqrtf(
 		(vector.x * vector.x) +
 		(vector.y * vector.y));
 }
 inline static float distPowVec2F(
-	struct Vec2F a,
-	struct Vec2F b)
+	Vec2F a,
+	Vec2F b)
 {
 	return
 		((a.x - b.x) * (a.x - b.x)) +
 		((a.y - b.y) * (a.y - b.y));
 }
 inline static float distVec2F(
-	struct Vec2F a,
-	struct Vec2F b)
+	Vec2F a,
+	Vec2F b)
 {
 	return sqrtf(
 		((a.x - b.x) * (a.x - b.x)) +
 		((a.y - b.y) * (a.y - b.y)));
 }
-inline static struct Vec2F normVec2F(
-	struct Vec2F vector)
+inline static Vec2F normVec2F(
+	Vec2F vector)
 {
 	float length = sqrtf(
 		(vector.x * vector.x) +
@@ -196,9 +196,9 @@ inline static struct Vec2F normVec2F(
 	vector.y /= length;
 	return vector;
 }
-inline static struct Vec2F reflVec2F(
-	struct Vec2F vector,
-	struct Vec2F normal)
+inline static Vec2F reflVec2F(
+	Vec2F vector,
+	Vec2F normal)
 {
 	float dot =
 		(normal.x * vector.x) +
@@ -212,130 +212,130 @@ inline static struct Vec2F reflVec2F(
 	return vector;
 }
 
-inline static struct Vec3F vec3F(
+inline static Vec3F vec3F(
 	float x,
 	float y,
 	float z)
 {
-	struct Vec3F vector;
+	Vec3F vector;
 	vector.x = x;
 	vector.y = y;
 	vector.z = z;
 	return vector;
 }
-inline static struct Vec3F valVec3F(
+inline static Vec3F valVec3F(
 	float value)
 {
-	struct Vec3F vector;
+	Vec3F vector;
 	vector.x = value;
 	vector.y = value;
 	vector.z = value;
 	return vector;
 }
-inline static struct Vec3F zeroVec3F()
+inline static Vec3F zeroVec3F()
 {
-	struct Vec3F vector;
+	Vec3F vector;
 	vector.x = 0.0f;
 	vector.y = 0.0f;
 	vector.z = 0.0f;
 	return vector;
 }
-inline static struct Vec3F oneVec3F()
+inline static Vec3F oneVec3F()
 {
-	struct Vec3F vector;
+	Vec3F vector;
 	vector.x = 1.0f;
 	vector.y = 1.0f;
 	vector.z = 1.0f;
 	return vector;
 }
-inline static struct Vec3F minOneVec3F()
+inline static Vec3F minOneVec3F()
 {
-	struct Vec3F vector;
+	Vec3F vector;
 	vector.x = -1.0f;
 	vector.y = -1.0f;
 	vector.z = -1.0f;
 	return vector;
 }
 
-inline static struct Vec3F leftVec3F()
+inline static Vec3F leftVec3F()
 {
-	struct Vec3F vector;
+	Vec3F vector;
 	vector.x = LEFT_AXIS_VALUE;
 	vector.y = 0.0f;
 	vector.z = 0.0f;
 	return vector;
 }
-inline static struct Vec3F rightVec3F()
+inline static Vec3F rightVec3F()
 {
-	struct Vec3F vector;
+	Vec3F vector;
 	vector.x = RIGHT_AXIS_VALUE;
 	vector.y = 0.0f;
 	vector.z = 0.0f;
 	return vector;
 }
-inline static struct Vec3F bottomVec3F()
+inline static Vec3F bottomVec3F()
 {
-	struct Vec3F vector;
+	Vec3F vector;
 	vector.x = 0.0f;
 	vector.y = BOTTOM_AXIS_VALUE;
 	vector.z = 0.0f;
 	return vector;
 }
-inline static struct Vec3F topVec3F()
+inline static Vec3F topVec3F()
 {
-	struct Vec3F vector;
+	Vec3F vector;
 	vector.x = 0.0f;
 	vector.y = TOP_AXIS_VALUE;
 	vector.z = 0.0f;
 	return vector;
 }
-inline static struct Vec3F backVec3F()
+inline static Vec3F backVec3F()
 {
-	struct Vec3F vector;
+	Vec3F vector;
 	vector.x = 0.0f;
 	vector.y = 0.0f;
 	vector.z = BACK_AXIS_VALUE;
 	return vector;
 }
-inline static struct Vec3F frontVec3F()
+inline static Vec3F frontVec3F()
 {
-	struct Vec3F vector;
+	Vec3F vector;
 	vector.x = 0.0f;
 	vector.y = 0.0f;
 	vector.z = FRONT_AXIS_VALUE;
 	return vector;
 }
 
-inline static struct Vec3F addVec3F(
-	struct Vec3F a,
-	struct Vec3F b)
+inline static Vec3F addVec3F(
+	Vec3F a,
+	Vec3F b)
 {
 	a.x += b.x;
 	a.y += b.y;
 	a.z += b.z;
 	return a;
 }
-inline static struct Vec3F subVec3F(
-	struct Vec3F a,
-	struct Vec3F b)
+inline static Vec3F subVec3F(
+	Vec3F a,
+	Vec3F b)
 {
 	a.x -= b.x;
 	a.y -= b.y;
 	a.z -= b.z;
 	return a;
 }
-inline static struct Vec3F mulVec3F(
-	struct Vec3F a,
-	struct Vec3F b)
+inline static Vec3F mulVec3F(
+	Vec3F a,
+	Vec3F b)
 {
 	a.x *= b.x;
 	a.y *= b.y;
 	a.z *= b.z;
 	return a;
 }
-inline static struct Vec3F divVec3F(
-	struct Vec3F a,
-	struct Vec3F b)
+inline static Vec3F divVec3F(
+	Vec3F a,
+	Vec3F b)
 {
 	a.x /= b.x;
 	a.y /= b.y;
@@ -343,8 +343,8 @@ inline static struct Vec3F divVec3F(
 	return a;
 }
 
-inline static struct Vec3F addValVec3F(
-	struct Vec3F vector,
+inline static Vec3F addValVec3F(
+	Vec3F vector,
 	float value)
 {
 	vector.x += value;
@@ -352,8 +352,8 @@ inline static struct Vec3F addValVec3F(
 	vector.z += value;
 	return vector;
 }
-inline static struct Vec3F subValVec3F(
-	struct Vec3F vector,
+inline static Vec3F subValVec3F(
+	Vec3F vector,
 	float value)
 {
 	vector.x -= value;
@@ -361,8 +361,8 @@ inline static struct Vec3F subValVec3F(
 	vector.z -= value;
 	return vector;
 }
-inline static struct Vec3F mulValVec3F(
-	struct Vec3F vector,
+inline static Vec3F mulValVec3F(
+	Vec3F vector,
 	float value)
 {
 	vector.x *= value;
@@ -370,8 +370,8 @@ inline static struct Vec3F mulValVec3F(
 	vector.z *= value;
 	return vector;
 }
-inline static struct Vec3F divValVec3F(
-	struct Vec3F vector,
+inline static Vec3F divValVec3F(
+	Vec3F vector,
 	float value)
 {
 	vector.x /= value;
@@ -381,16 +381,16 @@ inline static struct Vec3F divValVec3F(
 }
 
 inline static bool compVec3F(
-	struct Vec3F a,
-	struct Vec3F b)
+	Vec3F a,
+	Vec3F b)
 {
 	return
 		a.x == b.x &&
 		a.y == b.y &&
 		a.z == b.z;
 }
-inline static struct Vec3F negVec3F(
-	struct Vec3F vector)
+inline static Vec3F negVec3F(
+	Vec3F vector)
 {
 	vector.x = -vector.x;
 	vector.y = -vector.y;
@@ -398,26 +398,26 @@ inline static struct Vec3F negVec3F(
 	return vector;
 }
 inline static float dotVec3F(
-	struct Vec3F a,
-	struct Vec3F b)
+	Vec3F a,
+	Vec3F b)
 {
 	return
 		(a.x * b.x) +
 		(a.y * b.y) +
 		(a.z * b.z);
 }
-inline static struct Vec3F crossVec3F(
-	struct Vec3F a,
-	struct Vec3F b)
+inline static Vec3F crossVec3F(
+	Vec3F a,
+	Vec3F b)
 {
-	struct Vec3F vector;
+	Vec3F vector;
 	vector.x = a.y * b.z - a.z * b.y;
 	vector.y = a.z * b.x - a.x * b.z;
 	vector.z = a.x * b.y - a.y * b.x;
 	return vector;
 }
 inline static float lenVec3F(
-	struct Vec3F vector)
+	Vec3F vector)
 {
 	return sqrtf(
 		(vector.x * vector.x) +
@@ -425,8 +425,8 @@ inline static float lenVec3F(
 		(vector.z * vector.z));
 }
 inline static float distPowVec3F(
-	struct Vec3F a,
-	struct Vec3F b)
+	Vec3F a,
+	Vec3F b)
 {
 	return
 		((a.x - b.x) * (a.x - b.x)) +
@@ -434,16 +434,16 @@ inline static float distPowVec3F(
 		((a.z - b.z) * (a.z - b.z));
 }
 inline static float distVec3F(
-	struct Vec3F a,
-	struct Vec3F b)
+	Vec3F a,
+	Vec3F b)
 {
 	return sqrtf(
 		((a.x - b.x) * (a.x - b.x)) +
 		((a.y - b.y) * (a.y - b.y)) +
 		((a.z - b.z) * (a.z - b.z)));
 }
-inline static struct Vec3F normVec3F(
-	struct Vec3F vector)
+inline static Vec3F normVec3F(
+	Vec3F vector)
 {
 	float length = sqrtf(
 		(vector.x * vector.x) +
@@ -455,9 +455,9 @@ inline static struct Vec3F normVec3F(
 	vector.z /= length;
 	return vector;
 }
-inline static struct Vec3F reflVec3F(
-	struct Vec3F vector,
-	struct Vec3F normal)
+inline static Vec3F reflVec3F(
+	Vec3F vector,
+	Vec3F normal)
 {
 	float dot =
 		(normal.x * vector.x) +
@@ -474,50 +474,50 @@ inline static struct Vec3F reflVec3F(
 	return vector;
 }
 
-inline static struct Vec4F vec4F(
+inline static Vec4F vec4F(
 	float x,
 	float y,
 	float z,
 	float w)
 {
-	struct Vec4F vector;
+	Vec4F vector;
 	vector.x = x;
 	vector.y = y;
 	vector.z = z;
 	vector.w = w;
 	return vector;
 }
-inline static struct Vec4F valVec4F(
+inline static Vec4F valVec4F(
 	float value)
 {
-	struct Vec4F vector;
+	Vec4F vector;
 	vector.x = value;
 	vector.y = value;
 	vector.z = value;
 	vector.w = value;
 	return vector;
 }
-inline static struct Vec4F zeroVec4F()
+inline static Vec4F zeroVec4F()
 {
-	struct Vec4F vector;
+	Vec4F vector;
 	vector.x = 0.0f;
 	vector.y = 0.0f;
 	vector.z = 0.0f;
 	vector.w = 0.0f;
 	return vector;
 }
-inline static struct Vec4F oneVec4F()
+inline static Vec4F oneVec4F()
 {
-	struct Vec4F vector;
+	Vec4F vector;
 	vector.x = 1.0f;
 	vector.y = 1.0f;
 	vector.z = 1.0f;
 	vector.w = 1.0f;
 	return vector;
 }
-inline static struct Vec4F minOneVec4F()
+inline static Vec4F minOneVec4F()
 {
-	struct Vec4F vector;
+	Vec4F vector;
 	vector.x = -1.0f;
 	vector.y = -1.0f;
 	vector.z = -1.0f;
@@ -525,9 +525,9 @@ inline static struct Vec4F minOneVec4F()
 	return vector;
 }
 
-inline static struct Vec4F addVec4F(
-	struct Vec4F a,
-	struct Vec4F b)
+inline static Vec4F addVec4F(
+	Vec4F a,
+	Vec4F b)
 {
 	a.x += b.x;
 	a.y += b.y;
@@ -535,9 +535,9 @@ inline static struct Vec4F addVec4F(
 	a.w += b.w;
 	return a;
 }
-inline static struct Vec4F subVec4F(
-	struct Vec4F a,
-	struct Vec4F b)
+inline static Vec4F subVec4F(
+	Vec4F a,
+	Vec4F b)
 {
 	a.x -= b.x;
 	a.y -= b.y;
@@ -545,9 +545,9 @@ inline static struct Vec4F subVec4F(
 	a.w -= b.w;
 	return a;
 }
-inline static struct Vec4F mulVec4F(
-	struct Vec4F a,
-	struct Vec4F b)
+inline static Vec4F mulVec4F(
+	Vec4F a,
+	Vec4F b)
 {
 	a.x *= b.x;
 	a.y *= b.y;
@@ -555,9 +555,9 @@ inline static struct Vec4F mulVec4F(
 	a.w *= b.w;
 	return a;
 }
-inline static struct Vec4F divVec4F(
-	struct Vec4F a,
-	struct Vec4F b)
+inline static Vec4F divVec4F(
+	Vec4F a,
+	Vec4F b)
 {
 	a.x /= b.x;
 	a.y /= b.y;
@@ -566,8 +566,8 @@ inline static struct Vec4F divVec4F(
 	return a;
 }
 
-inline static struct Vec4F addValVec4F(
-	struct Vec4F vector,
+inline static Vec4F addValVec4F(
+	Vec4F vector,
 	float value)
 {
 	vector.x += value;
@@ -576,8 +576,8 @@ inline static struct Vec4F addValVec4F(
 	vector.w += value;
 	return vector;
 }
-inline static struct Vec4F subValVec4F(
-	struct Vec4F vector,
+inline static Vec4F subValVec4F(
+	Vec4F vector,
 	float value)
 {
 	vector.x -= value;
@@ -586,8 +586,8 @@ inline static struct Vec4F subValVec4F(
 	vector.w -= value;
 	return vector;
 }
-inline static struct Vec4F mulValVec4F(
-	struct Vec4F vector,
+inline static Vec4F mulValVec4F(
+	Vec4F vector,
 	float value)
 {
 	vector.x *= value;
@@ -596,8 +596,8 @@ inline static struct Vec4F mulValVec4F(
 	vector.w *= value;
 	return vector;
 }
-inline static struct Vec4F divValVec4F(
-	struct Vec4F vector,
+inline static Vec4F divValVec4F(
+	Vec4F vector,
 	float value)
 {
 	vector.x /= value;
@@ -608,8 +608,8 @@ inline static struct Vec4F divValVec4F(
 }
 
 inline static bool compVec4F(
-	struct Vec4F a,
-	struct Vec4F b)
+	Vec4F a,
+	Vec4F b)
 {
 	return
 		a.x == b.x &&
@@ -617,8 +617,8 @@ inline static bool compVec4F(
 		a.z == b.z &&
 		a.w == b.w;
 }
-inline static struct Vec4F negVec4F(
-	struct Vec4F vector)
+inline static Vec4F negVec4F(
+	Vec4F vector)
 {
 	vector.x = -vector.x;
 	vector.y = -vector.y;
@@ -627,8 +627,8 @@ inline static struct Vec4F negVec4F(
 	return vector;
 }
 inline static float dotVec4F(
-	struct Vec4F a,
-	struct Vec4F b)
+	Vec4F a,
+	Vec4F b)
 {
 	return
 		(a.x * b.x) +
@@ -637,7 +637,7 @@ inline static float dotVec4F(
 		(a.w * b.w);
 }
 inline static float lenVec4F(
-	struct Vec4F vector)
+	Vec4F vector)
 {
 	return sqrtf(
 		(vector.x * vector.x) +
@@ -646,8 +646,8 @@ inline static float lenVec4F(
 		(vector.w * vector.w));
 }
 inline static float distPowVec4F(
-	struct Vec4F a,
-	struct Vec4F b)
+	Vec4F a,
+	Vec4F b)
 {
 	return
 		((a.x - b.x) * (a.x - b.x)) +
@@ -656,8 +656,8 @@ inline static float distPowVec4F(
 		((a.w - b.w) * (a.w - b.w));
 }
 inline static float distVec4F(
-	struct Vec4F a,
-	struct Vec4F b)
+	Vec4F a,
+	Vec4F b)
 {
 	return sqrtf(
 		((a.x - b.x) * (a.x - b.x)) +
@@ -665,8 +665,8 @@ inline static float distVec4F(
 		((a.z - b.z) * (a.z - b.z)) +
 		((a.w - b.w) * (a.w - b.w)));
 }
-inline static struct Vec4F normVec4F(
-	struct Vec4F vector)
+inline static Vec4F normVec4F(
+	Vec4F vector)
 {
 	float length = sqrtf(
 		(vector.x * vector.x) +
@@ -680,9 +680,9 @@ inline static struct Vec4F normVec4F(
 	vector.w /= length;
 	return vector;
 }
-inline static struct Vec4F reflVec4F(
-	struct Vec4F vector,
-	struct Vec4F normal)
+inline static Vec4F reflVec4F(
+	Vec4F vector,
+	Vec4F normal)
 {
 	float dot =
 		(normal.x * vector.x) +
@@ -702,104 +702,104 @@ inline static struct Vec4F reflVec4F(
 	return vector;
 }
 
-inline static struct Vec2I vec2I(
+inline static Vec2I vec2I(
 	int x,
 	int y)
 {
-	struct Vec2I vector;
+	Vec2I vector;
 	vector.x = x;
 	vector.y = y;
 	return vector;
 }
-inline static struct Vec2I valVec2I(
+inline static Vec2I valVec2I(
 	int value)
 {
-	struct Vec2I vector;
+	Vec2I vector;
 	vector.x = value;
 	vector.y = value;
 	return vector;
 }
-inline static struct Vec2I zeroVec2I()
+inline static Vec2I zeroVec2I()
 {
-	struct Vec2I vector;
+	Vec2I vector;
 	vector.x = 0;
 	vector.y = 0;
 	return vector;
 }
-inline static struct Vec2I oneVec2I()
+inline static Vec2I oneVec2I()
 {
-	struct Vec2I vector;
+	Vec2I vector;
 	vector.x = 1;
 	vector.y = 1;
 	return vector;
 }
-inline static struct Vec2I minOneVec2I()
+inline static Vec2I minOneVec2I()
 {
-	struct Vec2I vector;
+	Vec2I vector;
 	vector.x = -1;
 	vector.y = -1;
 	return vector;
 }
 
-inline static struct Vec2I addVec2I(
-	struct Vec2I a,
-	struct Vec2I b)
+inline static Vec2I addVec2I(
+	Vec2I a,
+	Vec2I b)
 {
 	a.x += b.x;
 	a.y += b.y;
 	return a;
 }
-inline static struct Vec2I subVec2I(
-	struct Vec2I a,
-	struct Vec2I b)
+inline static Vec2I subVec2I(
+	Vec2I a,
+	Vec2I b)
 {
 	a.x -= b.x;
 	a.y -= b.y;
 	return a;
 }
-inline static struct Vec2I mulVec2I(
-	struct Vec2I a,
-	struct Vec2I b)
+inline static Vec2I mulVec2I(
+	Vec2I a,
+	Vec2I b)
 {
 	a.x *= b.x;
 	a.y *= b.y;
 	return a;
 }
-inline static struct Vec2I divVec2I(
-	struct Vec2I a,
-	struct Vec2I b)
+inline static Vec2I divVec2I(
+	Vec2I a,
+	Vec2I b)
 {
 	a.x /= b.x;
 	a.y /= b.y;
 	return a;
 }
 
-inline static struct Vec2I addValVec2I(
-	struct Vec2I vector,
+inline static Vec2I addValVec2I(
+	Vec2I vector,
 	int value)
 {
 	vector.x += value;
 	vector.y += value;
 	return vector;
 }
-inline static struct Vec2I subValVec2I(
-	struct Vec2I vector,
+inline static Vec2I subValVec2I(
+	Vec2I vector,
 	int value)
 {
 	vector.x -= value;
 	vector.y -= value;
 	return vector;
 }
-inline static struct Vec2I mulValVec2I(
-	struct Vec2I vector,
+inline static Vec2I mulValVec2I(
+	Vec2I vector,
 	int value)
 {
 	vector.x *= value;
 	vector.y *= value;
 	return vector;
 }
-inline static struct Vec2I divValVec2I(
-	struct Vec2I vector,
+inline static Vec2I divValVec2I(
+	Vec2I vector,
 	int value)
 {
 	vector.x /= value;
@@ -808,145 +808,145 @@ inline static struct Vec2I divValVec2I(
 }
 
 inline static bool compVec2I(
-	struct Vec2I a,
-	struct Vec2I b)
+	Vec2I a,
+	Vec2I b)
 {
 	return
 		a.x == b.x &&
 		a.y == b.y;
 }
-inline static struct Vec2I negVec2I(
-	struct Vec2I vector)
+inline static Vec2I negVec2I(
+	Vec2I vector)
 {
 	vector.x = -vector.x;
 	vector.y = -vector.y;
 	return vector;
 }
 
-inline static struct Vec3I vec3I(
+inline static Vec3I vec3I(
 	int x,
 	int y,
 	int z)
 {
-	struct Vec3I vector;
+	Vec3I vector;
 	vector.x = x;
 	vector.y = y;
 	vector.z = z;
 	return vector;
 }
-inline static struct Vec3I valVec3I(
+inline static Vec3I valVec3I(
 	int value)
 {
-	struct Vec3I vector;
+	Vec3I vector;
 	vector.x = value;
 	vector.y = value;
 	vector.z = value;
 	return vector;
 }
-inline static struct Vec3I zeroVec3I()
+inline static Vec3I zeroVec3I()
 {
-	struct Vec3I vector;
+	Vec3I vector;
 	vector.x = 0;
 	vector.y = 0;
 	vector.z = 0;
 	return vector;
 }
-inline static struct Vec3I oneVec3I()
+inline static Vec3I oneVec3I()
 {
-	struct Vec3I vector;
+	Vec3I vector;
 	vector.x = 1;
 	vector.y = 1;
 	vector.z = 1;
 	return vector;
 }
-inline static struct Vec3I minOneVec3I()
+inline static Vec3I minOneVec3I()
 {
-	struct Vec3I vector;
+	Vec3I vector;
 	vector.x = -1;
 	vector.y = -1;
 	vector.z = -1;
 	return vector;
 }
 
-inline static struct Vec3I leftVec3I()
+inline static Vec3I leftVec3I()
 {
-	struct Vec3I vector;
+	Vec3I vector;
 	vector.x = -1;
 	vector.y = 0;
 	vector.z = 0;
 	return vector;
 }
-inline static struct Vec3I rightVec3I()
+inline static Vec3I rightVec3I()
 {
-	struct Vec3I vector;
+	Vec3I vector;
 	vector.x = 1;
 	vector.y = 0;
 	vector.z = 0;
 	return vector;
 }
-inline static struct Vec3I bottomVec3I()
+inline static Vec3I bottomVec3I()
 {
-	struct Vec3I vector;
+	Vec3I vector;
 	vector.x = 0;
 	vector.y = -1;
 	vector.z = 0;
 	return vector;
 }
-inline static struct Vec3I topVec3I()
+inline static Vec3I topVec3I()
 {
-	struct Vec3I vector;
+	Vec3I vector;
 	vector.x = 0;
 	vector.y = 1;
 	vector.z = 0;
 	return vector;
 }
-inline static struct Vec3F backVec3I()
+inline static Vec3F backVec3I()
 {
-	struct Vec3F vector;
+	Vec3F vector;
 	vector.x = 0;
 	vector.y = 0;
 	vector.z = -1;
 	return vector;
 }
-inline static struct Vec3F frontVec3I()
+inline static Vec3F frontVec3I()
 {
-	struct Vec3F vector;
+	Vec3F vector;
 	vector.x = 0;
 	vector.y = 0;
 	vector.z = 1;
 	return vector;
 }
 
-inline static struct Vec3I addVec3I(
-	struct Vec3I a,
-	struct Vec3I b)
+inline static Vec3I addVec3I(
+	Vec3I a,
+	Vec3I b)
 {
 	a.x += b.x;
 	a.y += b.y;
 	a.z += b.z;
 	return a;
 }
-inline static struct Vec3I subVec3I(
-	struct Vec3I a,
-	struct Vec3I b)
+inline static Vec3I subVec3I(
+	Vec3I a,
+	Vec3I b)
 {
 	a.x -= b.x;
 	a.y -= b.y;
 	a.z -= b.z;
 	return a;
 }
-inline static struct Vec3I mulVec3I(
-	struct Vec3I a,
-	struct Vec3I b)
+inline static Vec3I mulVec3I(
+	Vec3I a,
+	Vec3I b)
 {
 	a.x *= b.x;
 	a.y *= b.y;
 	a.z *= b.z;
 	return a;
 }
-inline static struct Vec3I divVec3I(
-	struct Vec3I a,
-	struct Vec3I b)
+inline static Vec3I divVec3I(
+	Vec3I a,
+	Vec3I b)
 {
 	a.x /= b.x;
 	a.y /= b.y;
@@ -954,8 +954,8 @@ inline static struct Vec3I divVec3I(
 	return a;
 }
 
-inline static struct Vec3I addValVec3I(
-	struct Vec3I vector,
+inline static Vec3I addValVec3I(
+	Vec3I vector,
 	int value)
 {
 	vector.x += value;
@@ -963,8 +963,8 @@ inline static struct Vec3I addValVec3I(
 	vector.z += value;
 	return vector;
 }
-inline static struct Vec3I subValVec3I(
-	struct Vec3I vector,
+inline static Vec3I subValVec3I(
+	Vec3I vector,
 	int value)
 {
 	vector.x -= value;
@@ -972,8 +972,8 @@ inline static struct Vec3I subValVec3I(
 	vector.z -= value;
 	return vector;
 }
-inline static struct Vec3I mulValVec3I(
-	struct Vec3I vector,
+inline static Vec3I mulValVec3I(
+	Vec3I vector,
 	int value)
 {
 	vector.x *= value;
@@ -981,8 +981,8 @@ inline static struct Vec3I mulValVec3I(
 	vector.z *= value;
 	return vector;
 }
-inline static struct Vec3I divValVec3I(
-	struct Vec3I vector,
+inline static Vec3I divValVec3I(
+	Vec3I vector,
 	int value)
 {
 	vector.x /= value;
@@ -992,16 +992,16 @@ inline static struct Vec3I divValVec3I(
 }
 
 inline static bool compVec3I(
-	struct Vec3I a,
-	struct Vec3I b)
+	Vec3I a,
+	Vec3I b)
 {
 	return
 		a.x == b.x &&
 		a.y == b.y &&
 		a.z == b.z;
 }
-inline static struct Vec3I negVec3I(
-	struct Vec3I vector)
+inline static Vec3I negVec3I(
+	Vec3I vector)
 {
 	vector.x = -vector.x;
 	vector.y = -vector.y;
@@ -1009,50 +1009,50 @@ inline static struct Vec3I negVec3I(
 	return vector;
 }
 
-inline static struct Vec4I vec4I(
+inline static Vec4I vec4I(
 	int x,
 	int y,
 	int z,
 	int w)
 {
-	struct Vec4I vector;
+	Vec4I vector;
 	vector.x = x;
 	vector.y = y;
 	vector.z = z;
 	vector.w = w;
 	return vector;
 }
-inline static struct Vec4I valVec4I(
+inline static Vec4I valVec4I(
 	int value)
 {
-	struct Vec4I vector;
+	Vec4I vector;
 	vector.x = value;
 	vector.y = value;
 	vector.z = value;
 	vector.w = value;
 	return vector;
 }
-inline static struct Vec4I zeroVec4I()
+inline static Vec4I zeroVec4I()
 {
-	struct Vec4I vector;
+	Vec4I vector;
 	vector.x = 0;
 	vector.y = 0;
 	vector.z = 0;
 	vector.w = 0;
 	return vector;
 }
-inline static struct Vec4I oneVec4I()
+inline static Vec4I oneVec4I()
 {
-	struct Vec4I vector;
+	Vec4I vector;
 	vector.x = 1;
 	vector.y = 1;
 	vector.z = 1;
 	vector.w = 1;
 	return vector;
 }
-inline static struct Vec4I minOneVec4I()
+inline static Vec4I minOneVec4I()
 {
-	struct Vec4I vector;
+	Vec4I vector;
 	vector.x = -1;
 	vector.y = -1;
 	vector.z = -1;
@@ -1060,9 +1060,9 @@ inline static struct Vec4I minOneVec4I()
 	return vector;
 }
 
-inline static struct Vec4I addVec4I(
-	struct Vec4I a,
-	struct Vec4I b)
+inline static Vec4I addVec4I(
+	Vec4I a,
+	Vec4I b)
 {
 	a.x += b.x;
 	a.y += b.y;
@@ -1070,9 +1070,9 @@ inline static struct Vec4I addVec4I(
 	a.w += b.w;
 	return a;
 }
-inline static struct Vec4I subVec4I(
-	struct Vec4I a,
-	struct Vec4I b)
+inline static Vec4I subVec4I(
+	Vec4I a,
+	Vec4I b)
 {
 	a.x -= b.x;
 	a.y -= b.y;
@@ -1080,9 +1080,9 @@ inline static struct Vec4I subVec4I(
 	a.w -= b.w;
 	return a;
 }
-inline static struct Vec4I mulVec4I(
-	struct Vec4I a,
-	struct Vec4I b)
+inline static Vec4I mulVec4I(
+	Vec4I a,
+	Vec4I b)
 {
 	a.x *= b.x;
 	a.y *= b.y;
@@ -1090,9 +1090,9 @@ inline static struct Vec4I mulVec4I(
 	a.w *= b.w;
 	return a;
 }
-inline static struct Vec4I divVec4I(
-	struct Vec4I a,
-	struct Vec4I b)
+inline static Vec4I divVec4I(
+	Vec4I a,
+	Vec4I b)
 {
 	a.x /= b.x;
 	a.y /= b.y;
@@ -1101,8 +1101,8 @@ inline static struct Vec4I divVec4I(
 	return a;
 }
 
-inline static struct Vec4I addValVec4I(
-	struct Vec4I vector,
+inline static Vec4I addValVec4I(
+	Vec4I vector,
 	int value)
 {
 	vector.x += value;
@@ -1111,8 +1111,8 @@ inline static struct Vec4I addValVec4I(
 	vector.w += value;
 	return vector;
 }
-inline static struct Vec4I subValVec4I(
-	struct Vec4I vector,
+inline static Vec4I subValVec4I(
+	Vec4I vector,
 	int value)
 {
 	vector.x -= value;
@@ -1121,8 +1121,8 @@ inline static struct Vec4I subValVec4I(
 	vector.w -= value;
 	return vector;
 }
-inline static struct Vec4I mulValVec4I(
-	struct Vec4I vector,
+inline static Vec4I mulValVec4I(
+	Vec4I vector,
 	int value)
 {
 	vector.x *= value;
@@ -1131,8 +1131,8 @@ inline static struct Vec4I mulValVec4I(
 	vector.w *= value;
 	return vector;
 }
-inline static struct Vec4I divValVec4I(
-	struct Vec4I vector,
+inline static Vec4I divValVec4I(
+	Vec4I vector,
 	int value)
 {
 	vector.x /= value;
@@ -1143,8 +1143,8 @@ inline static struct Vec4I divValVec4I(
 }
 
 inline static bool compVec4I(
-	struct Vec4I a,
-	struct Vec4I b)
+	Vec4I a,
+	Vec4I b)
 {
 	return
 		a.x == b.x &&
@@ -1152,8 +1152,8 @@ inline static bool compVec4I(
 		a.z == b.z &&
 		a.w == b.w;
 }
-inline static struct Vec4I negVec4I(
-	struct Vec4I vector)
+inline static Vec4I negVec4I(
+	Vec4I vector)
 {
 	vector.x = -vector.x;
 	vector.y = -vector.y;
