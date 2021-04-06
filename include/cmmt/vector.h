@@ -403,10 +403,11 @@ inline static struct Vec3F crossVec3F(
 	struct Vec3F a,
 	struct Vec3F b)
 {
-	a.x = a.y * b.z - a.z * b.y;
-	a.y = a.z * b.x - a.x * b.z;
-	a.z = a.x * b.y - a.y * b.x;
-	return a;
+	struct Vec3F vector;
+	vector.x = a.y * b.z - a.z * b.y;
+	vector.y = a.z * b.x - a.x * b.z;
+	vector.z = a.x * b.y - a.y * b.x;
+	return vector;
 }
 inline static float lenVec3F(
 	struct Vec3F vector)

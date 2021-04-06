@@ -343,28 +343,32 @@ inline static struct Mat4F dotMat4F(
 	struct Mat4F a,
 	struct Mat4F b)
 {
-	a.m00 = a.m00 * b.m00 + a.m01 * b.m10 + a.m02 * b.m20 + a.m03 * b.m30;
-	a.m01 = a.m00 * b.m01 + a.m01 * b.m11 + a.m02 * b.m21 + a.m03 * b.m31;
-	a.m02 = a.m00 * b.m02 + a.m01 * b.m12 + a.m02 * b.m22 + a.m03 * b.m32;
-	a.m03 = a.m00 * b.m03 + a.m01 * b.m13 + a.m02 * b.m23 + a.m03 * b.m33;
-	a.m10 = a.m10 * b.m00 + a.m11 * b.m10 + a.m12 * b.m20 + a.m13 * b.m30;
-	a.m11 = a.m10 * b.m01 + a.m11 * b.m11 + a.m12 * b.m21 + a.m13 * b.m31;
-	a.m12 = a.m10 * b.m02 + a.m11 * b.m12 + a.m12 * b.m22 + a.m13 * b.m32;
-	a.m13 = a.m10 * b.m03 + a.m11 * b.m13 + a.m12 * b.m23 + a.m13 * b.m33;
-	a.m20 = a.m20 * b.m00 + a.m21 * b.m10 + a.m22 * b.m20 + a.m23 * b.m30;
-	a.m21 = a.m20 * b.m01 + a.m21 * b.m11 + a.m22 * b.m21 + a.m23 * b.m31;
-	a.m22 = a.m20 * b.m02 + a.m21 * b.m12 + a.m22 * b.m22 + a.m23 * b.m32;
-	a.m23 = a.m20 * b.m03 + a.m21 * b.m13 + a.m22 * b.m23 + a.m23 * b.m33;
-	a.m30 = a.m30 * b.m00 + a.m31 * b.m10 + a.m32 * b.m20 + a.m33 * b.m30;
-	a.m31 = a.m30 * b.m01 + a.m31 * b.m11 + a.m32 * b.m21 + a.m33 * b.m31;
-	a.m32 = a.m30 * b.m02 + a.m31 * b.m12 + a.m32 * b.m22 + a.m33 * b.m32;
-	a.m33 = a.m30 * b.m03 + a.m31 * b.m13 + a.m32 * b.m23 + a.m33 * b.m33;
-	return a;
+	struct Mat4F matrix;
+	matrix.m00 = a.m00 * b.m00 + a.m10 * b.m01 + a.m20 * b.m02 + a.m30 * b.m03;
+	matrix.m01 = a.m01 * b.m00 + a.m11 * b.m01 + a.m21 * b.m02 + a.m31 * b.m03;
+	matrix.m02 = a.m02 * b.m00 + a.m12 * b.m01 + a.m22 * b.m02 + a.m32 * b.m03;
+	matrix.m03 = a.m03 * b.m00 + a.m13 * b.m01 + a.m23 * b.m02 + a.m33 * b.m03;
+	matrix.m10 = a.m00 * b.m10 + a.m10 * b.m11 + a.m20 * b.m12 + a.m30 * b.m13;
+	matrix.m11 = a.m01 * b.m10 + a.m11 * b.m11 + a.m21 * b.m12 + a.m31 * b.m13;
+	matrix.m12 = a.m02 * b.m10 + a.m12 * b.m11 + a.m22 * b.m12 + a.m32 * b.m13;
+	matrix.m13 = a.m03 * b.m10 + a.m13 * b.m11 + a.m23 * b.m12 + a.m33 * b.m13;
+	matrix.m20 = a.m00 * b.m20 + a.m10 * b.m21 + a.m20 * b.m22 + a.m30 * b.m23;
+	matrix.m21 = a.m01 * b.m20 + a.m11 * b.m21 + a.m21 * b.m22 + a.m31 * b.m23;
+	matrix.m22 = a.m02 * b.m20 + a.m12 * b.m21 + a.m22 * b.m22 + a.m32 * b.m23;
+	matrix.m23 = a.m03 * b.m20 + a.m13 * b.m21 + a.m23 * b.m22 + a.m33 * b.m23;
+	matrix.m30 = a.m00 * b.m30 + a.m10 * b.m31 + a.m20 * b.m32 + a.m30 * b.m33;
+	matrix.m31 = a.m01 * b.m30 + a.m11 * b.m31 + a.m21 * b.m32 + a.m31 * b.m33;
+	matrix.m32 = a.m02 * b.m30 + a.m12 * b.m31 + a.m22 * b.m32 + a.m32 * b.m33;
+	matrix.m33 = a.m03 * b.m30 + a.m13 * b.m31 + a.m23 * b.m32 + a.m33 * b.m33;
+	return matrix;
 }
 inline static struct Vec4F dotMatVec4F(
 	struct Mat4F matrix,
 	struct Vec4F vector)
 {
+	// TODO: check if we should create a
+	// new vector for correct calculations
+
 	vector.x =
 		matrix.m00 * vector.x +
 		matrix.m01 * vector.x +
@@ -407,26 +411,27 @@ inline static float detMat4F(
 inline static struct Mat4F transposeMat4F(
 	struct Mat4F matrix)
 {
-	matrix.m00 = matrix.m00;
-	matrix.m01 = matrix.m10;
-	matrix.m02 = matrix.m20;
-	matrix.m03 = matrix.m30;
+	struct Mat4F transposed;
+	transposed.m00 = matrix.m00;
+	transposed.m01 = matrix.m10;
+	transposed.m02 = matrix.m20;
+	transposed.m03 = matrix.m30;
 
-	matrix.m10 = matrix.m01;
-	matrix.m11 = matrix.m11;
-	matrix.m12 = matrix.m21;
-	matrix.m13 = matrix.m31;
+	transposed.m10 = matrix.m01;
+	transposed.m11 = matrix.m11;
+	transposed.m12 = matrix.m21;
+	transposed.m13 = matrix.m31;
 
-	matrix.m20 = matrix.m02;
-	matrix.m21 = matrix.m12;
-	matrix.m22 = matrix.m22;
-	matrix.m23 = matrix.m32;
+	transposed.m20 = matrix.m02;
+	transposed.m21 = matrix.m12;
+	transposed.m22 = matrix.m22;
+	transposed.m23 = matrix.m32;
 
-	matrix.m30 = matrix.m03;
-	matrix.m31 = matrix.m13;
-	matrix.m32 = matrix.m23;
-	matrix.m33 = matrix.m33;
-	return matrix;
+	transposed.m30 = matrix.m03;
+	transposed.m31 = matrix.m13;
+	transposed.m32 = matrix.m23;
+	transposed.m33 = matrix.m33;
+	return transposed;
 }
 inline static struct Mat4F invMat4F(
 	struct Mat4F matrix)
@@ -453,26 +458,27 @@ inline static struct Mat4F invMat4F(
 		s[2] * c[3] + s[3] * c[2] -
 		s[4] * c[1] + s[5] * c[0]);
 
-	matrix.m00 = (matrix.m11 * c[5] - matrix.m12 * c[4] + matrix.m13 * c[3]) * id;
-	matrix.m01 = (-matrix.m01 * c[5] + matrix.m02 * c[4] - matrix.m03 * c[3]) * id;
-	matrix.m02 = (matrix.m31 * s[5] - matrix.m32 * s[4] + matrix.m33 * s[3]) * id;
-	matrix.m03 = (-matrix.m21 * s[5] + matrix.m22 * s[4] - matrix.m23 * s[3]) * id;
+	struct Mat4F inverted;
+	inverted.m00 = (matrix.m11 * c[5] - matrix.m12 * c[4] + matrix.m13 * c[3]) * id;
+	inverted.m01 = (-matrix.m01 * c[5] + matrix.m02 * c[4] - matrix.m03 * c[3]) * id;
+	inverted.m02 = (matrix.m31 * s[5] - matrix.m32 * s[4] + matrix.m33 * s[3]) * id;
+	inverted.m03 = (-matrix.m21 * s[5] + matrix.m22 * s[4] - matrix.m23 * s[3]) * id;
 
-	matrix.m10 = (-matrix.m10 * c[5] + matrix.m12 * c[2] - matrix.m13 * c[1]) * id;
-	matrix.m11 = (matrix.m00 * c[5] - matrix.m02 * c[2] + matrix.m03 * c[1]) * id;
-	matrix.m12 = (-matrix.m30 * s[5] + matrix.m32 * s[2] - matrix.m33 * s[1]) * id;
-	matrix.m13 = (matrix.m20 * s[5] - matrix.m22 * s[2] + matrix.m23 * s[1]) * id;
+	inverted.m10 = (-matrix.m10 * c[5] + matrix.m12 * c[2] - matrix.m13 * c[1]) * id;
+	inverted.m11 = (matrix.m00 * c[5] - matrix.m02 * c[2] + matrix.m03 * c[1]) * id;
+	inverted.m12 = (-matrix.m30 * s[5] + matrix.m32 * s[2] - matrix.m33 * s[1]) * id;
+	inverted.m13 = (matrix.m20 * s[5] - matrix.m22 * s[2] + matrix.m23 * s[1]) * id;
 
-	matrix.m20 = (matrix.m10 * c[4] - matrix.m11 * c[2] + matrix.m13 * c[0]) * id;
-	matrix.m21 = (-matrix.m00 * c[4] + matrix.m01 * c[2] - matrix.m03 * c[0]) * id;
-	matrix.m22 = (matrix.m30 * s[4] - matrix.m31 * s[2] + matrix.m33 * s[0]) * id;
-	matrix.m23 = (-matrix.m20 * s[4] + matrix.m21 * s[2] - matrix.m23 * s[0]) * id;
+	inverted.m20 = (matrix.m10 * c[4] - matrix.m11 * c[2] + matrix.m13 * c[0]) * id;
+	inverted.m21 = (-matrix.m00 * c[4] + matrix.m01 * c[2] - matrix.m03 * c[0]) * id;
+	inverted.m22 = (matrix.m30 * s[4] - matrix.m31 * s[2] + matrix.m33 * s[0]) * id;
+	inverted.m23 = (-matrix.m20 * s[4] + matrix.m21 * s[2] - matrix.m23 * s[0]) * id;
 
-	matrix.m30 = (-matrix.m10 * c[3] + matrix.m11 * c[1] - matrix.m12 * c[0]) * id;
-	matrix.m31 = (matrix.m00 * c[3] - matrix.m01 * c[1] + matrix.m02 * c[0]) * id;
-	matrix.m32 = (-matrix.m30 * s[3] + matrix.m31 * s[1] - matrix.m32 * s[0]) * id;
-	matrix.m33 = (matrix.m20 * s[3] - matrix.m21 * s[1] + matrix.m22 * s[0]) * id;
-	return matrix;
+	inverted.m30 = (-matrix.m10 * c[3] + matrix.m11 * c[1] - matrix.m12 * c[0]) * id;
+	inverted.m31 = (matrix.m00 * c[3] - matrix.m01 * c[1] + matrix.m02 * c[0]) * id;
+	inverted.m32 = (-matrix.m30 * s[3] + matrix.m31 * s[1] - matrix.m32 * s[0]) * id;
+	inverted.m33 = (matrix.m20 * s[3] - matrix.m21 * s[1] + matrix.m22 * s[0]) * id;
+	return inverted;
 }
 inline static struct Mat4F scaleMat4F(
 	struct Mat4F matrix,

@@ -86,17 +86,17 @@ inline static struct Mat4F getQuatMatF4(
 
 	struct Mat4F matrix;
 	matrix.m00 = 1.0f - 2.0f * (yy + zz);
-	matrix.m01 = 2.0f * (xy - wz);
-	matrix.m02 = 2.0f * (xz + wy);
+	matrix.m01 = 2.0f * (xy + wz);
+	matrix.m02 = 2.0f * (xz - wy);
 	matrix.m03 = 0.0f;
 
-	matrix.m10 = 2.0f * (xy + wz);
+	matrix.m10 = 2.0f * (xy - wz);
 	matrix.m11 = 1.0f - 2.0f * (xx + zz);
-	matrix.m12 = 2.0f * (yz - wx);
+	matrix.m12 = 2.0f * (yz + wx);
 	matrix.m13 = 0.0f;
 
-	matrix.m20 = 2.0f * (xz - wy);
-	matrix.m21 = 2.0f * (yz + wx);
+	matrix.m20 = 2.0f * (xz + wy);
+	matrix.m21 = 2.0f * (yz - wx);
 	matrix.m22 = 1.0f - 2.0f * (xx + yy);
 	matrix.m23 = 0.0f;
 
@@ -115,11 +115,12 @@ inline static struct Quat dotQuat(
 	struct Quat a,
 	struct Quat b)
 {
-	a.x = a.w * b.x + a.x * b.w + a.y * b.z - a.z * b.y;
-	a.y = a.w * b.y + a.y * b.w + a.z * b.x - a.x * b.z;
-	a.z = a.w * b.z + a.z * b.w + a.x * b.y - a.y * b.x;
-	a.w = a.w * b.w - a.x * b.x - a.y * b.y - a.z * b.z;
-	return a;
+	struct Quat quaternion;
+	quaternion.x = a.w * b.x + a.x * b.w + a.y * b.z - a.z * b.y;
+	quaternion.y = a.w * b.y + a.y * b.w + a.z * b.x - a.x * b.z;
+	quaternion.z = a.w * b.z + a.z * b.w + a.x * b.y - a.y * b.x;
+	quaternion.w = a.w * b.w - a.x * b.x - a.y * b.y - a.z * b.z;
+	return quaternion;
 }
 inline static struct Quat normQuat(
 	struct Quat quaternion)
