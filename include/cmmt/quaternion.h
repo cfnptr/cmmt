@@ -22,33 +22,31 @@ inline static struct Quat quat(
 inline static struct Quat eulerQuat(
 	struct Vec3F eulerAngles)
 {
-	float s0 = sinf(eulerAngles.x * 0.5f);
-	float s1 = sinf(eulerAngles.y * 0.5f);
-	float s2 = sinf(eulerAngles.z * 0.5f);
+	float sinX = sinf(eulerAngles.x * 0.5f);
+	float sinY = sinf(eulerAngles.y * 0.5f);
+	float sinZ = sinf(eulerAngles.z * 0.5f);
 
-	float c0 = cosf(eulerAngles.x * 0.5f);
-	float c1 = cosf(eulerAngles.y * 0.5f);
-	float c2 = cosf(eulerAngles.z * 0.5f);
+	float cosX = cosf(eulerAngles.x * 0.5f);
+	float cosY = cosf(eulerAngles.y * 0.5f);
+	float cosZ = cosf(eulerAngles.z * 0.5f);
 
 	struct Quat quaternion;
-	quaternion.x = s0 * c1 * c2 - c0 * s1 * s2;
-	quaternion.y = c0 * s1 * c2 + s0 * c1 * s2;
-	quaternion.z = c0 * c1 * s2 - s0 * s1 * c2;
-	quaternion.w = c0 * c1 * c2 + s0 * s1 * s2;
+	quaternion.x = sinX * cosY * cosZ - cosX * sinY * sinZ;
+	quaternion.y = cosX * sinY * cosZ + sinX * cosY * sinZ;
+	quaternion.z = cosX * cosY * sinZ - sinX * sinY * cosZ;
+	quaternion.w = cosX * cosY * cosZ + sinX * sinY * sinZ;
 	return quaternion;
 }
 inline static struct Quat axisQuat(
 	float angle,
 	struct Vec3F axis)
 {
-	axis = mulValVec3F(
-		axis,
-		sinf(angle * 0.5f));
+	float sin = sinf(angle * 0.5f);
 
 	struct Quat quaternion;
-	quaternion.x = axis.x;
-	quaternion.y = axis.y;
-	quaternion.z = axis.z;
+	quaternion.x = axis.x * sin;
+	quaternion.y = axis.y * sin;
+	quaternion.z = axis.z * sin;
 	quaternion.w = cosf(angle * 0.5f);
 	return quaternion;
 }
@@ -84,19 +82,22 @@ inline static struct Mat4F getQuatMatF4(
 	float wy = quaternion.w * quaternion.y;
 	float wz = quaternion.w * quaternion.z;
 
+	// TODO: investigate difference between
+	// current variant and transposed
+
 	struct Mat4F matrix;
 	matrix.m00 = 1.0f - 2.0f * (yy + zz);
-	matrix.m01 = 2.0f * (xy + wz);
-	matrix.m02 = 2.0f * (xz - wy);
+	matrix.m01 = 2.0f * (xy - wz);
+	matrix.m02 = 2.0f * (xz + wy);
 	matrix.m03 = 0.0f;
 
-	matrix.m10 = 2.0f * (xy - wz);
+	matrix.m10 = 2.0f * (xy + wz);
 	matrix.m11 = 1.0f - 2.0f * (xx + zz);
-	matrix.m12 = 2.0f * (yz + wx);
+	matrix.m12 = 2.0f * (yz - wx);
 	matrix.m13 = 0.0f;
 
-	matrix.m20 = 2.0f * (xz + wy);
-	matrix.m21 = 2.0f * (yz - wx);
+	matrix.m20 = 2.0f * (xz - wy);
+	matrix.m21 = 2.0f * (yz + wx);
 	matrix.m22 = 1.0f - 2.0f * (xx + yy);
 	matrix.m23 = 0.0f;
 
@@ -121,6 +122,26 @@ inline static struct Quat dotQuat(
 	quaternion.z = a.w * b.z + a.z * b.w + a.x * b.y - a.y * b.x;
 	quaternion.w = a.w * b.w - a.x * b.x - a.y * b.y - a.z * b.z;
 	return quaternion;
+}
+inline static struct Vec3F dotVecQuat3F(
+	struct Quat quaternion,
+	struct Vec3F vector)
+{
+	struct Vec3F qv = vec3F(
+		quaternion.x,
+		quaternion.y,
+		quaternion.z);
+	struct Vec3F cv = crossVec3F(
+		qv,
+		vector);
+	struct Vec3F ccv = crossVec3F(
+		qv,
+		cv);
+
+	vector.x = vector.x + ((cv.x * quaternion.w) + ccv.x) * 2.0f;
+	vector.y = vector.y + ((cv.y * quaternion.w) + ccv.y) * 2.0f;
+	vector.z = vector.z + ((cv.z * quaternion.w) + ccv.z) * 2.0f;
+	return vector;
 }
 inline static struct Quat normQuat(
 	struct Quat quaternion)

@@ -2,6 +2,13 @@
 #include <math.h>
 #include <stdbool.h>
 
+#define LEFT_AXIS_VALUE -1
+#define RIGHT_AXIS_VALUE 1
+#define BOTTOM_AXIS_VALUE -1
+#define TOP_AXIS_VALUE 1
+#define BACK_AXIS_VALUE -1
+#define FRONT_AXIS_VALUE 1
+
 struct Vec2F
 {
 	float x, y;
@@ -253,7 +260,7 @@ inline static struct Vec3F minOneVec3F()
 inline static struct Vec3F leftVec3F()
 {
 	struct Vec3F vector;
-	vector.x = -1.0f;
+	vector.x = LEFT_AXIS_VALUE;
 	vector.y = 0.0f;
 	vector.z = 0.0f;
 	return vector;
@@ -261,7 +268,7 @@ inline static struct Vec3F leftVec3F()
 inline static struct Vec3F rightVec3F()
 {
 	struct Vec3F vector;
-	vector.x = 1.0f;
+	vector.x = RIGHT_AXIS_VALUE;
 	vector.y = 0.0f;
 	vector.z = 0.0f;
 	return vector;
@@ -270,7 +277,7 @@ inline static struct Vec3F bottomVec3F()
 {
 	struct Vec3F vector;
 	vector.x = 0.0f;
-	vector.y = -1.0f;
+	vector.y = BOTTOM_AXIS_VALUE;
 	vector.z = 0.0f;
 	return vector;
 }
@@ -278,7 +285,7 @@ inline static struct Vec3F topVec3F()
 {
 	struct Vec3F vector;
 	vector.x = 0.0f;
-	vector.y = 1.0f;
+	vector.y = TOP_AXIS_VALUE;
 	vector.z = 0.0f;
 	return vector;
 }
@@ -287,7 +294,7 @@ inline static struct Vec3F backVec3F()
 	struct Vec3F vector;
 	vector.x = 0.0f;
 	vector.y = 0.0f;
-	vector.z = -1.0f;
+	vector.z = BACK_AXIS_VALUE;
 	return vector;
 }
 inline static struct Vec3F frontVec3F()
@@ -295,7 +302,7 @@ inline static struct Vec3F frontVec3F()
 	struct Vec3F vector;
 	vector.x = 0.0f;
 	vector.y = 0.0f;
-	vector.z = 1.0f;
+	vector.z = FRONT_AXIS_VALUE;
 	return vector;
 }
 
