@@ -1,4 +1,5 @@
 #pragma once
+#define _USE_MATH_DEFINES
 #include <math.h>
 
 inline static double radToDegD(
@@ -9,7 +10,7 @@ inline static double radToDegD(
 inline static float radToDegF(
 	float radians)
 {
-	return radians * (180.0f / M_PI);
+	return radians * (180.0f / (float)M_PI);
 }
 
 inline static double degToRadD(
@@ -20,5 +21,5 @@ inline static double degToRadD(
 inline static float degToRadF(
 	float degrees)
 {
-	return degrees * (M_PI / 180.0f);
+	return degrees * ((float)M_PI / 180.0f);
 }
