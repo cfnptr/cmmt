@@ -3,21 +3,21 @@
 
 // TODO: Mat2, Mat3, Mat23...
 
-typedef struct Mat4F
+typedef struct Matrix4F
 {
 	float m00, m01, m02, m03;
 	float m10, m11, m12, m13;
 	float m20, m21, m22, m23;
 	float m30, m31, m32, m33;
-} Mat4F;
+} Matrix4F;
 
-inline static Mat4F matF4(
+inline static Matrix4F matF4(
 	float m00, float m01, float m02, float m03,
 	float m10, float m11, float m12, float m13,
 	float m20, float m21, float m22, float m23,
 	float m30, float m31, float m32, float m33)
 {
-	Mat4F matrix;
+	Matrix4F matrix;
 	matrix.m00 = m00;
 	matrix.m01 = m01;
 	matrix.m02 = m02;
@@ -39,9 +39,9 @@ inline static Mat4F matF4(
 	matrix.m33 = m33;
 	return matrix;
 }
-inline static Mat4F zeroMatF4()
+inline static Matrix4F zeroMatF4()
 {
-	Mat4F matrix;
+	Matrix4F matrix;
 	matrix.m00 = 0.0f;
 	matrix.m01 = 0.0f;
 	matrix.m02 = 0.0f;
@@ -63,9 +63,9 @@ inline static Mat4F zeroMatF4()
 	matrix.m33 = 0.0f;
 	return matrix;
 }
-inline static Mat4F oneMat4F()
+inline static Matrix4F oneMat4F()
 {
-	Mat4F matrix;
+	Matrix4F matrix;
 	matrix.m00 = 1.0f;
 	matrix.m01 = 1.0f;
 	matrix.m02 = 1.0f;
@@ -87,9 +87,9 @@ inline static Mat4F oneMat4F()
 	matrix.m33 = 1.0f;
 	return matrix;
 }
-inline static Mat4F identMat4F()
+inline static Matrix4F identMat4F()
 {
-	Mat4F matrix;
+	Matrix4F matrix;
 	matrix.m00 = 1.0f;
 	matrix.m01 = 0.0f;
 	matrix.m02 = 0.0f;
@@ -112,9 +112,9 @@ inline static Mat4F identMat4F()
 	return matrix;
 }
 
-inline static Mat4F addMat4F(
-	Mat4F a,
-	Mat4F b)
+inline static Matrix4F addMat4F(
+	Matrix4F a,
+	Matrix4F b)
 {
 	a.m00 += b.m00;
 	a.m01 += b.m01;
@@ -137,9 +137,9 @@ inline static Mat4F addMat4F(
 	a.m33 += b.m33;
 	return a;
 }
-inline static Mat4F subMat4F(
-	Mat4F a,
-	Mat4F b)
+inline static Matrix4F subMat4F(
+	Matrix4F a,
+	Matrix4F b)
 {
 	a.m00 -= b.m00;
 	a.m01 -= b.m01;
@@ -162,9 +162,9 @@ inline static Mat4F subMat4F(
 	a.m33 -= b.m33;
 	return a;
 }
-inline static Mat4F mulMat4F(
-	Mat4F a,
-	Mat4F b)
+inline static Matrix4F mulMat4F(
+	Matrix4F a,
+	Matrix4F b)
 {
 	a.m00 *= b.m00;
 	a.m01 *= b.m01;
@@ -187,9 +187,9 @@ inline static Mat4F mulMat4F(
 	a.m33 *= b.m33;
 	return a;
 }
-inline static Mat4F divMat4F(
-	Mat4F a,
-	Mat4F b)
+inline static Matrix4F divMat4F(
+	Matrix4F a,
+	Matrix4F b)
 {
 	a.m00 /= b.m00;
 	a.m01 /= b.m01;
@@ -213,8 +213,8 @@ inline static Mat4F divMat4F(
 	return a;
 }
 
-inline static Mat4F addValMat4F(
-	Mat4F matrix,
+inline static Matrix4F addValMat4F(
+	Matrix4F matrix,
 	float value)
 {
 	matrix.m00 += value;
@@ -238,8 +238,8 @@ inline static Mat4F addValMat4F(
 	matrix.m33 += value;
 	return matrix;
 }
-inline static Mat4F subValMat4F(
-	Mat4F matrix,
+inline static Matrix4F subValMat4F(
+	Matrix4F matrix,
 	float value)
 {
 	matrix.m00 -= value;
@@ -263,8 +263,8 @@ inline static Mat4F subValMat4F(
 	matrix.m33 -= value;
 	return matrix;
 }
-inline static Mat4F mulValMat4F(
-	Mat4F matrix,
+inline static Matrix4F mulValMat4F(
+	Matrix4F matrix,
 	float value)
 {
 	matrix.m00 *= value;
@@ -288,8 +288,8 @@ inline static Mat4F mulValMat4F(
 	matrix.m33 *= value;
 	return matrix;
 }
-inline static Mat4F divValMat4F(
-	Mat4F matrix,
+inline static Matrix4F divValMat4F(
+	Matrix4F matrix,
 	float value)
 {
 	matrix.m00 /= value;
@@ -314,8 +314,8 @@ inline static Mat4F divValMat4F(
 	return matrix;
 }
 
-inline static Mat4F negMat4F(
-	Mat4F matrix)
+inline static Matrix4F negMat4F(
+	Matrix4F matrix)
 {
 	matrix.m00 = -matrix.m00;
 	matrix.m01 = -matrix.m01;
@@ -339,11 +339,11 @@ inline static Mat4F negMat4F(
 	return matrix;
 }
 
-inline static Mat4F dotMat4F(
-	Mat4F a,
-	Mat4F b)
+inline static Matrix4F dotMat4F(
+	Matrix4F a,
+	Matrix4F b)
 {
-	Mat4F matrix;
+	Matrix4F matrix;
 	matrix.m00 = a.m00 * b.m00 + a.m10 * b.m01 + a.m20 * b.m02 + a.m30 * b.m03;
 	matrix.m01 = a.m01 * b.m00 + a.m11 * b.m01 + a.m21 * b.m02 + a.m31 * b.m03;
 	matrix.m02 = a.m02 * b.m00 + a.m12 * b.m01 + a.m22 * b.m02 + a.m32 * b.m03;
@@ -362,9 +362,9 @@ inline static Mat4F dotMat4F(
 	matrix.m33 = a.m03 * b.m30 + a.m13 * b.m31 + a.m23 * b.m32 + a.m33 * b.m33;
 	return matrix;
 }
-inline static Vec4F dotMatVec4F(
-	Mat4F matrix,
-	Vec4F vector)
+inline static Vector4F dotMatVec4F(
+	Matrix4F matrix,
+	Vector4F vector)
 {
 	// TODO: check if we should create a
 	// new vector for correct calculations
@@ -392,7 +392,7 @@ inline static Vec4F dotMatVec4F(
 	return vector;
 }
 inline static float detMat4F(
-	Mat4F matrix)
+	Matrix4F matrix)
 {
 	float f0 = matrix.m22 * matrix.m33 - matrix.m32 * matrix.m23;
 	float f1 = matrix.m21 * matrix.m33 - matrix.m31 * matrix.m23;
@@ -408,10 +408,10 @@ inline static float detMat4F(
 
 	return matrix.m00 * c0 + matrix.m01 * c1 + matrix.m02 * c2 + matrix.m03 * c3;
 }
-inline static Mat4F transposeMat4F(
-	Mat4F matrix)
+inline static Matrix4F transposeMat4F(
+	Matrix4F matrix)
 {
-	Mat4F transposed;
+	Matrix4F transposed;
 	transposed.m00 = matrix.m00;
 	transposed.m01 = matrix.m10;
 	transposed.m02 = matrix.m20;
@@ -433,8 +433,8 @@ inline static Mat4F transposeMat4F(
 	transposed.m33 = matrix.m33;
 	return transposed;
 }
-inline static Mat4F invMat4F(
-	Mat4F matrix)
+inline static Matrix4F invMat4F(
+	Matrix4F matrix)
 {
 	float s[6];
 	float c[6];
@@ -458,7 +458,7 @@ inline static Mat4F invMat4F(
 		s[2] * c[3] + s[3] * c[2] -
 		s[4] * c[1] + s[5] * c[0]);
 
-	Mat4F inverted;
+	Matrix4F inverted;
 	inverted.m00 = (matrix.m11 * c[5] - matrix.m12 * c[4] + matrix.m13 * c[3]) * id;
 	inverted.m01 = (-matrix.m01 * c[5] + matrix.m02 * c[4] - matrix.m03 * c[3]) * id;
 	inverted.m02 = (matrix.m31 * s[5] - matrix.m32 * s[4] + matrix.m33 * s[3]) * id;
@@ -480,9 +480,9 @@ inline static Mat4F invMat4F(
 	inverted.m33 = (matrix.m20 * s[3] - matrix.m21 * s[1] + matrix.m22 * s[0]) * id;
 	return inverted;
 }
-inline static Mat4F scaleMat4F(
-	Mat4F matrix,
-	Vec3F scale)
+inline static Matrix4F scaleMat4F(
+	Matrix4F matrix,
+	Vector3F scale)
 {
 	matrix.m00 *= scale.x;
 	matrix.m01 *= scale.x;
@@ -500,10 +500,10 @@ inline static Mat4F scaleMat4F(
 	matrix.m23 *= scale.z;
 	return matrix;
 }
-inline static Vec3F getScaleMat4F(
-	Mat4F matrix)
+inline static Vector3F getScaleMat4F(
+	Matrix4F matrix)
 {
-	Vec3F scale;
+	Vector3F scale;
 	scale.x = sqrtf(
 		(matrix.m00 * matrix.m00) +
 		(matrix.m01 * matrix.m01) +
@@ -518,9 +518,9 @@ inline static Vec3F getScaleMat4F(
 		(matrix.m22 * matrix.m22));
 	return scale;
 }
-inline static Mat4F translateMat4F(
-	Mat4F matrix,
-	Vec3F translation)
+inline static Matrix4F translateMat4F(
+	Matrix4F matrix,
+	Vector3F translation)
 {
 	matrix.m30 =
 		matrix.m00 * translation.x +
@@ -540,10 +540,10 @@ inline static Mat4F translateMat4F(
 		matrix.m23 * translation.z + matrix.m33;
 	return matrix;
 }
-inline static Vec3F getTranslationMat4F(
-	Mat4F matrix)
+inline static Vector3F getTranslationMat4F(
+	Matrix4F matrix)
 {
-	Vec3F translation;
+	Vector3F translation;
 	translation.x = matrix.m30;
 	translation.y = matrix.m31;
 	translation.z = matrix.m32;
