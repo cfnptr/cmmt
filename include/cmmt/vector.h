@@ -9,8 +9,6 @@
 #define BACK_AXIS_VALUE -1
 #define FRONT_AXIS_VALUE 1
 
-// TODO: use full names
-
 typedef struct Vector2F
 {
 	float x, y;
