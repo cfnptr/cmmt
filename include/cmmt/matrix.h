@@ -87,6 +87,30 @@ inline static Matrix4F oneMat4F()
 	matrix.m33 = 1.0f;
 	return matrix;
 }
+inline static Matrix4F minOneMat4F()
+{
+	Matrix4F matrix;
+	matrix.m00 = -1.0f;
+	matrix.m01 = -1.0f;
+	matrix.m02 = -1.0f;
+	matrix.m03 = -1.0f;
+
+	matrix.m10 = -1.0f;
+	matrix.m11 = -1.0f;
+	matrix.m12 = -1.0f;
+	matrix.m13 = -1.0f;
+
+	matrix.m20 = -1.0f;
+	matrix.m21 = -1.0f;
+	matrix.m22 = -1.0f;
+	matrix.m23 = -1.0f;
+
+	matrix.m30 = -1.0f;
+	matrix.m31 = -1.0f;
+	matrix.m32 = -1.0f;
+	matrix.m33 = -1.0f;
+	return matrix;
+}
 inline static Matrix4F identMat4F()
 {
 	Matrix4F matrix;

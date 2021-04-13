@@ -72,6 +72,20 @@ inline static Vector2F minOneVec2F()
 	vector.y = -1.0f;
 	return vector;
 }
+inline static Vector2F infVec2F()
+{
+	Vector2F vector;
+	vector.x = INFINITY;
+	vector.y = INFINITY;
+	return vector;
+}
+inline static Vector2F minInfVec2F()
+{
+	Vector2F vector;
+	vector.x = -INFINITY;
+	vector.y = -INFINITY;
+	return vector;
+}
 
 inline static Vector2F addVec2F(
 	Vector2F a,
@@ -254,6 +268,22 @@ inline static Vector3F minOneVec3F()
 	vector.x = -1.0f;
 	vector.y = -1.0f;
 	vector.z = -1.0f;
+	return vector;
+}
+inline static Vector3F infVec3F()
+{
+	Vector3F vector;
+	vector.x = INFINITY;
+	vector.y = INFINITY;
+	vector.z = INFINITY;
+	return vector;
+}
+inline static Vector3F minInfVec3F()
+{
+	Vector3F vector;
+	vector.x = -INFINITY;
+	vector.y = -INFINITY;
+	vector.z = -INFINITY;
 	return vector;
 }
 
@@ -522,6 +552,24 @@ inline static Vector4F minOneVec4F()
 	vector.y = -1.0f;
 	vector.z = -1.0f;
 	vector.w = -1.0f;
+	return vector;
+}
+inline static Vector4F infVec4F()
+{
+	Vector4F vector;
+	vector.x = INFINITY;
+	vector.y = INFINITY;
+	vector.z = INFINITY;
+	vector.w = INFINITY;
+	return vector;
+}
+inline static Vector4F minInfVec4F()
+{
+	Vector4F vector;
+	vector.x = -INFINITY;
+	vector.y = -INFINITY;
+	vector.z = -INFINITY;
+	vector.w = -INFINITY;
 	return vector;
 }
 
