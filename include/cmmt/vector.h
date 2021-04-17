@@ -21,18 +21,32 @@ typedef struct Vector4F
 {
 	float x, y, z, w;
 } Vector4F;
+
 typedef struct Vector2I
 {
-	int x, y;
+	int32_t x, y;
 } Vector2I;
 typedef struct Vector3I
 {
-	int x, y, z;
+	int32_t x, y, z;
 } Vector3I;
 typedef struct Vector4I
 {
-	int x, y, z, w;
+	int32_t x, y, z, w;
 } Vector4I;
+
+typedef struct Vector2U
+{
+	uint32_t x, y;
+} Vector2U;
+typedef struct Vector3U
+{
+	uint32_t x, y, z;
+} Vector3U;
+typedef struct Vector4U
+{
+	uint32_t x, y, z, w;
+} Vector4U;
 
 inline static Vector2F vec2F(
 	float x,
@@ -751,8 +765,8 @@ inline static Vector4F reflVec4F(
 }
 
 inline static Vector2I vec2I(
-	int x,
-	int y)
+	int32_t x,
+	int32_t y)
 {
 	Vector2I vector;
 	vector.x = x;
@@ -760,7 +774,7 @@ inline static Vector2I vec2I(
 	return vector;
 }
 inline static Vector2I valVec2I(
-	int value)
+	int32_t value)
 {
 	Vector2I vector;
 	vector.x = value;
@@ -824,7 +838,7 @@ inline static Vector2I divVec2I(
 
 inline static Vector2I addValVec2I(
 	Vector2I vector,
-	int value)
+	int32_t value)
 {
 	vector.x += value;
 	vector.y += value;
@@ -832,7 +846,7 @@ inline static Vector2I addValVec2I(
 }
 inline static Vector2I subValVec2I(
 	Vector2I vector,
-	int value)
+	int32_t value)
 {
 	vector.x -= value;
 	vector.y -= value;
@@ -840,7 +854,7 @@ inline static Vector2I subValVec2I(
 }
 inline static Vector2I mulValVec2I(
 	Vector2I vector,
-	int value)
+	int32_t value)
 {
 	vector.x *= value;
 	vector.y *= value;
@@ -848,7 +862,7 @@ inline static Vector2I mulValVec2I(
 }
 inline static Vector2I divValVec2I(
 	Vector2I vector,
-	int value)
+	int32_t value)
 {
 	vector.x /= value;
 	vector.y /= value;
@@ -872,9 +886,9 @@ inline static Vector2I negVec2I(
 }
 
 inline static Vector3I vec3I(
-	int x,
-	int y,
-	int z)
+	int32_t x,
+	int32_t y,
+	int32_t z)
 {
 	Vector3I vector;
 	vector.x = x;
@@ -883,7 +897,7 @@ inline static Vector3I vec3I(
 	return vector;
 }
 inline static Vector3I valVec3I(
-	int value)
+	int32_t value)
 {
 	Vector3I vector;
 	vector.x = value;
@@ -919,7 +933,7 @@ inline static Vector3I minOneVec3I()
 inline static Vector3I leftVec3I()
 {
 	Vector3I vector;
-	vector.x = -1;
+	vector.x = LEFT_AXIS_VALUE;
 	vector.y = 0;
 	vector.z = 0;
 	return vector;
@@ -927,7 +941,7 @@ inline static Vector3I leftVec3I()
 inline static Vector3I rightVec3I()
 {
 	Vector3I vector;
-	vector.x = 1;
+	vector.x = RIGHT_AXIS_VALUE;
 	vector.y = 0;
 	vector.z = 0;
 	return vector;
@@ -936,7 +950,7 @@ inline static Vector3I bottomVec3I()
 {
 	Vector3I vector;
 	vector.x = 0;
-	vector.y = -1;
+	vector.y = BOTTOM_AXIS_VALUE;
 	vector.z = 0;
 	return vector;
 }
@@ -944,7 +958,7 @@ inline static Vector3I topVec3I()
 {
 	Vector3I vector;
 	vector.x = 0;
-	vector.y = 1;
+	vector.y = TOP_AXIS_VALUE;
 	vector.z = 0;
 	return vector;
 }
@@ -953,7 +967,7 @@ inline static Vector3F backVec3I()
 	Vector3F vector;
 	vector.x = 0;
 	vector.y = 0;
-	vector.z = -1;
+	vector.z = BACK_AXIS_VALUE;
 	return vector;
 }
 inline static Vector3F frontVec3I()
@@ -961,7 +975,7 @@ inline static Vector3F frontVec3I()
 	Vector3F vector;
 	vector.x = 0;
 	vector.y = 0;
-	vector.z = 1;
+	vector.z = FRONT_AXIS_VALUE;
 	return vector;
 }
 
@@ -1004,7 +1018,7 @@ inline static Vector3I divVec3I(
 
 inline static Vector3I addValVec3I(
 	Vector3I vector,
-	int value)
+	int32_t value)
 {
 	vector.x += value;
 	vector.y += value;
@@ -1013,7 +1027,7 @@ inline static Vector3I addValVec3I(
 }
 inline static Vector3I subValVec3I(
 	Vector3I vector,
-	int value)
+	int32_t value)
 {
 	vector.x -= value;
 	vector.y -= value;
@@ -1022,7 +1036,7 @@ inline static Vector3I subValVec3I(
 }
 inline static Vector3I mulValVec3I(
 	Vector3I vector,
-	int value)
+	int32_t value)
 {
 	vector.x *= value;
 	vector.y *= value;
@@ -1031,7 +1045,7 @@ inline static Vector3I mulValVec3I(
 }
 inline static Vector3I divValVec3I(
 	Vector3I vector,
-	int value)
+	int32_t value)
 {
 	vector.x /= value;
 	vector.y /= value;
@@ -1058,10 +1072,10 @@ inline static Vector3I negVec3I(
 }
 
 inline static Vector4I vec4I(
-	int x,
-	int y,
-	int z,
-	int w)
+	int32_t x,
+	int32_t y,
+	int32_t z,
+	int32_t w)
 {
 	Vector4I vector;
 	vector.x = x;
@@ -1071,7 +1085,7 @@ inline static Vector4I vec4I(
 	return vector;
 }
 inline static Vector4I valVec4I(
-	int value)
+	int32_t value)
 {
 	Vector4I vector;
 	vector.x = value;
@@ -1151,7 +1165,7 @@ inline static Vector4I divVec4I(
 
 inline static Vector4I addValVec4I(
 	Vector4I vector,
-	int value)
+	int32_t value)
 {
 	vector.x += value;
 	vector.y += value;
@@ -1161,7 +1175,7 @@ inline static Vector4I addValVec4I(
 }
 inline static Vector4I subValVec4I(
 	Vector4I vector,
-	int value)
+	int32_t value)
 {
 	vector.x -= value;
 	vector.y -= value;
@@ -1171,7 +1185,7 @@ inline static Vector4I subValVec4I(
 }
 inline static Vector4I mulValVec4I(
 	Vector4I vector,
-	int value)
+	int32_t value)
 {
 	vector.x *= value;
 	vector.y *= value;
@@ -1181,7 +1195,7 @@ inline static Vector4I mulValVec4I(
 }
 inline static Vector4I divValVec4I(
 	Vector4I vector,
-	int value)
+	int32_t value)
 {
 	vector.x /= value;
 	vector.y /= value;
@@ -1208,4 +1222,367 @@ inline static Vector4I negVec4I(
 	vector.z = -vector.z;
 	vector.w = -vector.w;
 	return vector;
+}
+
+inline static Vector2U vec2U(
+	uint32_t x,
+	uint32_t y)
+{
+	Vector2U vector;
+	vector.x = x;
+	vector.y = y;
+	return vector;
+}
+inline static Vector2U valVec2U(
+	uint32_t value)
+{
+	Vector2U vector;
+	vector.x = value;
+	vector.y = value;
+	return vector;
+}
+inline static Vector2U zeroVec2U()
+{
+	Vector2U vector;
+	vector.x = 0;
+	vector.y = 0;
+	return vector;
+}
+inline static Vector2U oneVec2U()
+{
+	Vector2U vector;
+	vector.x = 1;
+	vector.y = 1;
+	return vector;
+}
+
+inline static Vector2U addVec2U(
+	Vector2U a,
+	Vector2U b)
+{
+	a.x += b.x;
+	a.y += b.y;
+	return a;
+}
+inline static Vector2U subVec2U(
+	Vector2U a,
+	Vector2U b)
+{
+	a.x -= b.x;
+	a.y -= b.y;
+	return a;
+}
+inline static Vector2U mulVec2U(
+	Vector2U a,
+	Vector2U b)
+{
+	a.x *= b.x;
+	a.y *= b.y;
+	return a;
+}
+inline static Vector2U divVec2U(
+	Vector2U a,
+	Vector2U b)
+{
+	a.x /= b.x;
+	a.y /= b.y;
+	return a;
+}
+
+inline static Vector2U addValVec2U(
+	Vector2U vector,
+	uint32_t value)
+{
+	vector.x += value;
+	vector.y += value;
+	return vector;
+}
+inline static Vector2U subValVec2U(
+	Vector2U vector,
+	uint32_t value)
+{
+	vector.x -= value;
+	vector.y -= value;
+	return vector;
+}
+inline static Vector2U mulValVec2U(
+	Vector2U vector,
+	uint32_t value)
+{
+	vector.x *= value;
+	vector.y *= value;
+	return vector;
+}
+inline static Vector2U divValVec2U(
+	Vector2U vector,
+	uint32_t value)
+{
+	vector.x /= value;
+	vector.y /= value;
+	return vector;
+}
+
+inline static bool compVec2U(
+	Vector2U a,
+	Vector2U b)
+{
+	return
+		a.x == b.x &&
+		a.y == b.y;
+}
+
+inline static Vector3U vec3U(
+	uint32_t x,
+	uint32_t y,
+	uint32_t z)
+{
+	Vector3U vector;
+	vector.x = x;
+	vector.y = y;
+	vector.z = z;
+	return vector;
+}
+inline static Vector3U valVec3U(
+	uint32_t value)
+{
+	Vector3U vector;
+	vector.x = value;
+	vector.y = value;
+	vector.z = value;
+	return vector;
+}
+inline static Vector3U zeroVec3IU()
+{
+	Vector3U vector;
+	vector.x = 0;
+	vector.y = 0;
+	vector.z = 0;
+	return vector;
+}
+inline static Vector3U oneVec3U()
+{
+	Vector3U vector;
+	vector.x = 1;
+	vector.y = 1;
+	vector.z = 1;
+	return vector;
+}
+
+inline static Vector3U addVec3U(
+	Vector3U a,
+	Vector3U b)
+{
+	a.x += b.x;
+	a.y += b.y;
+	a.z += b.z;
+	return a;
+}
+inline static Vector3U subVec3U(
+	Vector3U a,
+	Vector3U b)
+{
+	a.x -= b.x;
+	a.y -= b.y;
+	a.z -= b.z;
+	return a;
+}
+inline static Vector3U mulVec3U(
+	Vector3U a,
+	Vector3U b)
+{
+	a.x *= b.x;
+	a.y *= b.y;
+	a.z *= b.z;
+	return a;
+}
+inline static Vector3U divVec3U(
+	Vector3U a,
+	Vector3U b)
+{
+	a.x /= b.x;
+	a.y /= b.y;
+	a.z /= b.z;
+	return a;
+}
+
+inline static Vector3U addValVec3U(
+	Vector3U vector,
+	uint32_t value)
+{
+	vector.x += value;
+	vector.y += value;
+	vector.z += value;
+	return vector;
+}
+inline static Vector3U subValVec3U(
+	Vector3U vector,
+	uint32_t value)
+{
+	vector.x -= value;
+	vector.y -= value;
+	vector.z -= value;
+	return vector;
+}
+inline static Vector3U mulValVec3U(
+	Vector3U vector,
+	uint32_t value)
+{
+	vector.x *= value;
+	vector.y *= value;
+	vector.z *= value;
+	return vector;
+}
+inline static Vector3U divValVec3U(
+	Vector3U vector,
+	uint32_t value)
+{
+	vector.x /= value;
+	vector.y /= value;
+	vector.z /= value;
+	return vector;
+}
+
+inline static bool compVec3U(
+	Vector3U a,
+	Vector3U b)
+{
+	return
+		a.x == b.x &&
+		a.y == b.y &&
+		a.z == b.z;
+}
+
+inline static Vector4U vec4U(
+	uint32_t x,
+	uint32_t y,
+	uint32_t z,
+	uint32_t w)
+{
+	Vector4U vector;
+	vector.x = x;
+	vector.y = y;
+	vector.z = z;
+	vector.w = w;
+	return vector;
+}
+inline static Vector4U valVec4U(
+	uint32_t value)
+{
+	Vector4U vector;
+	vector.x = value;
+	vector.y = value;
+	vector.z = value;
+	vector.w = value;
+	return vector;
+}
+inline static Vector4U zeroVec4U()
+{
+	Vector4U vector;
+	vector.x = 0;
+	vector.y = 0;
+	vector.z = 0;
+	vector.w = 0;
+	return vector;
+}
+inline static Vector4U oneVec4U()
+{
+	Vector4U vector;
+	vector.x = 1;
+	vector.y = 1;
+	vector.z = 1;
+	vector.w = 1;
+	return vector;
+}
+
+inline static Vector4U addVec4U(
+	Vector4U a,
+	Vector4U b)
+{
+	a.x += b.x;
+	a.y += b.y;
+	a.z += b.z;
+	a.w += b.w;
+	return a;
+}
+inline static Vector4U subVec4U(
+	Vector4U a,
+	Vector4U b)
+{
+	a.x -= b.x;
+	a.y -= b.y;
+	a.z -= b.z;
+	a.w -= b.w;
+	return a;
+}
+inline static Vector4U mulVec4U(
+	Vector4U a,
+	Vector4U b)
+{
+	a.x *= b.x;
+	a.y *= b.y;
+	a.z *= b.z;
+	a.w *= b.w;
+	return a;
+}
+inline static Vector4U divVec4U(
+	Vector4U a,
+	Vector4U b)
+{
+	a.x /= b.x;
+	a.y /= b.y;
+	a.z /= b.z;
+	a.w /= b.w;
+	return a;
+}
+
+inline static Vector4U addValVec4U(
+	Vector4U vector,
+	uint32_t value)
+{
+	vector.x += value;
+	vector.y += value;
+	vector.z += value;
+	vector.w += value;
+	return vector;
+}
+inline static Vector4U subValVec4U(
+	Vector4U vector,
+	uint32_t value)
+{
+	vector.x -= value;
+	vector.y -= value;
+	vector.z -= value;
+	vector.w -= value;
+	return vector;
+}
+inline static Vector4U mulValVec4U(
+	Vector4U vector,
+	uint32_t value)
+{
+	vector.x *= value;
+	vector.y *= value;
+	vector.z *= value;
+	vector.w *= value;
+	return vector;
+}
+inline static Vector4U divValVec4U(
+	Vector4U vector,
+	uint32_t value)
+{
+	vector.x /= value;
+	vector.y /= value;
+	vector.z /= value;
+	vector.w /= value;
+	return vector;
+}
+
+inline static bool compVec4U(
+	Vector4U a,
+	Vector4U b)
+{
+	return
+		a.x == b.x &&
+		a.y == b.y &&
+		a.z == b.z &&
+		a.w == b.w;
 }
