@@ -28,7 +28,8 @@ inline static float distPlanePoint2F(
 {
 	return
 		plane.normal.x * point.x +
-		plane.normal.y * point.y;
+		plane.normal.y * point.y +
+		plane.distance;
 }
 inline static bool compPlane2F(
 	Plane2F a,
@@ -82,7 +83,8 @@ inline static float distPlanePoint3F(
 	return
 		plane.normal.x * point.x +
 		plane.normal.y * point.y +
-		plane.normal.z * point.z;
+		plane.normal.z * point.z +
+		plane.distance;
 }
 inline static bool compPlane3F(
 	Plane3F a,
