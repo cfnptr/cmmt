@@ -4,29 +4,29 @@
 
 typedef struct Box2F
 {
-	Vector2F minimum;
-	Vector2F maximum;
+	Vec2F minimum;
+	Vec2F maximum;
 } Box2F;
 typedef struct Box3F
 {
-	Vector3F minimum;
-	Vector3F maximum;
+	Vec3F minimum;
+	Vec3F maximum;
 } Box3F;
 
 typedef struct Sphere2F
 {
-	Vector2F position;
+	Vec2F position;
 	float radiusPow;
 } Sphere2F;
 typedef struct Sphere3F
 {
-	Vector3F position;
+	Vec3F position;
 	float radiusPow;
 } Sphere3F;
 
 inline static Box2F box2F(
-	Vector2F minimum,
-	Vector2F maximum)
+	Vec2F minimum,
+	Vec2F maximum)
 {
 	Box2F box;
 	box.minimum = minimum;
@@ -34,8 +34,8 @@ inline static Box2F box2F(
 	return box;
 }
 inline static Box2F posSizeBox2F(
-	Vector2F position,
-	Vector2F size)
+	Vec2F position,
+	Vec2F size)
 {
 	size.x /= 2.0f;
 	size.y /= 2.0f;
@@ -50,8 +50,8 @@ inline static Box2F posSizeBox2F(
 	return box;
 }
 inline static Box2F posExtBox2F(
-	Vector2F position,
-	Vector2F extent)
+	Vec2F position,
+	Vec2F extent)
 {
 	Box2F box;
 	box.minimum = vec2F(
@@ -65,7 +65,7 @@ inline static Box2F posExtBox2F(
 
 inline static bool isPointInBox2F(
 	Box2F box,
-	Vector2F point)
+	Vec2F point)
 {
 	return
 		(box.minimum.x <= point.x &&
@@ -85,8 +85,8 @@ inline static bool isBoxInBox2F(
 }
 inline static float rayCastBox2F(
 	Box2F box,
-	Vector2F position,
-	Vector2F direction)
+	Vec2F position,
+	Vec2F direction)
 {
 	float minX = (box.minimum.x - position.x) / direction.x;
 	float maxX = (box.maximum.x - position.x) / direction.x;
@@ -107,8 +107,8 @@ inline static float rayCastBox2F(
 }
 
 inline static Box3F box3F(
-	Vector3F minimum,
-	Vector3F maximum)
+	Vec3F minimum,
+	Vec3F maximum)
 {
 	Box3F box;
 	box.minimum = minimum;
@@ -116,8 +116,8 @@ inline static Box3F box3F(
 	return box;
 }
 inline static Box3F posSizeBox3F(
-	Vector3F position,
-	Vector3F size)
+	Vec3F position,
+	Vec3F size)
 {
 	size.x /= 2.0f;
 	size.y /= 2.0f;
@@ -135,8 +135,8 @@ inline static Box3F posSizeBox3F(
 	return box;
 }
 inline static Box3F posExtBox3F(
-	Vector3F position,
-	Vector3F extent)
+	Vec3F position,
+	Vec3F extent)
 {
 	Box3F box;
 	box.minimum = vec3F(
@@ -152,7 +152,7 @@ inline static Box3F posExtBox3F(
 
 inline static bool isPointInBox3F(
 	Box3F box,
-	Vector3F point)
+	Vec3F point)
 {
 	return
 		(box.minimum.x <= point.x &&
@@ -176,8 +176,8 @@ inline static bool isBoxInBox3F(
 }
 inline static float rayCastBox3F(
 	Box3F box,
-	Vector3F position,
-	Vector3F direction)
+	Vec3F position,
+	Vec3F direction)
 {
 	float minX = (box.minimum.x - position.x) / direction.x;
 	float maxX = (box.maximum.x - position.x) / direction.x;
@@ -204,7 +204,7 @@ inline static float rayCastBox3F(
 }
 
 inline static Sphere2F sphere2F(
-	Vector2F position,
+	Vec2F position,
 	float radiusPow)
 {
 	Sphere2F sphere;
@@ -213,7 +213,7 @@ inline static Sphere2F sphere2F(
 	return sphere;
 }
 inline static Sphere2F spherePow2F(
-	Vector2F position,
+	Vec2F position,
 	float radius)
 {
 	Sphere2F sphere;
@@ -224,7 +224,7 @@ inline static Sphere2F spherePow2F(
 
 inline static bool isPointInSphere2F(
 	Sphere2F sphere,
-	Vector2F point)
+	Vec2F point)
 {
 	return
 		((point.x - sphere.position.x) *
@@ -263,8 +263,8 @@ inline static bool isSphereInBox2F(
 
 inline static float rayCastSphere2F(
 	Sphere2F sphere,
-	Vector2F position,
-	Vector2F direction)
+	Vec2F position,
+	Vec2F direction)
 {
 	float distance =
 		((sphere.position.x - position.x) *
@@ -285,7 +285,7 @@ inline static float rayCastSphere2F(
 }
 
 inline static Sphere3F sphere3F(
-	Vector3F position,
+	Vec3F position,
 	float radiusPow)
 {
 	Sphere3F sphere;
@@ -294,7 +294,7 @@ inline static Sphere3F sphere3F(
 	return sphere;
 }
 inline static Sphere3F spherePow3F(
-	Vector3F position,
+	Vec3F position,
 	float radius)
 {
 	Sphere3F sphere;
@@ -305,7 +305,7 @@ inline static Sphere3F spherePow3F(
 
 inline static bool isPointInSphere3F(
 	Sphere3F sphere,
-	Vector3F point)
+	Vec3F point)
 {
 	return
 		((point.x - sphere.position.x) *
@@ -351,8 +351,8 @@ inline static bool isSphereInBox3F(
 }
 inline static float rayCastSphere3F(
 	Sphere3F sphere,
-	Vector3F position,
-	Vector3F direction)
+	Vec3F position,
+	Vec3F direction)
 {
 	float distance =
 		((position.x - sphere.position.x) *
