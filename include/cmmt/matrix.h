@@ -460,48 +460,45 @@ inline static Mat4F transposeMat4F(
 inline static Mat4F invMat4F(
 	Mat4F matrix)
 {
-	float s[6];
-	float c[6];
+	float s0 = matrix.m00 * matrix.m11 - matrix.m10 * matrix.m01;
+	float s1 = matrix.m00 * matrix.m12 - matrix.m10 * matrix.m02;
+	float s2 = matrix.m00 * matrix.m13 - matrix.m10 * matrix.m03;
+	float s3 = matrix.m01 * matrix.m12 - matrix.m11 * matrix.m02;
+	float s4 = matrix.m01 * matrix.m13 - matrix.m11 * matrix.m03;
+	float s5 = matrix.m02 * matrix.m13 - matrix.m12 * matrix.m03;
 
-	s[0] = matrix.m00 * matrix.m11 - matrix.m10 * matrix.m01;
-	s[1] = matrix.m00 * matrix.m12 - matrix.m10 * matrix.m02;
-	s[2] = matrix.m00 * matrix.m13 - matrix.m10 * matrix.m03;
-	s[3] = matrix.m01 * matrix.m12 - matrix.m11 * matrix.m02;
-	s[4] = matrix.m01 * matrix.m13 - matrix.m11 * matrix.m03;
-	s[5] = matrix.m02 * matrix.m13 - matrix.m12 * matrix.m03;
-
-	c[0] = matrix.m20 * matrix.m31 - matrix.m30 * matrix.m21;
-	c[1] = matrix.m20 * matrix.m32 - matrix.m30 * matrix.m22;
-	c[2] = matrix.m20 * matrix.m33 - matrix.m30 * matrix.m23;
-	c[3] = matrix.m21 * matrix.m32 - matrix.m31 * matrix.m22;
-	c[4] = matrix.m21 * matrix.m33 - matrix.m31 * matrix.m23;
-	c[5] = matrix.m22 * matrix.m33 - matrix.m32 * matrix.m23;
+	float c0 = matrix.m20 * matrix.m31 - matrix.m30 * matrix.m21;
+	float c1 = matrix.m20 * matrix.m32 - matrix.m30 * matrix.m22;
+	float c2 = matrix.m20 * matrix.m33 - matrix.m30 * matrix.m23;
+	float c3 = matrix.m21 * matrix.m32 - matrix.m31 * matrix.m22;
+	float c4 = matrix.m21 * matrix.m33 - matrix.m31 * matrix.m23;
+	float c5 = matrix.m22 * matrix.m33 - matrix.m32 * matrix.m23;
 
 	float id = 1.0f /
-		(s[0] * c[5] - s[1] * c[4] +
-		s[2] * c[3] + s[3] * c[2] -
-		s[4] * c[1] + s[5] * c[0]);
+		(s0 * c5 - s1 * c4 +
+		s2 * c3 + s3 * c2 -
+		s4 * c1 + s5 * c0);
 
 	Mat4F inverted;
-	inverted.m00 = (matrix.m11 * c[5] - matrix.m12 * c[4] + matrix.m13 * c[3]) * id;
-	inverted.m01 = (-matrix.m01 * c[5] + matrix.m02 * c[4] - matrix.m03 * c[3]) * id;
-	inverted.m02 = (matrix.m31 * s[5] - matrix.m32 * s[4] + matrix.m33 * s[3]) * id;
-	inverted.m03 = (-matrix.m21 * s[5] + matrix.m22 * s[4] - matrix.m23 * s[3]) * id;
+	inverted.m00 = (matrix.m11 * c5 - matrix.m12 * c4 + matrix.m13 * c3) * id;
+	inverted.m01 = (-matrix.m01 * c5 + matrix.m02 * c4 - matrix.m03 * c3) * id;
+	inverted.m02 = (matrix.m31 * s5 - matrix.m32 * s4 + matrix.m33 * s3) * id;
+	inverted.m03 = (-matrix.m21 * s5 + matrix.m22 * s4 - matrix.m23 * s3) * id;
 
-	inverted.m10 = (-matrix.m10 * c[5] + matrix.m12 * c[2] - matrix.m13 * c[1]) * id;
-	inverted.m11 = (matrix.m00 * c[5] - matrix.m02 * c[2] + matrix.m03 * c[1]) * id;
-	inverted.m12 = (-matrix.m30 * s[5] + matrix.m32 * s[2] - matrix.m33 * s[1]) * id;
-	inverted.m13 = (matrix.m20 * s[5] - matrix.m22 * s[2] + matrix.m23 * s[1]) * id;
+	inverted.m10 = (-matrix.m10 * c5 + matrix.m12 * c2 - matrix.m13 * c1) * id;
+	inverted.m11 = (matrix.m00 * c5 - matrix.m02 * c2 + matrix.m03 * c1) * id;
+	inverted.m12 = (-matrix.m30 * s5 + matrix.m32 * s2 - matrix.m33 * s1) * id;
+	inverted.m13 = (matrix.m20 * s5 - matrix.m22 * s2 + matrix.m23 * s1) * id;
 
-	inverted.m20 = (matrix.m10 * c[4] - matrix.m11 * c[2] + matrix.m13 * c[0]) * id;
-	inverted.m21 = (-matrix.m00 * c[4] + matrix.m01 * c[2] - matrix.m03 * c[0]) * id;
-	inverted.m22 = (matrix.m30 * s[4] - matrix.m31 * s[2] + matrix.m33 * s[0]) * id;
-	inverted.m23 = (-matrix.m20 * s[4] + matrix.m21 * s[2] - matrix.m23 * s[0]) * id;
+	inverted.m20 = (matrix.m10 * c4 - matrix.m11 * c2 + matrix.m13 * c0) * id;
+	inverted.m21 = (-matrix.m00 * c4 + matrix.m01 * c2 - matrix.m03 * c0) * id;
+	inverted.m22 = (matrix.m30 * s4 - matrix.m31 * s2 + matrix.m33 * s0) * id;
+	inverted.m23 = (-matrix.m20 * s4 + matrix.m21 * s2 - matrix.m23 * s0) * id;
 
-	inverted.m30 = (-matrix.m10 * c[3] + matrix.m11 * c[1] - matrix.m12 * c[0]) * id;
-	inverted.m31 = (matrix.m00 * c[3] - matrix.m01 * c[1] + matrix.m02 * c[0]) * id;
-	inverted.m32 = (-matrix.m30 * s[3] + matrix.m31 * s[1] - matrix.m32 * s[0]) * id;
-	inverted.m33 = (matrix.m20 * s[3] - matrix.m21 * s[1] + matrix.m22 * s[0]) * id;
+	inverted.m30 = (-matrix.m10 * c3 + matrix.m11 * c1 - matrix.m12 * c0) * id;
+	inverted.m31 = (matrix.m00 * c3 - matrix.m01 * c1 + matrix.m02 * c0) * id;
+	inverted.m32 = (-matrix.m30 * s3 + matrix.m31 * s1 - matrix.m32 * s0) * id;
+	inverted.m33 = (matrix.m20 * s3 - matrix.m21 * s1 + matrix.m22 * s0) * id;
 	return inverted;
 }
 inline static Mat4F scaleMat4F(

@@ -127,20 +127,17 @@ inline static Vec3F dotVecQuat3F(
 	Quat quaternion,
 	Vec3F vector)
 {
-	Vec3F qv = vec3F(
-		quaternion.x,
-		quaternion.y,
-		quaternion.z);
-	Vec3F cv = crossVec3F(
-		qv,
-		vector);
-	Vec3F ccv = crossVec3F(
-		qv,
-		cv);
+	float cvX = quaternion.y * vector.z - quaternion.z * vector.y;
+	float cvY = quaternion.z * vector.x - quaternion.x * vector.z;
+	float cvZ = quaternion.x * vector.y - quaternion.y * vector.x;
 
-	vector.x = vector.x + ((cv.x * quaternion.w) + ccv.x) * 2.0f;
-	vector.y = vector.y + ((cv.y * quaternion.w) + ccv.y) * 2.0f;
-	vector.z = vector.z + ((cv.z * quaternion.w) + ccv.z) * 2.0f;
+	float ccvX = quaternion.y * cvZ - quaternion.z * cvY;
+	float ccvY = quaternion.z * cvX - quaternion.x * cvZ;
+	float ccvZ = quaternion.x * cvY - quaternion.y * cvX;
+
+	vector.x = vector.x + ((cvX * quaternion.w) + ccvX) * 2.0f;
+	vector.y = vector.y + ((cvY * quaternion.w) + ccvY) * 2.0f;
+	vector.z = vector.z + ((cvZ * quaternion.w) + ccvZ) * 2.0f;
 	return vector;
 }
 inline static Quat normQuat(
