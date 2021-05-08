@@ -2,6 +2,7 @@
 * Vector (2D/3D/4D, float/int)
 * Matrix (4x4 float)
 * Quaternion (float)
+* Ray (2D/3D float)
 * Bounding box (2D/3D float)
 * Bounding sphere (2D/3D float)
 * Plane (2D/3D float)

@@ -1,6 +1,6 @@
 #pragma once
+#include "cmmt/ray.h"
 #include <stdlib.h>
-#include "cmmt/vector.h"
 
 typedef struct Box2F
 {
@@ -83,15 +83,14 @@ inline static bool isBoxInBox2F(
 		(a.minimum.y <= b.maximum.y &&
 		a.maximum.y >= b.minimum.y);
 }
-inline static float rayCastBox2F(
+inline static float castRayBox2F(
 	Box2F box,
-	Vec2F position,
-	Vec2F direction)
+	Ray2F ray)
 {
-	float minX = (box.minimum.x - position.x) / direction.x;
-	float maxX = (box.maximum.x - position.x) / direction.x;
-	float minY = (box.minimum.y - position.y) / direction.y;
-	float maxY = (box.maximum.y - position.y) / direction.y;
+	float minX = (box.minimum.x - ray.position.x) / ray.direction.x;
+	float maxX = (box.maximum.x - ray.position.x) / ray.direction.x;
+	float minY = (box.minimum.y - ray.position.y) / ray.direction.y;
+	float maxY = (box.maximum.y - ray.position.y) / ray.direction.y;
 
 	float min = fmaxf(
 		fminf(minX, maxX),
@@ -174,17 +173,16 @@ inline static bool isBoxInBox3F(
 		(a.minimum.z <= b.maximum.z &&
 		a.maximum.z >= b.minimum.z);
 }
-inline static float rayCastBox3F(
+inline static float castRayBox3F(
 	Box3F box,
-	Vec3F position,
-	Vec3F direction)
+	Ray3F ray)
 {
-	float minX = (box.minimum.x - position.x) / direction.x;
-	float maxX = (box.maximum.x - position.x) / direction.x;
-	float minY = (box.minimum.y - position.y) / direction.y;
-	float maxY = (box.maximum.y - position.y) / direction.y;
-	float minZ = (box.minimum.z - position.z) / direction.z;
-	float maxZ = (box.maximum.z - position.z) / direction.z;
+	float minX = (box.minimum.x - ray.position.x) / ray.direction.x;
+	float maxX = (box.maximum.x - ray.position.x) / ray.direction.x;
+	float minY = (box.minimum.y - ray.position.y) / ray.direction.y;
+	float maxY = (box.maximum.y - ray.position.y) / ray.direction.y;
+	float minZ = (box.minimum.z - ray.position.z) / ray.direction.z;
+	float maxZ = (box.maximum.z - ray.position.z) / ray.direction.z;
 
 	float min = fmaxf(
 		fmaxf(
@@ -261,19 +259,18 @@ inline static bool isSphereInBox2F(
 		sphere.radiusPow;
 }
 
-inline static float rayCastSphere2F(
+inline static float castRaySphere2F(
 	Sphere2F sphere,
-	Vec2F position,
-	Vec2F direction)
+	Ray2F ray)
 {
 	float distance =
-		((sphere.position.x - position.x) *
-		(sphere.position.x - position.x)) +
-		((sphere.position.y - position.y) *
-		(sphere.position.y - position.y));
+		((sphere.position.x - ray.position.x) *
+		(sphere.position.x - ray.position.x)) +
+		((sphere.position.y - ray.position.y) *
+		(sphere.position.y - ray.position.y));
 	float dot =
-		((sphere.position.x - position.x) * direction.x) +
-		((sphere.position.y - position.y) * direction.y);
+		((sphere.position.x - ray.position.x) * ray.direction.x) +
+		((sphere.position.y - ray.position.y) * ray.direction.y);
 
 	if ((sphere.radiusPow - distance) + (dot * dot) < 0.0f)
 		return INFINITY;
@@ -349,22 +346,21 @@ inline static bool isSphereInBox3F(
 		(z - sphere.position.z)) <=
 		sphere.radiusPow;
 }
-inline static float rayCastSphere3F(
+inline static float castRaySphere3F(
 	Sphere3F sphere,
-	Vec3F position,
-	Vec3F direction)
+	Ray3F ray)
 {
 	float distance =
-		((position.x - sphere.position.x) *
-		(position.x - sphere.position.x)) +
-		((position.y - sphere.position.y) *
-		(position.y - sphere.position.y)) +
-		((position.z - sphere.position.z) *
-		(position.z - sphere.position.z));
+		((ray.position.x - sphere.position.x) *
+		(ray.position.x - sphere.position.x)) +
+		((ray.position.y - sphere.position.y) *
+		(ray.position.y - sphere.position.y)) +
+		((ray.position.z - sphere.position.z) *
+		(ray.position.z - sphere.position.z));
 	float dot =
-		(position.x - sphere.position.x) * direction.x +
-		(position.y - sphere.position.y) * direction.y +
-		(position.z - sphere.position.z) * direction.z;
+		(ray.position.x - sphere.position.x) * ray.direction.x +
+		(ray.position.y - sphere.position.y) * ray.direction.y +
+		(ray.position.z - sphere.position.z) * ray.direction.z;
 
 	if (sphere.radiusPow - distance + (dot * dot) < 0.0f)
 		return INFINITY;
