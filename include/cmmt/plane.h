@@ -60,19 +60,19 @@ inline static Plane3F pointPlane3F(
 	float cY = (b.z - a.z) * (c.x - a.x) - (b.x - a.x) * (c.z - a.z);
 	float cZ = (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
 
-	float l = sqrtf((cX * cX) + (cY * cY) + (cZ * cZ));
+	float length = sqrtf((cX * cX) + (cY * cY) + (cZ * cZ));
 
-	cX /= l;
-	cY /= l;
-	cZ /= l;
+	cX /= length;
+	cY /= length;
+	cZ /= length;
 
-	float d = (cX * a.x) + (cY * a.y) + (cZ * a.z);
+	float distance = (cX * a.x) + (cY * a.y) + (cZ * a.z);
 
 	Plane3F plane;
 	plane.normal.x = cX;
 	plane.normal.y = cY;
 	plane.normal.z = cZ;
-	plane.distance = d;
+	plane.distance = distance;
 	return plane;
 }
 

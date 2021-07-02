@@ -226,14 +226,10 @@ inline static float castRayBox3F(
 	float maxZ = (box.maximum.z - ray.position.z) / ray.direction.z;
 
 	float min = fmaxf(
-		fmaxf(
-			fminf(minX, maxX),
-			fminf(minY, maxY)),
+		fmaxf(fminf(minX, maxX), fminf(minY, maxY)),
 		fminf(minZ, maxZ));
 	float max = fminf(
-		fminf(
-			fmaxf(minX, maxX),
-			fmaxf(minY, maxY)),
+		fminf(fmaxf(minX, maxX), fmaxf(minY, maxY)),
 		fmaxf(minZ, maxZ));
 
 	if (min > max || max < 0.0f)
