@@ -21,7 +21,7 @@ typedef struct PerspCamera
 	float aspectRatio;
 	float nearClipPlane;
 	float farClipPlane;
-} PerspCam;
+} PerspCamera;
 typedef struct OrthoCamera
 {
 	uint8_t type;
@@ -31,7 +31,7 @@ typedef struct OrthoCamera
 	float topFrustum;
 	float nearClipPlane;
 	float farClipPlane;
-} OrthoCam;
+} OrthoCamera;
 
 typedef union Camera
 {
