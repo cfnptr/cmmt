@@ -390,28 +390,25 @@ inline static Vec4F dotMatVec4F(
 	Mat4F matrix,
 	Vec4F vector)
 {
-	// TODO: check if we should create a
-	// new vector for correct calculations
-
 	vector.x =
 		matrix.m00 * vector.x +
-		matrix.m01 * vector.x +
-		matrix.m02 * vector.x +
-		matrix.m03 * vector.x;
+		matrix.m10 * vector.x +
+		matrix.m20 * vector.x +
+		matrix.m30 * vector.x;
 	vector.y =
-		matrix.m10 * vector.y +
+		matrix.m01 * vector.y +
 		matrix.m11 * vector.y +
-		matrix.m12 * vector.y +
-		matrix.m13 * vector.y;
+		matrix.m21 * vector.y +
+		matrix.m31 * vector.y;
 	vector.z =
-		matrix.m20 * vector.z +
-		matrix.m21 * vector.z +
+		matrix.m02 * vector.z +
+		matrix.m12 * vector.z +
 		matrix.m22 * vector.z +
-		matrix.m23 * vector.z;
+		matrix.m32 * vector.z;
 	vector.w =
-		matrix.m30 * vector.w +
-		matrix.m31 * vector.w +
-		matrix.m32 * vector.w +
+		matrix.m03 * vector.w +
+		matrix.m13 * vector.w +
+		matrix.m23 * vector.w +
 		matrix.m33 * vector.w;
 	return vector;
 }

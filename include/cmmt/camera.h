@@ -62,7 +62,7 @@ inline static Camera orthoCamera(
 	float farClipPlane)
 {
 	Camera camera;
-	camera.ortho.type = ORTHOGRAPHIC_CAMERA_TYPE;
+	camera.ortho.type = ORTHO_CAMERA_TYPE;
 	camera.ortho.leftFrustum = leftFrustum;
 	camera.ortho.rightFrustum = rightFrustum;
 	camera.ortho.bottomFrustum = bottomFrustum;
