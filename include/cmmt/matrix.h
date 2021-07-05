@@ -386,31 +386,59 @@ inline static Mat4F dotMat4F(
 	matrix.m33 = a.m03 * b.m30 + a.m13 * b.m31 + a.m23 * b.m32 + a.m33 * b.m33;
 	return matrix;
 }
+inline static Vec4F dotVecMat4F(
+	Vec4F vector,
+	Mat4F matrix)
+{
+	Vec4F result;
+	result.x =
+		matrix.m00 * vector.x +
+		matrix.m01 * vector.y +
+		matrix.m02 * vector.z +
+		matrix.m03 * vector.w;
+	result.y =
+		matrix.m10 * vector.x +
+		matrix.m11 * vector.y +
+		matrix.m12 * vector.z +
+		matrix.m13 * vector.w;
+	result.z =
+		matrix.m20 * vector.x +
+		matrix.m21 * vector.y +
+		matrix.m22 * vector.z +
+		matrix.m23 * vector.w;
+	result.w =
+		matrix.m30 * vector.x +
+		matrix.m31 * vector.y +
+		matrix.m32 * vector.z +
+		matrix.m33 * vector.w;
+	return result;
+}
 inline static Vec4F dotMatVec4F(
 	Mat4F matrix,
 	Vec4F vector)
 {
-	vector.x =
+	Vec4F result;
+	result.x =
 		matrix.m00 * vector.x +
-		matrix.m10 * vector.x +
-		matrix.m20 * vector.x +
-		matrix.m30 * vector.x;
-	vector.y =
-		matrix.m01 * vector.y +
+		matrix.m10 * vector.y +
+		matrix.m20 * vector.z +
+		matrix.m30 * vector.w;
+	result.y =
+		matrix.m01 * vector.x +
 		matrix.m11 * vector.y +
-		matrix.m21 * vector.y +
-		matrix.m31 * vector.y;
-	vector.z =
-		matrix.m02 * vector.z +
-		matrix.m12 * vector.z +
+		matrix.m21 * vector.z +
+		matrix.m31 * vector.w;
+	result.z =
+		matrix.m02 * vector.x +
+		matrix.m12 * vector.y +
 		matrix.m22 * vector.z +
-		matrix.m32 * vector.z;
-	vector.w =
-		matrix.m03 * vector.w +
-		matrix.m13 * vector.w +
-		matrix.m23 * vector.w +
+		matrix.m32 * vector.w;
+	result.w =
+		matrix.m03 * vector.x +
+		matrix.m13 * vector.y +
+		matrix.m23 * vector.z +
 		matrix.m33 * vector.w;
-	return vector;
+	return result;
 }
 inline static float detMat4F(
 	Mat4F matrix)
