@@ -109,8 +109,8 @@ inline static Mat4F getQuatMatF4(
 }
 
 // TODO: quaternion from matrix extraction
-// TODO: quaternion vector multiplication
 // TODO: quaternion pitch, yaw, roll extraction
+// TODO: quaternion look at
 
 inline static Quat dotQuat(
 	Quat a,

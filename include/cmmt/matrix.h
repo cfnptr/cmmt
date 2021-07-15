@@ -595,3 +595,4 @@ inline static Vec3F getTranslationMat4F(
 	translation.z = matrix.m32;
 	return translation;
 }
+// TODO: rotate, look at
