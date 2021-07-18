@@ -8,6 +8,7 @@
 * Plane (2D/3D float)
 * Camera (ortho/persp float)
 * Frustum culling (float)
+* Color (float)
 
 ## Build requirements
 * C99 compiler
