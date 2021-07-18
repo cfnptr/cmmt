@@ -13,3 +13,5 @@
 ## Build requirements
 * C99 compiler
 * [CMake 3.10+](https://cmake.org/)
+
+### Special thanks to [glm](https://github.com/g-truc/glm).
