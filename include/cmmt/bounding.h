@@ -164,7 +164,7 @@ inline static Box3F posExtBox3F(
 	box.maximum = vec3F(
 		position.x + extent.x,
 		position.y + extent.y,
-		position.z - extent.z);
+		position.z + extent.z);
 	return box;
 }
 
