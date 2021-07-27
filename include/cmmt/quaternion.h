@@ -82,22 +82,19 @@ inline static Mat4F getQuatMatF4(
 	float wy = quaternion.w * quaternion.y;
 	float wz = quaternion.w * quaternion.z;
 
-	// TODO: investigate difference between
-	// current variant and transposed
-
 	Mat4F matrix;
 	matrix.m00 = 1.0f - 2.0f * (yy + zz);
-	matrix.m01 = 2.0f * (xy - wz);
-	matrix.m02 = 2.0f * (xz + wy);
+	matrix.m01 = 2.0f * (xy + wz); //
+	matrix.m02 = 2.0f * (xz - wy); //
 	matrix.m03 = 0.0f;
 
-	matrix.m10 = 2.0f * (xy + wz);
+	matrix.m10 = 2.0f * (xy - wz); //
 	matrix.m11 = 1.0f - 2.0f * (xx + zz);
-	matrix.m12 = 2.0f * (yz - wx);
+	matrix.m12 = 2.0f * (yz + wx); //
 	matrix.m13 = 0.0f;
 
-	matrix.m20 = 2.0f * (xz - wy);
-	matrix.m21 = 2.0f * (yz + wx);
+	matrix.m20 = 2.0f * (xz + wy); //
+	matrix.m21 = 2.0f * (yz - wx); //
 	matrix.m22 = 1.0f - 2.0f * (xx + yy);
 	matrix.m23 = 0.0f;
 
@@ -110,8 +107,29 @@ inline static Mat4F getQuatMatF4(
 
 // TODO: quaternion from matrix extraction
 // TODO: quaternion pitch, yaw, roll extraction
-// TODO: quaternion look at
+// TODO: quaternion look at, lerp, slerp
 
+inline static Quat conjQuat(Quat quaternion)
+{
+	quaternion.x = -quaternion.x;
+	quaternion.y = -quaternion.y;
+	quaternion.z = -quaternion.z;
+	return quaternion;
+}
+inline static Quat invQuat(Quat quaternion)
+{
+	float dot =
+		(quaternion.x * quaternion.x) +
+		(quaternion.y * quaternion.y) +
+		(quaternion.z * quaternion.z) +
+		(quaternion.w * quaternion.w);
+
+	quaternion.x = -quaternion.x / dot;
+	quaternion.y = -quaternion.y / dot;
+	quaternion.z = -quaternion.z / dot;
+	quaternion.w = quaternion.w / dot;
+	return quaternion;
+}
 inline static Quat dotQuat(
 	Quat a,
 	Quat b)
@@ -123,7 +141,7 @@ inline static Quat dotQuat(
 	quaternion.w = a.w * b.w - a.x * b.x - a.y * b.y - a.z * b.z;
 	return quaternion;
 }
-inline static Vec3F dotVecQuat3F(
+inline static Vec3F dotQuatVec3F(
 	Quat quaternion,
 	Vec3F vector)
 {
@@ -139,6 +157,12 @@ inline static Vec3F dotVecQuat3F(
 	vector.y = vector.y + ((cvY * quaternion.w) + ccvY) * 2.0f;
 	vector.z = vector.z + ((cvZ * quaternion.w) + ccvZ) * 2.0f;
 	return vector;
+}
+inline static Vec3F dotVecQuat3F(
+	Vec3F vector,
+	Quat quaternion)
+{
+	return dotQuatVec3F(invQuat(quaternion), vector);
 }
 inline static Quat normQuat(
 	Quat quaternion)
