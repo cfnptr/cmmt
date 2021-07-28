@@ -69,8 +69,51 @@ inline static Quat oneQuat()
 	return quaternion;
 }
 
-inline static Mat4F getQuatMatF4(
-	Quat quaternion)
+inline static float getQuatPitch(Quat quaternion)
+{
+	float y = 2.0f * (
+		quaternion.y * quaternion.z +
+		quaternion.w * quaternion.x);
+	float x =
+		quaternion.w * quaternion.w -
+		quaternion.x * quaternion.x -
+		quaternion.y * quaternion.y +
+		quaternion.z * quaternion.z;
+	return atan2f(y, x);
+}
+inline static float getQuatYaw(Quat quaternion)
+{
+	float v = -2.0f * (
+		quaternion.x * quaternion.z -
+		quaternion.w * quaternion.y);
+
+	if (v < -1.0f)
+		v = -1.0f;
+	else if (v > 1.0f)
+		v = 1.0f;
+
+	return asinf(v);
+}
+inline static float getQuatRoll(Quat quaternion)
+{
+	float y = 2.0f * (
+		quaternion.x * quaternion.y +
+		quaternion.w * quaternion.z);
+	float x =
+		quaternion.w * quaternion.w +
+		quaternion.x * quaternion.x -
+		quaternion.y * quaternion.y -
+		quaternion.z * quaternion.z;
+	return atan2f(y, x);
+}
+inline static Vec3F getQuatEuler(Quat quaternion)
+{
+	return vec3F(
+		getQuatPitch(quaternion),
+		getQuatYaw(quaternion),
+		getQuatRoll(quaternion));
+}
+inline static Mat4F getQuatMatF4(Quat quaternion)
 {
 	float xx = quaternion.x * quaternion.x;
 	float yy = quaternion.y * quaternion.y;
@@ -84,17 +127,17 @@ inline static Mat4F getQuatMatF4(
 
 	Mat4F matrix;
 	matrix.m00 = 1.0f - 2.0f * (yy + zz);
-	matrix.m01 = 2.0f * (xy + wz); //
-	matrix.m02 = 2.0f * (xz - wy); //
+	matrix.m01 = 2.0f * (xy + wz);
+	matrix.m02 = 2.0f * (xz - wy);
 	matrix.m03 = 0.0f;
 
-	matrix.m10 = 2.0f * (xy - wz); //
+	matrix.m10 = 2.0f * (xy - wz);
 	matrix.m11 = 1.0f - 2.0f * (xx + zz);
-	matrix.m12 = 2.0f * (yz + wx); //
+	matrix.m12 = 2.0f * (yz + wx);
 	matrix.m13 = 0.0f;
 
-	matrix.m20 = 2.0f * (xz + wy); //
-	matrix.m21 = 2.0f * (yz - wx); //
+	matrix.m20 = 2.0f * (xz + wy);
+	matrix.m21 = 2.0f * (yz - wx);
 	matrix.m22 = 1.0f - 2.0f * (xx + yy);
 	matrix.m23 = 0.0f;
 
@@ -104,9 +147,68 @@ inline static Mat4F getQuatMatF4(
 	matrix.m33 = 1.0f;
 	return matrix;
 }
+inline static Quat getMatQuatF4(Mat4F matrix)
+{
+	// TODO: check if works correctly
+	float fourXSquaredMinus1 = matrix.m00 - matrix.m11 - matrix.m22;
+	float fourYSquaredMinus1 = matrix.m11 - matrix.m00 - matrix.m22;
+	float fourZSquaredMinus1 = matrix.m22 - matrix.m00 - matrix.m11;
+	float fourWSquaredMinus1 = matrix.m00 + matrix.m11 + matrix.m22;
 
-// TODO: quaternion from matrix extraction
-// TODO: quaternion pitch, yaw, roll extraction
+	float fourBiggestSquaredMinus1 = fourWSquaredMinus1;
+	int biggestIndex = 0;
+
+	if(fourXSquaredMinus1 > fourBiggestSquaredMinus1)
+	{
+		fourBiggestSquaredMinus1 = fourXSquaredMinus1;
+		biggestIndex = 1;
+	}
+	if(fourYSquaredMinus1 > fourBiggestSquaredMinus1)
+	{
+		fourBiggestSquaredMinus1 = fourYSquaredMinus1;
+		biggestIndex = 2;
+	}
+	if(fourZSquaredMinus1 > fourBiggestSquaredMinus1)
+	{
+		fourBiggestSquaredMinus1 = fourZSquaredMinus1;
+		biggestIndex = 3;
+	}
+
+	float biggestVal = sqrtf(
+		fourBiggestSquaredMinus1 + 1.0f) * 0.5f;
+	float multiplier = 0.25f / biggestVal;
+
+	switch (biggestIndex)
+	{
+	default:
+		abort();
+	case 0:
+		return quat(
+			(matrix.m12 - matrix.m21) * multiplier,
+			(matrix.m20 - matrix.m02) * multiplier,
+			(matrix.m01 - matrix.m10) * multiplier,
+			biggestVal);
+	case 1:
+		return quat(
+			biggestVal,
+			(matrix.m01 + matrix.m10) * multiplier,
+			(matrix.m20 + matrix.m02) * multiplier,
+			(matrix.m12 - matrix.m21) * multiplier);
+	case 2:
+		return quat(
+			(matrix.m01 + matrix.m10) * multiplier,
+			biggestVal,
+			(matrix.m12 + matrix.m21) * multiplier,
+			(matrix.m20 - matrix.m02) * multiplier);
+	case 3:
+		return quat(
+			(matrix.m20 + matrix.m02) * multiplier,
+			(matrix.m12 + matrix.m21) * multiplier,
+			biggestVal,
+			(matrix.m01 - matrix.m10) * multiplier);
+	}
+}
+
 // TODO: quaternion look at, lerp, slerp
 
 inline static Quat conjQuat(Quat quaternion)
