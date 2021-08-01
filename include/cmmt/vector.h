@@ -251,6 +251,28 @@ inline static Vec2F reflVec2F(
 	vector.y -= normal.y * dot;
 	return vector;
 }
+inline static Vec2F mixValVec2F(
+	Vec2F a,
+	Vec2F b,
+	float v)
+{
+	float n = 1.0f - v;
+
+	Vec2F result;
+	result.x = (a.x * n) + (b.x * v);
+	result.y = (a.y * n) + (b.y * v);
+	return result;
+}
+inline static Vec2F mixVec2F(
+	Vec2F a,
+	Vec2F b,
+	Vec2F v)
+{
+	Vec2F result;
+	result.x = (a.x * (1.0f - v.x)) + (b.x * v.x);
+	result.y = (a.y * (1.0f - v.y)) + (b.y * v.y);
+	return result;
+}
 
 inline static Vec3F vec3F(
 	float x,
@@ -525,6 +547,30 @@ inline static Vec3F reflVec3F(
 	vector.z -= normal.z * dot;
 	return vector;
 }
+inline static Vec3F mixValVec3F(
+	Vec3F a,
+	Vec3F b,
+	float v)
+{
+	float n = 1.0f - v;
+
+	Vec3F result;
+	result.x = (a.x * n) + (b.x * v);
+	result.y = (a.y * n) + (b.y * v);
+	result.z = (a.z * n) + (b.z * v);
+	return result;
+}
+inline static Vec3F mixVec3F(
+	Vec3F a,
+	Vec3F b,
+	Vec3F v)
+{
+	Vec3F result;
+	result.x = (a.x * (1.0f - v.x)) + (b.x * v.x);
+	result.y = (a.y * (1.0f - v.y)) + (b.y * v.y);
+	result.z = (a.z * (1.0f - v.z)) + (b.z * v.z);
+	return result;
+}
 
 inline static Vec4F vec4F(
 	float x,
@@ -765,6 +811,32 @@ inline static Vec4F reflVec4F(
 	vector.z -= normal.z * dot;
 	vector.w -= normal.w * dot;
 	return vector;
+}
+inline static Vec4F mixValVec4F(
+	Vec4F a,
+	Vec4F b,
+	float v)
+{
+	float n = 1.0f - v;
+
+	Vec4F result;
+	result.x = (a.x * n) + (b.x * v);
+	result.y = (a.y * n) + (b.y * v);
+	result.z = (a.z * n) + (b.z * v);
+	result.w = (a.w * n) + (b.w * v);
+	return result;
+}
+inline static Vec4F mixVec4F(
+	Vec4F a,
+	Vec4F b,
+	Vec4F v)
+{
+	Vec4F result;
+	result.x = (a.x * (1.0f - v.x)) + (b.x * v.x);
+	result.y = (a.y * (1.0f - v.y)) + (b.y * v.y);
+	result.z = (a.z * (1.0f - v.z)) + (b.z * v.z);
+	result.w = (a.w * (1.0f - v.w)) + (b.w * v.w);
+	return result;
 }
 
 inline static Vec2I vec2I(
