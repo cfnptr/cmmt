@@ -1,6 +1,8 @@
 #pragma once
 #include "cmmt/matrix.h"
 
+// TODO: quaternion lerp, slerp
+
 typedef struct Quat
 {
 	float x, y, z, w;
@@ -149,7 +151,6 @@ inline static Mat4F getQuatMatF4(Quat quaternion)
 }
 inline static Quat getMatQuatF4(Mat4F matrix)
 {
-	// TODO: check if works correctly
 	float fourXSquaredMinus1 = matrix.m00 - matrix.m11 - matrix.m22;
 	float fourYSquaredMinus1 = matrix.m11 - matrix.m00 - matrix.m22;
 	float fourZSquaredMinus1 = matrix.m22 - matrix.m00 - matrix.m11;
@@ -174,9 +175,9 @@ inline static Quat getMatQuatF4(Mat4F matrix)
 		biggestIndex = 3;
 	}
 
-	float biggestVal = sqrtf(
+	float biggestValue = sqrtf(
 		fourBiggestSquaredMinus1 + 1.0f) * 0.5f;
-	float multiplier = 0.25f / biggestVal;
+	float multiplier = 0.25f / biggestValue;
 
 	switch (biggestIndex)
 	{
@@ -187,29 +188,27 @@ inline static Quat getMatQuatF4(Mat4F matrix)
 			(matrix.m12 - matrix.m21) * multiplier,
 			(matrix.m20 - matrix.m02) * multiplier,
 			(matrix.m01 - matrix.m10) * multiplier,
-			biggestVal);
+			biggestValue);
 	case 1:
 		return quat(
-			biggestVal,
+			biggestValue,
 			(matrix.m01 + matrix.m10) * multiplier,
 			(matrix.m20 + matrix.m02) * multiplier,
 			(matrix.m12 - matrix.m21) * multiplier);
 	case 2:
 		return quat(
 			(matrix.m01 + matrix.m10) * multiplier,
-			biggestVal,
+			biggestValue,
 			(matrix.m12 + matrix.m21) * multiplier,
 			(matrix.m20 - matrix.m02) * multiplier);
 	case 3:
 		return quat(
 			(matrix.m20 + matrix.m02) * multiplier,
 			(matrix.m12 + matrix.m21) * multiplier,
-			biggestVal,
+			biggestValue,
 			(matrix.m01 - matrix.m10) * multiplier);
 	}
 }
-
-// TODO: quaternion look at, lerp, slerp
 
 inline static Quat conjQuat(Quat quaternion)
 {

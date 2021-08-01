@@ -2,6 +2,7 @@
 #include "cmmt/vector.h"
 
 // TODO: Mat2, Mat3, Mat23...
+// TODO: rotate matrix
 
 typedef struct Mat4F
 {
@@ -372,14 +373,17 @@ inline static Mat4F dotMat4F(
 	matrix.m01 = a.m01 * b.m00 + a.m11 * b.m01 + a.m21 * b.m02 + a.m31 * b.m03;
 	matrix.m02 = a.m02 * b.m00 + a.m12 * b.m01 + a.m22 * b.m02 + a.m32 * b.m03;
 	matrix.m03 = a.m03 * b.m00 + a.m13 * b.m01 + a.m23 * b.m02 + a.m33 * b.m03;
+
 	matrix.m10 = a.m00 * b.m10 + a.m10 * b.m11 + a.m20 * b.m12 + a.m30 * b.m13;
 	matrix.m11 = a.m01 * b.m10 + a.m11 * b.m11 + a.m21 * b.m12 + a.m31 * b.m13;
 	matrix.m12 = a.m02 * b.m10 + a.m12 * b.m11 + a.m22 * b.m12 + a.m32 * b.m13;
 	matrix.m13 = a.m03 * b.m10 + a.m13 * b.m11 + a.m23 * b.m12 + a.m33 * b.m13;
+
 	matrix.m20 = a.m00 * b.m20 + a.m10 * b.m21 + a.m20 * b.m22 + a.m30 * b.m23;
 	matrix.m21 = a.m01 * b.m20 + a.m11 * b.m21 + a.m21 * b.m22 + a.m31 * b.m23;
 	matrix.m22 = a.m02 * b.m20 + a.m12 * b.m21 + a.m22 * b.m22 + a.m32 * b.m23;
 	matrix.m23 = a.m03 * b.m20 + a.m13 * b.m21 + a.m23 * b.m22 + a.m33 * b.m23;
+
 	matrix.m30 = a.m00 * b.m30 + a.m10 * b.m31 + a.m20 * b.m32 + a.m30 * b.m33;
 	matrix.m31 = a.m01 * b.m30 + a.m11 * b.m31 + a.m21 * b.m32 + a.m31 * b.m33;
 	matrix.m32 = a.m02 * b.m30 + a.m12 * b.m31 + a.m22 * b.m32 + a.m32 * b.m33;
@@ -595,4 +599,48 @@ inline static Vec3F getTranslationMat4F(
 	translation.z = matrix.m32;
 	return translation;
 }
-// TODO: rotate, look at
+inline static Mat4F lookAtMat4F(
+	Vec3F eye,
+	Vec3F center,
+	Vec3F up)
+{
+	float fX = center.x - eye.x;
+	float fY = center.y - eye.y;
+	float fZ = center.z - eye.z;
+
+	float l = sqrtf(fX * fX + fY * fY + fZ * fZ);
+	fX /= l; fY /= l; fZ /= l;
+
+	float sX = up.y * fZ - up.z * fY;
+	float sY = up.z * fX - up.x * fZ;
+	float sZ = up.x * fY - up.y * fX;
+
+	l = sqrtf(sX * sX + sY * sY + sZ * sZ);
+	sX /= l; sY /= l; sZ /= l;
+
+	float uX = fY * sZ - fZ * sY;
+	float uY = fZ * sX - fX * sZ;
+	float uZ = fX * sY - fY * sX;
+
+	Mat4F matrix;
+	matrix.m00 = sX;
+	matrix.m01 = uX;
+	matrix.m02 = fX;
+	matrix.m03 = 0.0f;
+
+	matrix.m10 = sY;
+	matrix.m11 = uY;
+	matrix.m12 = fY;
+	matrix.m13 = 0.0f;
+
+	matrix.m20 = sZ;
+	matrix.m21 = uZ;
+	matrix.m22 = fZ;
+	matrix.m23 = 0.0f;
+
+	matrix.m30 = -((sX * eye.x) + (sY * eye.y) + (sZ * eye.z));
+	matrix.m31 = -((uX * eye.x) + (uY * eye.y) + (uZ * eye.z));
+	matrix.m32 = -((fX * eye.x) + (fY * eye.y) + (fZ * eye.z));
+	matrix.m33 = 1.0f;
+	return matrix;
+}
