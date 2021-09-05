@@ -14,4 +14,7 @@
 * C99 compiler
 * [CMake 3.10+](https://cmake.org/)
 
+## Examples
+You can find examples of use in [this](https://github.com/cfnptr/mpgx/) library source code.
+
 ### Special thanks to [glm](https://github.com/g-truc/glm/).
