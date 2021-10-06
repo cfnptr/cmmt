@@ -5,7 +5,7 @@ if(${CMAKE_SOURCE_DIR} MATCHES ${CMAKE_BINARY_DIR})
 endif()
 
 project(cmmt 
-	VERSION 0.1.0
+	VERSION 0.1.1
 	DESCRIPTION "Common mathematics library"
 	HOMEPAGE_URL "https://github.com/cfnptr/cmmt"
 	LANGUAGES C)
