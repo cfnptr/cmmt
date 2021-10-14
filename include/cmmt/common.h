@@ -15,11 +15,11 @@
 #pragma once
 #include <math.h>
 
-#ifndef min
+#if !defined(min) && !defined(__linux__)
 #define min(a, b) ((a) < (b) ? (a) : (b))
 #endif
 
-#ifndef max
+#if !defined(max) && !defined(__linux__)
 #define max(a, b) ((a) > (b) ? (a) : (b))
 #endif
 
