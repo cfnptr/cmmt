@@ -9,6 +9,7 @@
 * Camera (ortho/persp float)
 * Frustum culling (float)
 * Color (float)
+* Shadow bias (float)
 
 ## Build requirements
 * C99 compiler
