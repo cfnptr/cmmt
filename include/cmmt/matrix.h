@@ -26,6 +26,31 @@ typedef struct Mat4F
 	float m30, m31, m32, m33;
 } Mat4F;
 
+static const Mat4F zeroMat4F = {
+	0.0f, 0.0f, 0.0f, 0.0f,
+	0.0f, 0.0f, 0.0f, 0.0f,
+	0.0f, 0.0f, 0.0f, 0.0f,
+	0.0f, 0.0f, 0.0f, 0.0f,
+};
+static const Mat4F oneMat4F = {
+	1.0f, 1.0f, 1.0f, 1.0f,
+	1.0f, 1.0f, 1.0f, 1.0f,
+	1.0f, 1.0f, 1.0f, 1.0f,
+	1.0f, 1.0f, 1.0f, 1.0f,
+};
+static const Mat4F minOneMat4F = {
+	-1.0f, -1.0f, -1.0f, -1.0f,
+	-1.0f, -1.0f, -1.0f, -1.0f,
+	-1.0f, -1.0f, -1.0f, -1.0f,
+	-1.0f, -1.0f, -1.0f, -1.0f,
+};
+static const Mat4F identMat4F = {
+	1.0f, 0.0f, 0.0f, 0.0f,
+	0.0f, 1.0f, 0.0f, 0.0f,
+	0.0f, 0.0f, 1.0f, 0.0f,
+	0.0f, 0.0f, 0.0f, 1.0f,
+};
+
 inline static Mat4F matF4(
 	float m00, float m01, float m02, float m03,
 	float m10, float m11, float m12, float m13,
@@ -52,102 +77,6 @@ inline static Mat4F matF4(
 	matrix.m31 = m31;
 	matrix.m32 = m32;
 	matrix.m33 = m33;
-	return matrix;
-}
-inline static Mat4F zeroMatF4()
-{
-	Mat4F matrix;
-	matrix.m00 = 0.0f;
-	matrix.m01 = 0.0f;
-	matrix.m02 = 0.0f;
-	matrix.m03 = 0.0f;
-
-	matrix.m10 = 0.0f;
-	matrix.m11 = 0.0f;
-	matrix.m12 = 0.0f;
-	matrix.m13 = 0.0f;
-
-	matrix.m20 = 0.0f;
-	matrix.m21 = 0.0f;
-	matrix.m22 = 0.0f;
-	matrix.m23 = 0.0f;
-
-	matrix.m30 = 0.0f;
-	matrix.m31 = 0.0f;
-	matrix.m32 = 0.0f;
-	matrix.m33 = 0.0f;
-	return matrix;
-}
-inline static Mat4F oneMat4F()
-{
-	Mat4F matrix;
-	matrix.m00 = 1.0f;
-	matrix.m01 = 1.0f;
-	matrix.m02 = 1.0f;
-	matrix.m03 = 1.0f;
-
-	matrix.m10 = 1.0f;
-	matrix.m11 = 1.0f;
-	matrix.m12 = 1.0f;
-	matrix.m13 = 1.0f;
-
-	matrix.m20 = 1.0f;
-	matrix.m21 = 1.0f;
-	matrix.m22 = 1.0f;
-	matrix.m23 = 1.0f;
-
-	matrix.m30 = 1.0f;
-	matrix.m31 = 1.0f;
-	matrix.m32 = 1.0f;
-	matrix.m33 = 1.0f;
-	return matrix;
-}
-inline static Mat4F minOneMat4F()
-{
-	Mat4F matrix;
-	matrix.m00 = -1.0f;
-	matrix.m01 = -1.0f;
-	matrix.m02 = -1.0f;
-	matrix.m03 = -1.0f;
-
-	matrix.m10 = -1.0f;
-	matrix.m11 = -1.0f;
-	matrix.m12 = -1.0f;
-	matrix.m13 = -1.0f;
-
-	matrix.m20 = -1.0f;
-	matrix.m21 = -1.0f;
-	matrix.m22 = -1.0f;
-	matrix.m23 = -1.0f;
-
-	matrix.m30 = -1.0f;
-	matrix.m31 = -1.0f;
-	matrix.m32 = -1.0f;
-	matrix.m33 = -1.0f;
-	return matrix;
-}
-inline static Mat4F identMat4F()
-{
-	Mat4F matrix;
-	matrix.m00 = 1.0f;
-	matrix.m01 = 0.0f;
-	matrix.m02 = 0.0f;
-	matrix.m03 = 0.0f;
-
-	matrix.m10 = 0.0f;
-	matrix.m11 = 1.0f;
-	matrix.m12 = 0.0f;
-	matrix.m13 = 0.0f;
-
-	matrix.m20 = 0.0f;
-	matrix.m21 = 0.0f;
-	matrix.m22 = 1.0f;
-	matrix.m23 = 0.0f;
-
-	matrix.m30 = 0.0f;
-	matrix.m31 = 0.0f;
-	matrix.m32 = 0.0f;
-	matrix.m33 = 1.0f;
 	return matrix;
 }
 

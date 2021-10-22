@@ -22,11 +22,15 @@ typedef struct Quat
 	float x, y, z, w;
 } Quat;
 
+static const Quat zeroQuat = {
+	0.0f, 0.0f, 0.0f, 0.0f,
+};
+static const Quat oneQuat = {
+	0.0f, 0.0f, 0.0f, 1.0f,
+};
+
 inline static Quat quat(
-	float x,
-	float y,
-	float z,
-	float w)
+	float x, float y, float z, float w)
 {
 	Quat quaternion;
 	quaternion.x = x;
@@ -35,8 +39,7 @@ inline static Quat quat(
 	quaternion.w = w;
 	return quaternion;
 }
-inline static Quat eulerQuat(
-	Vec3F eulerAngles)
+inline static Quat eulerQuat(Vec3F eulerAngles)
 {
 	float sinX = sinf(eulerAngles.x * 0.5f);
 	float sinY = sinf(eulerAngles.y * 0.5f);
@@ -64,24 +67,6 @@ inline static Quat axisQuat(
 	quaternion.y = axis.y * sin;
 	quaternion.z = axis.z * sin;
 	quaternion.w = cosf(angle * 0.5f);
-	return quaternion;
-}
-inline static Quat zeroQuat()
-{
-	Quat quaternion;
-	quaternion.x = 0.0f;
-	quaternion.y = 0.0f;
-	quaternion.z = 0.0f;
-	quaternion.w = 0.0f;
-	return quaternion;
-}
-inline static Quat oneQuat()
-{
-	Quat quaternion;
-	quaternion.x = 0.0f;
-	quaternion.y = 0.0f;
-	quaternion.z = 0.0f;
-	quaternion.w = 1.0f;
 	return quaternion;
 }
 

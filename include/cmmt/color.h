@@ -14,33 +14,235 @@
 
 #pragma once
 #include "cmmt/vector.h"
+#include <assert.h>
 
-inline static float colToVal(
-	uint8_t r)
+#define assertLinearColor(color) \
+	assert(color.r >= 0.0);      \
+	assert(color.r <= 1.0);      \
+	assert(color.g >= 0.0);      \
+	assert(color.g <= 1.0);      \
+	assert(color.b >= 0.0);      \
+	assert(color.b <= 1.0);      \
+	assert(color.a >= 0.0);      \
+	assert(color.a <= 1.0)
+
+typedef struct SrgbColor
 {
-	return (float)r / 255.0f;
-}
-inline static Vec2F colToVec2F(
-	uint8_t r, uint8_t g)
+	uint8_t r, g, b, a;
+} SrgbColor;
+typedef struct LinearColor
 {
-	return vec2F(
-		(float)r / 255.0f,
-		(float)g / 255.0f);
-}
-inline static Vec3F colToVec3F(
-	uint8_t r, uint8_t g, uint8_t b)
-{
-	return vec3F(
-		(float)r / 255.0f,
-		(float)g / 255.0f,
-		(float)b / 255.0f);
-}
-inline static Vec4F colToVec4F(
+	float r, g, b, a;
+} LinearColor;
+
+static const SrgbColor zeroSrgbColor = {
+	0, 0, 0, 0,
+};
+static const SrgbColor blackSrgbColor = {
+	0, 0, 0, 255,
+};
+static const SrgbColor whiteSrgbColor = {
+	255, 255, 255, 255,
+};
+
+static const LinearColor zeroLinearColor = {
+	0.0f, 0.0f, 0.0f, 0.0f,
+};
+static const LinearColor blackLinearColor = {
+	0.0f, 0.0f, 0.0f, 1.0f,
+};
+static const LinearColor whiteLinearColor = {
+	1.0f, 1.0f, 1.0f, 1.0f,
+};
+
+inline static SrgbColor srgbColor(
 	uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 {
-	return vec4F(
-		(float)r / 255.0f,
-		(float)g / 255.0f,
-		(float)b / 255.0f,
-		(float)a / 255.0f);
+	SrgbColor color;
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	color.a = a;
+	return color;
+}
+inline static SrgbColor valSrgbColor(uint8_t value)
+{
+	SrgbColor color;
+	color.r = value;
+	color.g = value;
+	color.b = value;
+	color.a = value;
+	return color;
+}
+
+inline static LinearColor linearColor(
+	float r, float g, float b, float a)
+{
+	LinearColor color;
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	color.a = a;
+
+	assertLinearColor(color);
+	return color;
+}
+inline static LinearColor valueLinearColor(float value)
+{
+	assert(value >= 0.0);
+	assert(value <= 1.0);
+
+	LinearColor color;
+	color.r = value;
+	color.g = value;
+	color.b = value;
+	color.a = value;
+	return color;
+}
+
+inline static LinearColor addLinearColor(
+	LinearColor a,
+	LinearColor b)
+{
+	a.r += b.r;
+	a.g += b.g;
+	a.b += b.b;
+	a.a += b.a;
+	return a;
+}
+inline static LinearColor subLinearColor(
+	LinearColor a,
+	LinearColor b)
+{
+	a.r -= b.r;
+	a.g -= b.g;
+	a.b -= b.b;
+	a.a -= b.a;
+	return a;
+}
+inline static LinearColor mulLinearColor(
+	LinearColor a,
+	LinearColor b)
+{
+	a.r *= b.r;
+	a.g *= b.g;
+	a.b *= b.b;
+	a.a *= b.a;
+	return a;
+}
+inline static LinearColor divLinearColor(
+	LinearColor a,
+	LinearColor b)
+{
+	a.r /= b.r;
+	a.g /= b.g;
+	a.b /= b.b;
+	a.a /= b.a;
+	return a;
+}
+
+inline static Vec2F mixLinearColor(
+	Vec2F a,
+	Vec2F b,
+	Vec2F v)
+{
+	a.x = (a.x * (1.0f - v.x)) + (b.x * v.x);
+	a.y = (a.y * (1.0f - v.y)) + (b.y * v.y);
+	return a;
+}
+inline static LinearColor mixValLinearColor(
+	LinearColor a,
+	LinearColor b,
+	float v)
+{
+	float n = 1.0f - v;
+	a.r = (a.r * n) + (b.r * v);
+	a.g = (a.g * n) + (b.g * v);
+	a.b = (a.b * n) + (b.b * v);
+	a.a = (a.a * n) + (b.a * v);
+	return a;
+}
+
+inline static LinearColor addValLinearColor(
+	LinearColor linearColor,
+	float value)
+{
+	linearColor.r += value;
+	linearColor.g += value;
+	linearColor.b += value;
+	linearColor.a += value;
+	return linearColor;
+}
+inline static LinearColor subValLinearColor(
+	LinearColor linearColor,
+	float value)
+{
+	linearColor.r -= value;
+	linearColor.g -= value;
+	linearColor.b -= value;
+	linearColor.a -= value;
+	return linearColor;
+}
+inline static LinearColor mulValLinearColor(
+	LinearColor linearColor,
+	float value)
+{
+	linearColor.r *= value;
+	linearColor.g *= value;
+	linearColor.b *= value;
+	linearColor.a *= value;
+	return linearColor;
+}
+inline static LinearColor divValLinearColor(
+	LinearColor linearColor,
+	float value)
+{
+	linearColor.r /= value;
+	linearColor.g /= value;
+	linearColor.b /= value;
+	linearColor.a /= value;
+	return linearColor;
+}
+
+inline static float srgbToLinearValue(uint8_t srgbValue)
+{
+	const float multiplier = 1.0f / 255.0f;
+	float value = (float)srgbValue * multiplier;
+
+	return value <= 0.04045f ?
+		value / 12.92f :
+		powf((value + 0.055f) / 1.055f, 2.4f);
+}
+inline static uint8_t linearToSrgbValue(float linearValue)
+{
+	assert(linearValue >= 0.0);
+	assert(linearValue <= 1.0);
+
+	const float power = 1.0f / 2.4f;
+
+	return linearValue <= 0.0031308f ?
+		(uint8_t)(linearValue * 12.92f) :
+		(uint8_t)(1.055f * powf(linearValue, power) - 0.055f);
+}
+
+inline static LinearColor srgbToLinearColor(SrgbColor srgbColor)
+{
+	const float multiplier = 1.0f / 255.0f;
+
+	return linearColor(
+		srgbToLinearValue(srgbColor.r),
+		srgbToLinearValue(srgbColor.g),
+		srgbToLinearValue(srgbColor.b),
+		(float)srgbColor.a * multiplier);
+}
+inline static SrgbColor linearToSrgbColor(LinearColor linearColor)
+{
+	assert(linearColor.a >= 0.0);
+	assert(linearColor.a <= 1.0);
+
+	return srgbColor(
+		linearToSrgbValue(linearColor.r),
+		linearToSrgbValue(linearColor.g),
+		linearToSrgbValue(linearColor.b),
+		(uint8_t)(linearColor.a * 255.0f));
 }

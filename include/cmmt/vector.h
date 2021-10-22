@@ -77,6 +77,216 @@ typedef struct Vec4S
 	size_t x, y, z, w;
 } Vec4S;
 
+static const Vec2F zeroVec2F = {
+	0.0f, 0.0f,
+};
+static const Vec2F oneVec2F = {
+	1.0f, 1.0f,
+};
+static const Vec2F minOneVec2F = {
+	-1.0f, -1.0f,
+};
+static const Vec2F infVec2F = {
+	INFINITY, INFINITY,
+};
+static const Vec2F minInfVec2F = {
+	-INFINITY, -INFINITY,
+};
+
+static const Vec3F zeroVec3F = {
+	0.0f, 0.0f, 0.0f,
+};
+static const Vec3F oneVec3F = {
+	1.0f, 1.0f, 1.0f,
+};
+static const Vec3F minOneVec3F = {
+	-1.0f, -1.0f, -1.0f,
+};
+static const Vec3F infVec3F = {
+	INFINITY, INFINITY, INFINITY,
+};
+static const Vec3F minInfVec3F = {
+	-INFINITY, -INFINITY, -INFINITY,
+};
+static const Vec3F leftVec3F = {
+	LEFT_AXIS_VALUE, 0.0f, 0.0f,
+};
+static const Vec3F rightVec3F = {
+	RIGHT_AXIS_VALUE, 0.0f, 0.0f,
+};
+static const Vec3F bottomVec3F = {
+	0.0f, BOTTOM_AXIS_VALUE, 0.0f,
+};
+static const Vec3F topVec3F = {
+	0.0f, TOP_AXIS_VALUE, 0.0f,
+};
+static const Vec3F backVec3F = {
+	0.0f, 0.0f, BACK_AXIS_VALUE,
+};
+static const Vec3F frontVec3F = {
+	0.0f, 0.0f, FRONT_AXIS_VALUE
+};
+
+static const Vec4F zeroVec4F = {
+	0.0f, 0.0f, 0.0f, 0.0f,
+};
+static const Vec4F oneVec4F = {
+	1.0f, 1.0f, 1.0f, 1.0f,
+};
+static const Vec4F minOneVec4F = {
+	-1.0f, -1.0f, -1.0f, -1.0f,
+};
+static const Vec4F infVec4F = {
+	INFINITY, INFINITY, INFINITY, INFINITY,
+};
+static const Vec4F minInfVec4F = {
+	-INFINITY, -INFINITY, -INFINITY, -INFINITY,
+};
+
+static const Vec2I zeroVec2I = {
+	0, 0,
+};
+static const Vec2I oneVec2I = {
+	1, 1,
+};
+static const Vec2I minOneVec2I = {
+	-1, -1,
+};
+static const Vec2I minVec2I = {
+	INT32_MIN, INT32_MIN,
+};
+static const Vec2I maxVec2I = {
+	INT32_MAX, INT32_MAX,
+};
+
+static const Vec3I zeroVec3I = {
+	0, 0, 0,
+};
+static const Vec3I oneVec3I = {
+	1, 1, 1,
+};
+static const Vec3I minOneVec3I = {
+	-1, -1, -1,
+};
+static const Vec3I minVec3I = {
+	INT32_MIN, INT32_MIN, INT32_MIN,
+};
+static const Vec3I maxVec3I = {
+	INT32_MAX, INT32_MAX, INT32_MAX,
+};
+static const Vec3I leftVec3I = {
+	LEFT_AXIS_VALUE, 0, 0,
+};
+static const Vec3I rightVec3I = {
+	RIGHT_AXIS_VALUE, 0, 0,
+};
+static const Vec3I bottomVec3I = {
+	0, BOTTOM_AXIS_VALUE, 0,
+};
+static const Vec3I topVec3I = {
+	0, TOP_AXIS_VALUE, 0,
+};
+static const Vec3I backVec3I = {
+	0, 0, BACK_AXIS_VALUE,
+};
+static const Vec3I frontVec3I = {
+	0, 0, FRONT_AXIS_VALUE
+};
+
+static const Vec4I zeroVec4I = {
+	0, 0, 0, 0,
+};
+static const Vec4I oneVec4I = {
+	1, 1, 1, 1,
+};
+static const Vec4I minOneVec4I = {
+	-1, -1, -1, -1,
+};
+static const Vec4I minVec4I = {
+	INT32_MIN, INT32_MIN, INT32_MIN, INT32_MIN,
+};
+static const Vec4I maxVec4I = {
+	INT32_MAX, INT32_MAX, INT32_MAX, INT32_MAX,
+};
+
+static const Vec2U zeroVec2U = {
+	0, 0,
+};
+static const Vec2U oneVec2U = {
+	1, 1,
+};
+static const Vec2U minVec2U = {
+	0, 0,
+};
+static const Vec2U maxVec2U = {
+	UINT32_MAX, UINT32_MAX,
+};
+
+static const Vec3U zeroVec3U = {
+	0, 0, 0,
+};
+static const Vec3U oneVec3U = {
+	1, 1, 1,
+};
+static const Vec3U minVec3U = {
+	0, 0, 0,
+};
+static const Vec3U maxVec3U = {
+	UINT32_MAX, UINT32_MAX, UINT32_MAX,
+};
+
+static const Vec4U zeroVec4U = {
+	0, 0, 0, 0,
+};
+static const Vec4U oneVec4U = {
+	1, 1, 1, 1,
+};
+static const Vec4U minVec4U = {
+	0, 0, 0, 0,
+};
+static const Vec4U maxVec4U = {
+	UINT32_MAX, UINT32_MAX, UINT32_MAX, UINT32_MAX,
+};
+
+static const Vec2S zeroVec2S = {
+	0, 0,
+};
+static const Vec2S oneVec2S = {
+	1, 1,
+};
+static const Vec2S minVec2S = {
+	0, 0,
+};
+static const Vec2S maxVec2S = {
+	SIZE_MAX, SIZE_MAX,
+};
+
+static const Vec3S zeroVec3S = {
+	0, 0, 0,
+};
+static const Vec3S oneVec3S = {
+	1, 1, 1,
+};
+static const Vec3S minVec3S = {
+	0, 0, 0,
+};
+static const Vec3S maxVec3S = {
+	SIZE_MAX, SIZE_MAX, SIZE_MAX,
+};
+
+static const Vec4S zeroVec4S = {
+	0, 0, 0, 0,
+};
+static const Vec4S oneVec4S = {
+	1, 1, 1, 1,
+};
+static const Vec4S minVec4S = {
+	0, 0, 0, 0,
+};
+static const Vec4S maxVec4S = {
+	SIZE_MAX, SIZE_MAX, SIZE_MAX, SIZE_MAX,
+};
+
 inline static Vec2F vec2F(
 	float x,
 	float y)
@@ -92,41 +302,6 @@ inline static Vec2F valVec2F(
 	Vec2F vector;
 	vector.x = value;
 	vector.y = value;
-	return vector;
-}
-inline static Vec2F zeroVec2F()
-{
-	Vec2F vector;
-	vector.x = 0.0f;
-	vector.y = 0.0f;
-	return vector;
-}
-inline static Vec2F oneVec2F()
-{
-	Vec2F vector;
-	vector.x = 1.0f;
-	vector.y = 1.0f;
-	return vector;
-}
-inline static Vec2F minOneVec2F()
-{
-	Vec2F vector;
-	vector.x = -1.0f;
-	vector.y = -1.0f;
-	return vector;
-}
-inline static Vec2F infVec2F()
-{
-	Vec2F vector;
-	vector.x = INFINITY;
-	vector.y = INFINITY;
-	return vector;
-}
-inline static Vec2F minInfVec2F()
-{
-	Vec2F vector;
-	vector.x = -INFINITY;
-	vector.y = -INFINITY;
 	return vector;
 }
 
@@ -271,21 +446,18 @@ inline static Vec2F mixValVec2F(
 	float v)
 {
 	float n = 1.0f - v;
-
-	Vec2F result;
-	result.x = (a.x * n) + (b.x * v);
-	result.y = (a.y * n) + (b.y * v);
-	return result;
+	a.x = (a.x * n) + (b.x * v);
+	a.y = (a.y * n) + (b.y * v);
+	return a;
 }
 inline static Vec2F mixVec2F(
 	Vec2F a,
 	Vec2F b,
 	Vec2F v)
 {
-	Vec2F result;
-	result.x = (a.x * (1.0f - v.x)) + (b.x * v.x);
-	result.y = (a.y * (1.0f - v.y)) + (b.y * v.y);
-	return result;
+	a.x = (a.x * (1.0f - v.x)) + (b.x * v.x);
+	a.y = (a.y * (1.0f - v.y)) + (b.y * v.y);
+	return a;
 }
 
 inline static Vec3F vec3F(
@@ -306,95 +478,6 @@ inline static Vec3F valVec3F(
 	vector.x = value;
 	vector.y = value;
 	vector.z = value;
-	return vector;
-}
-inline static Vec3F zeroVec3F()
-{
-	Vec3F vector;
-	vector.x = 0.0f;
-	vector.y = 0.0f;
-	vector.z = 0.0f;
-	return vector;
-}
-inline static Vec3F oneVec3F()
-{
-	Vec3F vector;
-	vector.x = 1.0f;
-	vector.y = 1.0f;
-	vector.z = 1.0f;
-	return vector;
-}
-inline static Vec3F minOneVec3F()
-{
-	Vec3F vector;
-	vector.x = -1.0f;
-	vector.y = -1.0f;
-	vector.z = -1.0f;
-	return vector;
-}
-inline static Vec3F infVec3F()
-{
-	Vec3F vector;
-	vector.x = INFINITY;
-	vector.y = INFINITY;
-	vector.z = INFINITY;
-	return vector;
-}
-inline static Vec3F minInfVec3F()
-{
-	Vec3F vector;
-	vector.x = -INFINITY;
-	vector.y = -INFINITY;
-	vector.z = -INFINITY;
-	return vector;
-}
-
-inline static Vec3F leftVec3F()
-{
-	Vec3F vector;
-	vector.x = LEFT_AXIS_VALUE;
-	vector.y = 0.0f;
-	vector.z = 0.0f;
-	return vector;
-}
-inline static Vec3F rightVec3F()
-{
-	Vec3F vector;
-	vector.x = RIGHT_AXIS_VALUE;
-	vector.y = 0.0f;
-	vector.z = 0.0f;
-	return vector;
-}
-inline static Vec3F bottomVec3F()
-{
-	Vec3F vector;
-	vector.x = 0.0f;
-	vector.y = BOTTOM_AXIS_VALUE;
-	vector.z = 0.0f;
-	return vector;
-}
-inline static Vec3F topVec3F()
-{
-	Vec3F vector;
-	vector.x = 0.0f;
-	vector.y = TOP_AXIS_VALUE;
-	vector.z = 0.0f;
-	return vector;
-}
-inline static Vec3F backVec3F()
-{
-	Vec3F vector;
-	vector.x = 0.0f;
-	vector.y = 0.0f;
-	vector.z = BACK_AXIS_VALUE;
-	return vector;
-}
-inline static Vec3F frontVec3F()
-{
-	Vec3F vector;
-	vector.x = 0.0f;
-	vector.y = 0.0f;
-	vector.z = FRONT_AXIS_VALUE;
 	return vector;
 }
 
@@ -567,23 +650,20 @@ inline static Vec3F mixValVec3F(
 	float v)
 {
 	float n = 1.0f - v;
-
-	Vec3F result;
-	result.x = (a.x * n) + (b.x * v);
-	result.y = (a.y * n) + (b.y * v);
-	result.z = (a.z * n) + (b.z * v);
-	return result;
+	a.x = (a.x * n) + (b.x * v);
+	a.y = (a.y * n) + (b.y * v);
+	a.z = (a.z * n) + (b.z * v);
+	return a;
 }
 inline static Vec3F mixVec3F(
 	Vec3F a,
 	Vec3F b,
 	Vec3F v)
 {
-	Vec3F result;
-	result.x = (a.x * (1.0f - v.x)) + (b.x * v.x);
-	result.y = (a.y * (1.0f - v.y)) + (b.y * v.y);
-	result.z = (a.z * (1.0f - v.z)) + (b.z * v.z);
-	return result;
+	a.x = (a.x * (1.0f - v.x)) + (b.x * v.x);
+	a.y = (a.y * (1.0f - v.y)) + (b.y * v.y);
+	a.z = (a.z * (1.0f - v.z)) + (b.z * v.z);
+	return a;
 }
 
 inline static Vec4F vec4F(
@@ -607,51 +687,6 @@ inline static Vec4F valVec4F(
 	vector.y = value;
 	vector.z = value;
 	vector.w = value;
-	return vector;
-}
-inline static Vec4F zeroVec4F()
-{
-	Vec4F vector;
-	vector.x = 0.0f;
-	vector.y = 0.0f;
-	vector.z = 0.0f;
-	vector.w = 0.0f;
-	return vector;
-}
-inline static Vec4F oneVec4F()
-{
-	Vec4F vector;
-	vector.x = 1.0f;
-	vector.y = 1.0f;
-	vector.z = 1.0f;
-	vector.w = 1.0f;
-	return vector;
-}
-inline static Vec4F minOneVec4F()
-{
-	Vec4F vector;
-	vector.x = -1.0f;
-	vector.y = -1.0f;
-	vector.z = -1.0f;
-	vector.w = -1.0f;
-	return vector;
-}
-inline static Vec4F infVec4F()
-{
-	Vec4F vector;
-	vector.x = INFINITY;
-	vector.y = INFINITY;
-	vector.z = INFINITY;
-	vector.w = INFINITY;
-	return vector;
-}
-inline static Vec4F minInfVec4F()
-{
-	Vec4F vector;
-	vector.x = -INFINITY;
-	vector.y = -INFINITY;
-	vector.z = -INFINITY;
-	vector.w = -INFINITY;
 	return vector;
 }
 
@@ -832,25 +867,22 @@ inline static Vec4F mixValVec4F(
 	float v)
 {
 	float n = 1.0f - v;
-
-	Vec4F result;
-	result.x = (a.x * n) + (b.x * v);
-	result.y = (a.y * n) + (b.y * v);
-	result.z = (a.z * n) + (b.z * v);
-	result.w = (a.w * n) + (b.w * v);
-	return result;
+	a.x = (a.x * n) + (b.x * v);
+	a.y = (a.y * n) + (b.y * v);
+	a.z = (a.z * n) + (b.z * v);
+	a.w = (a.w * n) + (b.w * v);
+	return a;
 }
 inline static Vec4F mixVec4F(
 	Vec4F a,
 	Vec4F b,
 	Vec4F v)
 {
-	Vec4F result;
-	result.x = (a.x * (1.0f - v.x)) + (b.x * v.x);
-	result.y = (a.y * (1.0f - v.y)) + (b.y * v.y);
-	result.z = (a.z * (1.0f - v.z)) + (b.z * v.z);
-	result.w = (a.w * (1.0f - v.w)) + (b.w * v.w);
-	return result;
+	a.x = (a.x * (1.0f - v.x)) + (b.x * v.x);
+	a.y = (a.y * (1.0f - v.y)) + (b.y * v.y);
+	a.z = (a.z * (1.0f - v.z)) + (b.z * v.z);
+	a.w = (a.w * (1.0f - v.w)) + (b.w * v.w);
+	return a;
 }
 
 inline static Vec2I vec2I(
@@ -868,41 +900,6 @@ inline static Vec2I valVec2I(
 	Vec2I vector;
 	vector.x = value;
 	vector.y = value;
-	return vector;
-}
-inline static Vec2I zeroVec2I()
-{
-	Vec2I vector;
-	vector.x = 0;
-	vector.y = 0;
-	return vector;
-}
-inline static Vec2I oneVec2I()
-{
-	Vec2I vector;
-	vector.x = 1;
-	vector.y = 1;
-	return vector;
-}
-inline static Vec2I minOneVec2I()
-{
-	Vec2I vector;
-	vector.x = -1;
-	vector.y = -1;
-	return vector;
-}
-inline static Vec2I minVec2I()
-{
-	Vec2I vector;
-	vector.x = INT32_MIN;
-	vector.y = INT32_MIN;
-	return vector;
-}
-inline static Vec2I maxVec2I()
-{
-	Vec2I vector;
-	vector.x = INT32_MAX;
-	vector.y = INT32_MAX;
 	return vector;
 }
 
@@ -1062,95 +1059,6 @@ inline static Vec3I valVec3I(
 	vector.x = value;
 	vector.y = value;
 	vector.z = value;
-	return vector;
-}
-inline static Vec3I zeroVec3I()
-{
-	Vec3I vector;
-	vector.x = 0;
-	vector.y = 0;
-	vector.z = 0;
-	return vector;
-}
-inline static Vec3I oneVec3I()
-{
-	Vec3I vector;
-	vector.x = 1;
-	vector.y = 1;
-	vector.z = 1;
-	return vector;
-}
-inline static Vec3I minOneVec3I()
-{
-	Vec3I vector;
-	vector.x = -1;
-	vector.y = -1;
-	vector.z = -1;
-	return vector;
-}
-inline static Vec3I minVec3I()
-{
-	Vec3I vector;
-	vector.x = INT32_MIN;
-	vector.y = INT32_MIN;
-	vector.z = INT32_MIN;
-	return vector;
-}
-inline static Vec3I maxVec3I()
-{
-	Vec3I vector;
-	vector.x = INT32_MAX;
-	vector.y = INT32_MAX;
-	vector.z = INT32_MAX;
-	return vector;
-}
-
-inline static Vec3I leftVec3I()
-{
-	Vec3I vector;
-	vector.x = LEFT_AXIS_VALUE;
-	vector.y = 0;
-	vector.z = 0;
-	return vector;
-}
-inline static Vec3I rightVec3I()
-{
-	Vec3I vector;
-	vector.x = RIGHT_AXIS_VALUE;
-	vector.y = 0;
-	vector.z = 0;
-	return vector;
-}
-inline static Vec3I bottomVec3I()
-{
-	Vec3I vector;
-	vector.x = 0;
-	vector.y = BOTTOM_AXIS_VALUE;
-	vector.z = 0;
-	return vector;
-}
-inline static Vec3I topVec3I()
-{
-	Vec3I vector;
-	vector.x = 0;
-	vector.y = TOP_AXIS_VALUE;
-	vector.z = 0;
-	return vector;
-}
-inline static Vec3F backVec3I()
-{
-	Vec3F vector;
-	vector.x = 0;
-	vector.y = 0;
-	vector.z = BACK_AXIS_VALUE;
-	return vector;
-}
-inline static Vec3F frontVec3I()
-{
-	Vec3F vector;
-	vector.x = 0;
-	vector.y = 0;
-	vector.z = FRONT_AXIS_VALUE;
 	return vector;
 }
 
@@ -1331,51 +1239,6 @@ inline static Vec4I valVec4I(
 	vector.y = value;
 	vector.z = value;
 	vector.w = value;
-	return vector;
-}
-inline static Vec4I zeroVec4I()
-{
-	Vec4I vector;
-	vector.x = 0;
-	vector.y = 0;
-	vector.z = 0;
-	vector.w = 0;
-	return vector;
-}
-inline static Vec4I oneVec4I()
-{
-	Vec4I vector;
-	vector.x = 1;
-	vector.y = 1;
-	vector.z = 1;
-	vector.w = 1;
-	return vector;
-}
-inline static Vec4I minOneVec4I()
-{
-	Vec4I vector;
-	vector.x = -1;
-	vector.y = -1;
-	vector.z = -1;
-	vector.w = -1;
-	return vector;
-}
-inline static Vec4I minVec4I()
-{
-	Vec4I vector;
-	vector.x = INT32_MIN;
-	vector.y = INT32_MIN;
-	vector.z = INT32_MIN;
-	vector.w = INT32_MIN;
-	return vector;
-}
-inline static Vec4I maxVec4I()
-{
-	Vec4I vector;
-	vector.x = INT32_MAX;
-	vector.y = INT32_MAX;
-	vector.z = INT32_MAX;
-	vector.w = INT32_MAX;
 	return vector;
 }
 
@@ -1570,34 +1433,6 @@ inline static Vec2U valVec2U(
 	vector.y = value;
 	return vector;
 }
-inline static Vec2U zeroVec2U()
-{
-	Vec2U vector;
-	vector.x = 0;
-	vector.y = 0;
-	return vector;
-}
-inline static Vec2U oneVec2U()
-{
-	Vec2U vector;
-	vector.x = 1;
-	vector.y = 1;
-	return vector;
-}
-inline static Vec2U minVec2U()
-{
-	Vec2U vector;
-	vector.x = 0;
-	vector.y = 0;
-	return vector;
-}
-inline static Vec2U maxVec2U()
-{
-	Vec2U vector;
-	vector.x = UINT32_MAX;
-	vector.y = UINT32_MAX;
-	return vector;
-}
 
 inline static Vec2U addVec2U(
 	Vec2U a,
@@ -1692,38 +1527,6 @@ inline static Vec3U valVec3U(
 	vector.x = value;
 	vector.y = value;
 	vector.z = value;
-	return vector;
-}
-inline static Vec3U zeroVec3U()
-{
-	Vec3U vector;
-	vector.x = 0;
-	vector.y = 0;
-	vector.z = 0;
-	return vector;
-}
-inline static Vec3U oneVec3U()
-{
-	Vec3U vector;
-	vector.x = 1;
-	vector.y = 1;
-	vector.z = 1;
-	return vector;
-}
-inline static Vec3U minVec43()
-{
-	Vec3U vector;
-	vector.x = 0;
-	vector.y = 0;
-	vector.z = 0;
-	return vector;
-}
-inline static Vec3U maxVec3U()
-{
-	Vec3U vector;
-	vector.x = UINT32_MAX;
-	vector.y = UINT32_MAX;
-	vector.z = UINT32_MAX;
 	return vector;
 }
 
@@ -1832,42 +1635,6 @@ inline static Vec4U valVec4U(
 	vector.y = value;
 	vector.z = value;
 	vector.w = value;
-	return vector;
-}
-inline static Vec4U zeroVec4U()
-{
-	Vec4U vector;
-	vector.x = 0;
-	vector.y = 0;
-	vector.z = 0;
-	vector.w = 0;
-	return vector;
-}
-inline static Vec4U oneVec4U()
-{
-	Vec4U vector;
-	vector.x = 1;
-	vector.y = 1;
-	vector.z = 1;
-	vector.w = 1;
-	return vector;
-}
-inline static Vec4U minVec4U()
-{
-	Vec4U vector;
-	vector.x = 0;
-	vector.y = 0;
-	vector.z = 0;
-	vector.w = 0;
-	return vector;
-}
-inline static Vec4U maxVec4U()
-{
-	Vec4U vector;
-	vector.x = UINT32_MAX;
-	vector.y = UINT32_MAX;
-	vector.z = UINT32_MAX;
-	vector.w = UINT32_MAX;
 	return vector;
 }
 
@@ -1981,34 +1748,6 @@ inline static Vec2S valVec2S(
 	vector.y = value;
 	return vector;
 }
-inline static Vec2S zeroVec2S()
-{
-	Vec2S vector;
-	vector.x = 0;
-	vector.y = 0;
-	return vector;
-}
-inline static Vec2S oneVec2S()
-{
-	Vec2S vector;
-	vector.x = 1;
-	vector.y = 1;
-	return vector;
-}
-inline static Vec2S minVec2S()
-{
-	Vec2S vector;
-	vector.x = 0;
-	vector.y = 0;
-	return vector;
-}
-inline static Vec2S maxVec2S()
-{
-	Vec2S vector;
-	vector.x = SIZE_MAX;
-	vector.y = SIZE_MAX;
-	return vector;
-}
 
 inline static Vec2S addVec2S(
 	Vec2S a,
@@ -2103,38 +1842,6 @@ inline static Vec3S valVec3S(
 	vector.x = value;
 	vector.y = value;
 	vector.z = value;
-	return vector;
-}
-inline static Vec3S zeroVec3S()
-{
-	Vec3S vector;
-	vector.x = 0;
-	vector.y = 0;
-	vector.z = 0;
-	return vector;
-}
-inline static Vec3S oneVec3S()
-{
-	Vec3S vector;
-	vector.x = 1;
-	vector.y = 1;
-	vector.z = 1;
-	return vector;
-}
-inline static Vec3S minVec3S()
-{
-	Vec3S vector;
-	vector.x = 0;
-	vector.y = 0;
-	vector.z = 0;
-	return vector;
-}
-inline static Vec3S maxVec3S()
-{
-	Vec3S vector;
-	vector.x = SIZE_MAX;
-	vector.y = SIZE_MAX;
-	vector.z = SIZE_MAX;
 	return vector;
 }
 
@@ -2243,42 +1950,6 @@ inline static Vec4S valVec4S(
 	vector.y = value;
 	vector.z = value;
 	vector.w = value;
-	return vector;
-}
-inline static Vec4S zeroVec4S()
-{
-	Vec4S vector;
-	vector.x = 0;
-	vector.y = 0;
-	vector.z = 0;
-	vector.w = 0;
-	return vector;
-}
-inline static Vec4S oneVec4S()
-{
-	Vec4S vector;
-	vector.x = 1;
-	vector.y = 1;
-	vector.z = 1;
-	vector.w = 1;
-	return vector;
-}
-inline static Vec4S minVec4S()
-{
-	Vec4S vector;
-	vector.x = 0;
-	vector.y = 0;
-	vector.z = 0;
-	vector.w = 0;
-	return vector;
-}
-inline static Vec4S maxVec4S()
-{
-	Vec4S vector;
-	vector.x = SIZE_MAX;
-	vector.y = SIZE_MAX;
-	vector.z = SIZE_MAX;
-	vector.w = SIZE_MAX;
 	return vector;
 }
 
