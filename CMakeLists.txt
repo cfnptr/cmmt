@@ -4,6 +4,10 @@ if(${CMAKE_SOURCE_DIR} MATCHES ${CMAKE_BINARY_DIR})
 	message(FATAL_ERROR "Prevented in-tree build")
 endif()
 
+if (TARGET cmmt)
+	return()
+endif ()
+
 project(cmmt 
 	VERSION 0.1.1
 	DESCRIPTION "Common mathematics library"
