@@ -16,16 +16,6 @@
 #include "cmmt/vector.h"
 #include <assert.h>
 
-#define assertLinearColor(color) \
-	assert(color.r >= 0.0);      \
-	assert(color.r <= 1.0);      \
-	assert(color.g >= 0.0);      \
-	assert(color.g <= 1.0);      \
-	assert(color.b >= 0.0);      \
-	assert(color.b <= 1.0);      \
-	assert(color.a >= 0.0);      \
-	assert(color.a <= 1.0)
-
 typedef struct SrgbColor
 {
 	uint8_t r, g, b, a;
@@ -83,15 +73,10 @@ inline static LinearColor linearColor(
 	color.g = g;
 	color.b = b;
 	color.a = a;
-
-	assertLinearColor(color);
 	return color;
 }
 inline static LinearColor valueLinearColor(float value)
 {
-	assert(value >= 0.0);
-	assert(value <= 1.0);
-
 	LinearColor color;
 	color.r = value;
 	color.g = value;
