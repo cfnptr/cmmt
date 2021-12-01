@@ -38,6 +38,38 @@ typedef struct Sphere3F
 	float radiusPow;
 } Sphere3F;
 
+static const Box2F oneSizeBox2F = {
+	-0.5f, -0.5f,
+	0.5f, 0.5f,
+};
+static const Box2F oneExtBox2F = {
+	-1.0f, -1.0f,
+	1.0f, 1.0f,
+};
+
+static const Box3F oneSizeBox3F = {
+	-0.5f, -0.5f, -0.5f,
+	0.5f, 0.5f, 0.5f,
+};
+static const Box3F oneExtBox3F = {
+	-1.0f, -1.0f, -1.0f,
+	1.0f, 1.0f, 1.0f,
+};
+
+static const Sphere2F oneSizeSphere2F = {
+	0.0f, 0.0f, 0.25f,
+};
+static const Sphere2F oneExtSphere2F = {
+	0.0f, 0.0f, 1.0f,
+};
+
+static const Sphere3F oneSizeSphere3F = {
+	0.0f, 0.0f, 0.0f, 0.25f,
+};
+static const Sphere3F oneExtSphere3F = {
+	0.0f, 0.0f, 0.0f, 1.0f,
+};
+
 inline static Box2F box2F(
 	Vec2F minimum,
 	Vec2F maximum)
