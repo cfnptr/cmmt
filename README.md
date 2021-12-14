@@ -1,3 +1,6 @@
+# CMMT
+![CI](https://github.com/cfnptr/cmmt/actions/workflows/cmake.yml/badge.svg)
+
 ## Features
 * Vector (2D/3D/4D, float/int/uint/size)
 * Matrix (4x4 float)
