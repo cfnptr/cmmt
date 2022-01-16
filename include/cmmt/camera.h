@@ -268,7 +268,7 @@ inline static void frustumZeroOneMat4F(
 	frontPlane.normal.z = frustum.m23 - frustum.m22;
 	frontPlane.distance = frustum.m33 - frustum.m32;
 
-	if (normalize == true)
+	if (normalize)
 	{
 		leftPlane = normFrustumPlane(leftPlane);
 		rightPlane = normFrustumPlane(rightPlane);
@@ -331,7 +331,7 @@ inline static void frustumNegOneMat4F(
 	frontPlane.normal.z = frustum.m23 - frustum.m22;
 	frontPlane.distance = frustum.m33 - frustum.m32;
 
-	if (normalize == true)
+	if (normalize)
 	{
 		leftPlane = normFrustumPlane(leftPlane);
 		rightPlane = normFrustumPlane(rightPlane);
