@@ -83,8 +83,8 @@ inline static Box2F posSizeBox2F(
 	Vec2F position,
 	Vec2F size)
 {
-	size.x /= 2.0f;
-	size.y /= 2.0f;
+	size.x *= 0.5f;
+	size.y *= 0.5f;
 
 	Box2F box;
 	box.minimum = vec2F(
@@ -112,20 +112,20 @@ inline static Box2F posExtBox2F(
 inline static Vec2F getPosBox2F(Box2F box)
 {
 	return vec2F(
-		(box.minimum.x + box.maximum.x) / 2.0f,
-		(box.minimum.y + box.maximum.y) / 2.0f);
+		(box.minimum.x + box.maximum.x) * 0.5f,
+		(box.minimum.y + box.maximum.y) * 0.5f);
 }
 inline static Vec2F getSizeBox2F(Box2F box)
 {
 	return vec2F(
-		(box.maximum.x - ((box.minimum.x + box.maximum.x) / 2.0f)) * 2.0f,
-		(box.maximum.y - ((box.minimum.y + box.maximum.y) / 2.0f)) * 2.0f);
+		(box.maximum.x - ((box.minimum.x + box.maximum.x) * 0.5f)) * 2.0f,
+		(box.maximum.y - ((box.minimum.y + box.maximum.y) * 0.5f)) * 2.0f);
 }
 inline static Vec2F getExtBox2F(Box2F box)
 {
 	return vec2F(
-		box.maximum.x - ((box.minimum.x + box.maximum.x) / 2.0f),
-		box.maximum.y - ((box.minimum.y + box.maximum.y) / 2.0f));
+		box.maximum.x - ((box.minimum.x + box.maximum.x) * 0.5f),
+		box.maximum.y - ((box.minimum.y + box.maximum.y) * 0.5f));
 }
 
 inline static bool isPointInBox2F(
@@ -183,9 +183,9 @@ inline static Box3F posSizeBox3F(
 	Vec3F position,
 	Vec3F size)
 {
-	size.x /= 2.0f;
-	size.y /= 2.0f;
-	size.z /= 2.0f;
+	size.x *= 0.5f;
+	size.y *= 0.5f;
+	size.z *= 0.5f;
 
 	Box3F box;
 	box.minimum = vec3F(
@@ -217,23 +217,23 @@ inline static Box3F posExtBox3F(
 inline static Vec3F getPosBox3F(Box3F box)
 {
 	return vec3F(
-		(box.minimum.x + box.maximum.x) / 2.0f,
-		(box.minimum.y + box.maximum.y) / 2.0f,
-		(box.minimum.z + box.maximum.z) / 2.0f);
+		(box.minimum.x + box.maximum.x) * 0.5f,
+		(box.minimum.y + box.maximum.y) * 0.5f,
+		(box.minimum.z + box.maximum.z) * 0.5f);
 }
 inline static Vec3F getSizeBox3F(Box3F box)
 {
 	return vec3F(
-		(box.maximum.x - ((box.minimum.x + box.maximum.x) / 2.0f)) * 2.0f,
-		(box.maximum.y - ((box.minimum.y + box.maximum.y) / 2.0f)) * 2.0f,
-		(box.maximum.z - ((box.minimum.z + box.maximum.z) / 2.0f)) * 2.0f);
+		(box.maximum.x - ((box.minimum.x + box.maximum.x) * 0.5f)) * 2.0f,
+		(box.maximum.y - ((box.minimum.y + box.maximum.y) * 0.5f)) * 2.0f,
+		(box.maximum.z - ((box.minimum.z + box.maximum.z) * 0.5f)) * 2.0f);
 }
 inline static Vec3F getExtBox3F(Box3F box)
 {
 	return vec3F(
-		box.maximum.x - ((box.minimum.x + box.maximum.x) / 2.0f),
-		box.maximum.y - ((box.minimum.y + box.maximum.y) / 2.0f),
-		box.maximum.z - ((box.minimum.z + box.maximum.z) / 2.0f));
+		box.maximum.x - ((box.minimum.x + box.maximum.x) * 0.5f),
+		box.maximum.y - ((box.minimum.y + box.maximum.y) * 0.5f),
+		box.maximum.z - ((box.minimum.z + box.maximum.z) * 0.5f));
 }
 
 inline static bool isPointInBox3F(

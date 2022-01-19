@@ -92,7 +92,7 @@ inline static Mat4F perspZeroOneMat4F(
 	float nearClipPlane,
 	float farClipPlane)
 {
-	float tanHalfFov = tanf(fieldOfView / 2.0f);
+	float tanHalfFov = tanf(fieldOfView * 0.5f);
 
 	Mat4F matrix;
 	matrix.m00 = 1.0f / (aspectRatio * tanHalfFov);
@@ -122,7 +122,7 @@ inline static Mat4F perspNegOneMat4F(
 	float nearClipPlane,
 	float farClipPlane)
 {
-	float tanHalfFov = tanf(fieldOfView / 2.0f);
+	float tanHalfFov = tanf(fieldOfView * 0.5f);
 
 	Mat4F matrix;
 	matrix.m00 = 1.0f / (aspectRatio * tanHalfFov);
