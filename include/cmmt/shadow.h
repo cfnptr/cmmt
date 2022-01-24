@@ -19,15 +19,15 @@
 // ZeroOne - Vulkan API
 // NegOne - OpenGL
 
-static const Mat4F shadBiasZeroOne = {
-	0.5f, 0.0f, 0.0f, 0.0f,
-	0.0f, 0.5f, 0.0f, 0.0f,
-	0.0f, 0.0f, 1.0f, 0.0f,
-	0.5f, 0.5f, 0.0f, 1.0f
+static const Mat4F shadBiasZeroOneF = {
+	(cmmt_float_t)0.5, (cmmt_float_t)0.0, (cmmt_float_t)0.0, (cmmt_float_t)0.0,
+	(cmmt_float_t)0.0, (cmmt_float_t)0.5, (cmmt_float_t)0.0, (cmmt_float_t)0.0,
+	(cmmt_float_t)0.0, (cmmt_float_t)0.0, (cmmt_float_t)1.0, (cmmt_float_t)0.0,
+	(cmmt_float_t)0.5, (cmmt_float_t)0.5, (cmmt_float_t)0.0, (cmmt_float_t)1.0,
 };
-static const Mat4F shadBiasNegOne = {
-	0.5f, 0.0f, 0.0f, 0.0f,
-	0.0f, 0.5f, 0.0f, 0.0f,
-	0.0f, 0.0f, 0.5f, 0.0f,
-	0.5f, 0.5f, 0.5f, 1.0f
+static const Mat4F shadBiasNegOneF = {
+	(cmmt_float_t)0.5, (cmmt_float_t)0.0, (cmmt_float_t)0.0, (cmmt_float_t)0.0,
+	(cmmt_float_t)0.0, (cmmt_float_t)0.5, (cmmt_float_t)0.0, (cmmt_float_t)0.0,
+	(cmmt_float_t)0.0, (cmmt_float_t)0.0, (cmmt_float_t)0.5, (cmmt_float_t)0.0,
+	(cmmt_float_t)0.5, (cmmt_float_t)0.5, (cmmt_float_t)0.5, (cmmt_float_t)1.0,
 };

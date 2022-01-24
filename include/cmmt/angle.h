@@ -13,8 +13,7 @@
 // limitations under the License.
 
 #pragma once
-#define _USE_MATH_DEFINES
-#include <math.h>
+#include "cmmt/common.h"
 
 inline static double radToDegD(double radians)
 {

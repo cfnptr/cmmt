@@ -18,17 +18,15 @@
 typedef struct Plane2F
 {
 	Vec2F normal;
-	float distance;
+	cmmt_float_t distance;
 } Plane2F;
 typedef struct Plane3F
 {
 	Vec3F normal;
-	float distance;
+	cmmt_float_t distance;
 } Plane3F;
 
-inline static Plane2F plane2F(
-	Vec2F normal,
-	float distance)
+inline static Plane2F plane2F(Vec2F normal, cmmt_float_t distance)
 {
 	Plane2F plane;
 	plane.normal = normal;
@@ -36,18 +34,14 @@ inline static Plane2F plane2F(
 	return plane;
 }
 
-inline static float distPlanePoint2F(
-	Plane2F plane,
-	Vec2F point)
+inline static cmmt_float_t distPlanePoint2F(Plane2F plane, Vec2F point)
 {
 	return
 		plane.normal.x * point.x +
 		plane.normal.y * point.y +
 		plane.distance;
 }
-inline static bool compPlane2F(
-	Plane2F a,
-	Plane2F b)
+inline static bool compPlane2F(Plane2F a, Plane2F b)
 {
 	return
 		a.normal.x == b.normal.x &&
@@ -55,32 +49,27 @@ inline static bool compPlane2F(
 		a.distance == b.distance;
 }
 
-inline static Plane3F plane3F(
-	Vec3F normal,
-	float distance)
+inline static Plane3F plane3F(Vec3F normal, cmmt_float_t distance)
 {
 	Plane3F plane;
 	plane.normal = normal;
 	plane.distance = distance;
 	return plane;
 }
-inline static Plane3F pointPlane3F(
-	Vec3F a,
-	Vec3F b,
-	Vec3F c)
+inline static Plane3F pointPlane3F(Vec3F a, Vec3F b, Vec3F c)
 {
 	// TODO: check if correct
-	float cX = (b.y - a.y) * (c.z - a.z) - (b.z - a.z) * (c.y - a.y);
-	float cY = (b.z - a.z) * (c.x - a.x) - (b.x - a.x) * (c.z - a.z);
-	float cZ = (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+	cmmt_float_t cX = (b.y - a.y) * (c.z - a.z) - (b.z - a.z) * (c.y - a.y);
+	cmmt_float_t cY = (b.z - a.z) * (c.x - a.x) - (b.x - a.x) * (c.z - a.z);
+	cmmt_float_t cZ = (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
 
-	float length = sqrtf((cX * cX) + (cY * cY) + (cZ * cZ));
+	cmmt_float_t length = cmmtSqrt((cX * cX) + (cY * cY) + (cZ * cZ));
 
 	cX /= length;
 	cY /= length;
 	cZ /= length;
 
-	float distance = (cX * a.x) + (cY * a.y) + (cZ * a.z);
+	cmmt_float_t distance = (cX * a.x) + (cY * a.y) + (cZ * a.z);
 
 	Plane3F plane;
 	plane.normal.x = cX;
@@ -90,9 +79,7 @@ inline static Plane3F pointPlane3F(
 	return plane;
 }
 
-inline static float distPlanePoint3F(
-	Plane3F plane,
-	Vec3F point)
+inline static cmmt_float_t distPlanePoint3F(Plane3F plane, Vec3F point)
 {
 	return
 		plane.normal.x * point.x +
@@ -100,9 +87,7 @@ inline static float distPlanePoint3F(
 		plane.normal.z * point.z +
 		plane.distance;
 }
-inline static bool compPlane3F(
-	Plane3F a,
-	Plane3F b)
+inline static bool compPlane3F(Plane3F a, Plane3F b)
 {
 	return
 		a.normal.x == b.normal.x &&

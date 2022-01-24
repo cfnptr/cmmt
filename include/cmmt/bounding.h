@@ -30,61 +30,57 @@ typedef struct Box3F
 typedef struct Sphere2F
 {
 	Vec2F position;
-	float radiusPow;
+	cmmt_float_t radiusPow;
 } Sphere2F;
 typedef struct Sphere3F
 {
 	Vec3F position;
-	float radiusPow;
+	cmmt_float_t radiusPow;
 } Sphere3F;
 
 static const Box2F oneSizeBox2F = {
-	-0.5f, -0.5f,
-	0.5f, 0.5f,
+	(cmmt_float_t)-0.5, (cmmt_float_t)-0.5,
+	(cmmt_float_t)0.5, (cmmt_float_t)0.5,
 };
 static const Box2F oneExtBox2F = {
-	-1.0f, -1.0f,
-	1.0f, 1.0f,
+	(cmmt_float_t)-1.0, (cmmt_float_t)-1.0,
+	(cmmt_float_t)1.0, (cmmt_float_t)1.0,
 };
 
 static const Box3F oneSizeBox3F = {
-	-0.5f, -0.5f, -0.5f,
-	0.5f, 0.5f, 0.5f,
+	(cmmt_float_t)-0.5, (cmmt_float_t)-0.5, (cmmt_float_t)-0.5,
+	(cmmt_float_t)0.5, (cmmt_float_t)0.5, (cmmt_float_t)0.5,
 };
 static const Box3F oneExtBox3F = {
-	-1.0f, -1.0f, -1.0f,
-	1.0f, 1.0f, 1.0f,
+	(cmmt_float_t)-1.0, (cmmt_float_t)-1.0, (cmmt_float_t)-1.0,
+	(cmmt_float_t)1.0, (cmmt_float_t)1.0, (cmmt_float_t)1.0,
 };
 
 static const Sphere2F oneSizeSphere2F = {
-	0.0f, 0.0f, 0.25f,
+	(cmmt_float_t)0.0, (cmmt_float_t)0.0, (cmmt_float_t)0.25,
 };
 static const Sphere2F oneExtSphere2F = {
-	0.0f, 0.0f, 1.0f,
+	(cmmt_float_t)0.0, (cmmt_float_t)0.0, (cmmt_float_t)1.0,
 };
 
 static const Sphere3F oneSizeSphere3F = {
-	0.0f, 0.0f, 0.0f, 0.25f,
+	(cmmt_float_t)0.0, (cmmt_float_t)0.0, (cmmt_float_t)0.0, (cmmt_float_t)0.25,
 };
 static const Sphere3F oneExtSphere3F = {
-	0.0f, 0.0f, 0.0f, 1.0f,
+	(cmmt_float_t)0.0, (cmmt_float_t)0.0, (cmmt_float_t)0.0, (cmmt_float_t)1.0,
 };
 
-inline static Box2F box2F(
-	Vec2F minimum,
-	Vec2F maximum)
+inline static Box2F box2F(Vec2F minimum, Vec2F maximum)
 {
 	Box2F box;
 	box.minimum = minimum;
 	box.maximum = maximum;
 	return box;
 }
-inline static Box2F posSizeBox2F(
-	Vec2F position,
-	Vec2F size)
+inline static Box2F posSizeBox2F(Vec2F position, Vec2F size)
 {
-	size.x *= 0.5f;
-	size.y *= 0.5f;
+	size.x *= (cmmt_float_t)0.5;
+	size.y *= (cmmt_float_t)0.5;
 
 	Box2F box;
 	box.minimum = vec2F(
@@ -95,9 +91,7 @@ inline static Box2F posSizeBox2F(
 		position.y + size.y);
 	return box;
 }
-inline static Box2F posExtBox2F(
-	Vec2F position,
-	Vec2F extent)
+inline static Box2F posExtBox2F(Vec2F position, Vec2F extent)
 {
 	Box2F box;
 	box.minimum = vec2F(
@@ -112,25 +106,23 @@ inline static Box2F posExtBox2F(
 inline static Vec2F getPosBox2F(Box2F box)
 {
 	return vec2F(
-		(box.minimum.x + box.maximum.x) * 0.5f,
-		(box.minimum.y + box.maximum.y) * 0.5f);
+		(box.minimum.x + box.maximum.x) * (cmmt_float_t)0.5,
+		(box.minimum.y + box.maximum.y) * (cmmt_float_t)0.5);
 }
 inline static Vec2F getSizeBox2F(Box2F box)
 {
 	return vec2F(
-		(box.maximum.x - ((box.minimum.x + box.maximum.x) * 0.5f)) * 2.0f,
-		(box.maximum.y - ((box.minimum.y + box.maximum.y) * 0.5f)) * 2.0f);
+		(box.maximum.x - ((box.minimum.x + box.maximum.x) * (cmmt_float_t)0.5)) * (cmmt_float_t)2.0,
+		(box.maximum.y - ((box.minimum.y + box.maximum.y) * (cmmt_float_t)0.5)) * (cmmt_float_t)2.0);
 }
 inline static Vec2F getExtBox2F(Box2F box)
 {
 	return vec2F(
-		box.maximum.x - ((box.minimum.x + box.maximum.x) * 0.5f),
-		box.maximum.y - ((box.minimum.y + box.maximum.y) * 0.5f));
+		box.maximum.x - ((box.minimum.x + box.maximum.x) * (cmmt_float_t)0.5),
+		box.maximum.y - ((box.minimum.y + box.maximum.y) * (cmmt_float_t)0.5));
 }
 
-inline static bool isPointInBox2F(
-	Box2F box,
-	Vec2F point)
+inline static bool isPointInBox2F(Box2F box, Vec2F point)
 {
 	return
 		(box.minimum.x <= point.x &&
@@ -138,9 +130,7 @@ inline static bool isPointInBox2F(
 		(box.minimum.y <= point.y &&
 		box.maximum.y >= point.y);
 }
-inline static bool isBoxInBox2F(
-	Box2F a,
-	Box2F b)
+inline static bool isBoxInBox2F(Box2F a, Box2F b)
 {
 	return
 		(a.minimum.x <= b.maximum.x &&
@@ -148,44 +138,38 @@ inline static bool isBoxInBox2F(
 		(a.minimum.y <= b.maximum.y &&
 		a.maximum.y >= b.minimum.y);
 }
-inline static float castRayBox2F(
-	Box2F box,
-	Ray2F ray)
+inline static cmmt_float_t castRayBox2F(Box2F box, Ray2F ray)
 {
-	float minX = (box.minimum.x - ray.position.x) / ray.direction.x;
-	float maxX = (box.maximum.x - ray.position.x) / ray.direction.x;
-	float minY = (box.minimum.y - ray.position.y) / ray.direction.y;
-	float maxY = (box.maximum.y - ray.position.y) / ray.direction.y;
+	cmmt_float_t minX = (box.minimum.x - ray.position.x) / ray.direction.x;
+	cmmt_float_t maxX = (box.maximum.x - ray.position.x) / ray.direction.x;
+	cmmt_float_t minY = (box.minimum.y - ray.position.y) / ray.direction.y;
+	cmmt_float_t maxY = (box.maximum.y - ray.position.y) / ray.direction.y;
 
-	float min = fmaxf(
-		fminf(minX, maxX),
-		fminf(minY, maxY));
-	float max = fminf(
-		fmaxf(minX, maxX),
-		fmaxf(minY, maxY));
+	cmmt_float_t min = cmmtFmax(
+		cmmtFmin(minX, maxX),
+		cmmtFmin(minY, maxY));
+	cmmt_float_t max = cmmtFmin(
+		cmmtFmax(minX, maxX),
+		cmmtFmax(minY, maxY));
 
-	if (min > max || max < 0.0f)
+	if (min > max || max < (cmmt_float_t)0.0)
 		return INFINITY;
 
-	return min < 0.0f ? max : min;
+	return min < (cmmt_float_t)0.0 ? max : min;
 }
 
-inline static Box3F box3F(
-	Vec3F minimum,
-	Vec3F maximum)
+inline static Box3F box3F(Vec3F minimum, Vec3F maximum)
 {
 	Box3F box;
 	box.minimum = minimum;
 	box.maximum = maximum;
 	return box;
 }
-inline static Box3F posSizeBox3F(
-	Vec3F position,
-	Vec3F size)
+inline static Box3F posSizeBox3F(Vec3F position, Vec3F size)
 {
-	size.x *= 0.5f;
-	size.y *= 0.5f;
-	size.z *= 0.5f;
+	size.x *= (cmmt_float_t)0.5;
+	size.y *= (cmmt_float_t)0.5;
+	size.z *= (cmmt_float_t)0.5;
 
 	Box3F box;
 	box.minimum = vec3F(
@@ -198,9 +182,7 @@ inline static Box3F posSizeBox3F(
 		position.z + size.z);
 	return box;
 }
-inline static Box3F posExtBox3F(
-	Vec3F position,
-	Vec3F extent)
+inline static Box3F posExtBox3F(Vec3F position, Vec3F extent)
 {
 	Box3F box;
 	box.minimum = vec3F(
@@ -217,28 +199,26 @@ inline static Box3F posExtBox3F(
 inline static Vec3F getPosBox3F(Box3F box)
 {
 	return vec3F(
-		(box.minimum.x + box.maximum.x) * 0.5f,
-		(box.minimum.y + box.maximum.y) * 0.5f,
-		(box.minimum.z + box.maximum.z) * 0.5f);
+		(box.minimum.x + box.maximum.x) * (cmmt_float_t)0.5,
+		(box.minimum.y + box.maximum.y) * (cmmt_float_t)0.5,
+		(box.minimum.z + box.maximum.z) * (cmmt_float_t)0.5);
 }
 inline static Vec3F getSizeBox3F(Box3F box)
 {
 	return vec3F(
-		(box.maximum.x - ((box.minimum.x + box.maximum.x) * 0.5f)) * 2.0f,
-		(box.maximum.y - ((box.minimum.y + box.maximum.y) * 0.5f)) * 2.0f,
-		(box.maximum.z - ((box.minimum.z + box.maximum.z) * 0.5f)) * 2.0f);
+		(box.maximum.x - ((box.minimum.x + box.maximum.x) * (cmmt_float_t)0.5)) * (cmmt_float_t)2.0,
+		(box.maximum.y - ((box.minimum.y + box.maximum.y) * (cmmt_float_t)0.5)) * (cmmt_float_t)2.0,
+		(box.maximum.z - ((box.minimum.z + box.maximum.z) * (cmmt_float_t)0.5)) * (cmmt_float_t)2.0);
 }
 inline static Vec3F getExtBox3F(Box3F box)
 {
 	return vec3F(
-		box.maximum.x - ((box.minimum.x + box.maximum.x) * 0.5f),
-		box.maximum.y - ((box.minimum.y + box.maximum.y) * 0.5f),
-		box.maximum.z - ((box.minimum.z + box.maximum.z) * 0.5f));
+		box.maximum.x - ((box.minimum.x + box.maximum.x) * (cmmt_float_t)0.5),
+		box.maximum.y - ((box.minimum.y + box.maximum.y) * (cmmt_float_t)0.5),
+		box.maximum.z - ((box.minimum.z + box.maximum.z) * (cmmt_float_t)0.5));
 }
 
-inline static bool isPointInBox3F(
-	Box3F box,
-	Vec3F point)
+inline static bool isPointInBox3F(Box3F box, Vec3F point)
 {
 	return
 		(box.minimum.x <= point.x &&
@@ -248,9 +228,7 @@ inline static bool isPointInBox3F(
 		(box.minimum.z <= point.z &&
 		box.maximum.z >= point.z);
 }
-inline static bool isBoxInBox3F(
-	Box3F a,
-	Box3F b)
+inline static bool isBoxInBox3F(Box3F a, Box3F b)
 {
 	return
 		(a.minimum.x <= b.maximum.x &&
@@ -260,42 +238,36 @@ inline static bool isBoxInBox3F(
 		(a.minimum.z <= b.maximum.z &&
 		a.maximum.z >= b.minimum.z);
 }
-inline static float castRayBox3F(
-	Box3F box,
-	Ray3F ray)
+inline static cmmt_float_t castRayBox3F(Box3F box, Ray3F ray)
 {
-	float minX = (box.minimum.x - ray.position.x) / ray.direction.x;
-	float maxX = (box.maximum.x - ray.position.x) / ray.direction.x;
-	float minY = (box.minimum.y - ray.position.y) / ray.direction.y;
-	float maxY = (box.maximum.y - ray.position.y) / ray.direction.y;
-	float minZ = (box.minimum.z - ray.position.z) / ray.direction.z;
-	float maxZ = (box.maximum.z - ray.position.z) / ray.direction.z;
+	cmmt_float_t minX = (box.minimum.x - ray.position.x) / ray.direction.x;
+	cmmt_float_t maxX = (box.maximum.x - ray.position.x) / ray.direction.x;
+	cmmt_float_t minY = (box.minimum.y - ray.position.y) / ray.direction.y;
+	cmmt_float_t maxY = (box.maximum.y - ray.position.y) / ray.direction.y;
+	cmmt_float_t minZ = (box.minimum.z - ray.position.z) / ray.direction.z;
+	cmmt_float_t maxZ = (box.maximum.z - ray.position.z) / ray.direction.z;
 
-	float min = fmaxf(
-		fmaxf(fminf(minX, maxX), fminf(minY, maxY)),
-		fminf(minZ, maxZ));
-	float max = fminf(
-		fminf(fmaxf(minX, maxX), fmaxf(minY, maxY)),
-		fmaxf(minZ, maxZ));
+	cmmt_float_t min = cmmtFmax(
+		cmmtFmax(cmmtFmin(minX, maxX), cmmtFmin(minY, maxY)),
+		cmmtFmin(minZ, maxZ));
+	cmmt_float_t max = cmmtFmin(
+		cmmtFmin(cmmtFmax(minX, maxX), cmmtFmax(minY, maxY)),
+		cmmtFmax(minZ, maxZ));
 
-	if (min > max || max < 0.0f)
+	if (min > max || max < (cmmt_float_t)0.0)
 		return INFINITY;
 
-	return min < 0.0f ? max : min;
+	return min < (cmmt_float_t)0.0 ? max : min;
 }
 
-inline static Sphere2F sphere2F(
-	Vec2F position,
-	float radiusPow)
+inline static Sphere2F sphere2F(Vec2F position, cmmt_float_t radiusPow)
 {
 	Sphere2F sphere;
 	sphere.position = position;
 	sphere.radiusPow = radiusPow;
 	return sphere;
 }
-inline static Sphere2F spherePow2F(
-	Vec2F position,
-	float radius)
+inline static Sphere2F spherePow2F(Vec2F position, cmmt_float_t radius)
 {
 	Sphere2F sphere;
 	sphere.position = position;
@@ -303,9 +275,7 @@ inline static Sphere2F spherePow2F(
 	return sphere;
 }
 
-inline static bool isPointInSphere2F(
-	Sphere2F sphere,
-	Vec2F point)
+inline static bool isPointInSphere2F(Sphere2F sphere, Vec2F point)
 {
 	return
 		((point.x - sphere.position.x) *
@@ -314,9 +284,7 @@ inline static bool isPointInSphere2F(
 		(point.y - sphere.position.y)) <=
 		sphere.radiusPow;
 }
-inline static bool isSphereInSphere2F(
-	Sphere2F a,
-	Sphere2F b)
+inline static bool isSphereInSphere2F(Sphere2F a, Sphere2F b)
 {
 	return
 		((a.position.x - b.position.x) *
@@ -325,14 +293,12 @@ inline static bool isSphereInSphere2F(
 		(a.position.y - b.position.y)) <=
 		a.radiusPow + b.radiusPow;
 }
-inline static bool isSphereInBox2F(
-	Sphere2F sphere,
-	Box2F box)
+inline static bool isSphereInBox2F(Sphere2F sphere, Box2F box)
 {
-	float x = fmaxf(box.minimum.x,
-		fminf(sphere.position.x, box.maximum.x));
-	float y = fmaxf(box.minimum.y,
-		fminf(sphere.position.y, box.maximum.y));
+	cmmt_float_t x = cmmtFmax(box.minimum.x,
+		cmmtFmin(sphere.position.x, box.maximum.x));
+	cmmt_float_t y = cmmtFmax(box.minimum.y,
+		cmmtFmin(sphere.position.y, box.maximum.y));
 
 	return
 		((x - sphere.position.x) *
@@ -342,40 +308,34 @@ inline static bool isSphereInBox2F(
 		sphere.radiusPow;
 }
 
-inline static float castRaySphere2F(
-	Sphere2F sphere,
-	Ray2F ray)
+inline static cmmt_float_t castRaySphere2F(Sphere2F sphere, Ray2F ray)
 {
-	float distance =
+	cmmt_float_t distance =
 		((sphere.position.x - ray.position.x) *
 		(sphere.position.x - ray.position.x)) +
 		((sphere.position.y - ray.position.y) *
 		(sphere.position.y - ray.position.y));
-	float dot =
+	cmmt_float_t dot =
 		((sphere.position.x - ray.position.x) * ray.direction.x) +
 		((sphere.position.y - ray.position.y) * ray.direction.y);
 
-	if ((sphere.radiusPow - distance) + (dot * dot) < 0.0f)
+	if ((sphere.radiusPow - distance) + (dot * dot) < (cmmt_float_t)0.0)
 		return INFINITY;
 
 	distance = distance < sphere.radiusPow ?
-		dot + sqrtf(sphere.radiusPow - (distance - (dot * dot))) :
-		dot - sqrtf(sphere.radiusPow - (distance - (dot * dot)));
-	return distance < 0.0f ? INFINITY : distance;
+		dot + cmmtSqrt(sphere.radiusPow - (distance - (dot * dot))) :
+		dot - cmmtSqrt(sphere.radiusPow - (distance - (dot * dot)));
+	return distance < (cmmt_float_t)0.0 ? INFINITY : distance;
 }
 
-inline static Sphere3F sphere3F(
-	Vec3F position,
-	float radiusPow)
+inline static Sphere3F sphere3F(Vec3F position, cmmt_float_t radiusPow)
 {
 	Sphere3F sphere;
 	sphere.position = position;
 	sphere.radiusPow = radiusPow;
 	return sphere;
 }
-inline static Sphere3F spherePow3F(
-	Vec3F position,
-	float radius)
+inline static Sphere3F spherePow3F(Vec3F position, cmmt_float_t radius)
 {
 	Sphere3F sphere;
 	sphere.position = position;
@@ -383,9 +343,7 @@ inline static Sphere3F spherePow3F(
 	return sphere;
 }
 
-inline static bool isPointInSphere3F(
-	Sphere3F sphere,
-	Vec3F point)
+inline static bool isPointInSphere3F(Sphere3F sphere, Vec3F point)
 {
 	return
 		((point.x - sphere.position.x) *
@@ -396,9 +354,7 @@ inline static bool isPointInSphere3F(
 		(point.z - sphere.position.z)) <=
 		sphere.radiusPow;
 }
-inline static bool isSphereInSphere3F(
-	Sphere3F a,
-	Sphere3F b)
+inline static bool isSphereInSphere3F(Sphere3F a, Sphere3F b)
 {
 	return
 		((a.position.x - b.position.x) *
@@ -409,16 +365,14 @@ inline static bool isSphereInSphere3F(
 		(a.position.z - b.position.z)) <=
 		a.radiusPow + b.radiusPow;
 }
-inline static bool isSphereInBox3F(
-	Sphere3F sphere,
-	Box3F box)
+inline static bool isSphereInBox3F(Sphere3F sphere, Box3F box)
 {
-	float x = fmaxf(box.minimum.x,
-		fminf(sphere.position.x, box.maximum.x));
-	float y = fmaxf(box.minimum.y,
-		fminf(sphere.position.y, box.maximum.y));
-	float z = fmaxf(box.minimum.z,
-		fminf(sphere.position.z, box.maximum.z));
+	cmmt_float_t x = cmmtFmax(box.minimum.x,
+		cmmtFmin(sphere.position.x, box.maximum.x));
+	cmmt_float_t y = cmmtFmax(box.minimum.y,
+		cmmtFmin(sphere.position.y, box.maximum.y));
+	cmmt_float_t z = cmmtFmax(box.minimum.z,
+		cmmtFmin(sphere.position.z, box.maximum.z));
 
 	return
 		((x - sphere.position.x) *
@@ -429,27 +383,25 @@ inline static bool isSphereInBox3F(
 		(z - sphere.position.z)) <=
 		sphere.radiusPow;
 }
-inline static float castRaySphere3F(
-	Sphere3F sphere,
-	Ray3F ray)
+inline static cmmt_float_t castRaySphere3F(Sphere3F sphere, Ray3F ray)
 {
-	float distance =
+	cmmt_float_t distance =
 		((ray.position.x - sphere.position.x) *
 		(ray.position.x - sphere.position.x)) +
 		((ray.position.y - sphere.position.y) *
 		(ray.position.y - sphere.position.y)) +
 		((ray.position.z - sphere.position.z) *
 		(ray.position.z - sphere.position.z));
-	float dot =
+	cmmt_float_t dot =
 		(ray.position.x - sphere.position.x) * ray.direction.x +
 		(ray.position.y - sphere.position.y) * ray.direction.y +
 		(ray.position.z - sphere.position.z) * ray.direction.z;
 
-	if (sphere.radiusPow - distance + (dot * dot) < 0.0f)
+	if (sphere.radiusPow - distance + (dot * dot) < (cmmt_float_t)0.0)
 		return INFINITY;
 
 	distance = distance < sphere.radiusPow ?
-		dot + sqrtf(sphere.radiusPow - (distance - (dot * dot))) :
-		dot - sqrtf(sphere.radiusPow - (distance - (dot * dot)));
-	return distance < 0.0f ? INFINITY : distance;
+		dot + cmmtSqrt(sphere.radiusPow - (distance - (dot * dot))) :
+		dot - cmmtSqrt(sphere.radiusPow - (distance - (dot * dot)));
+	return distance < (cmmt_float_t)0.0 ? INFINITY : distance;
 }

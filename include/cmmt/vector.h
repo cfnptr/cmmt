@@ -13,78 +13,53 @@
 // limitations under the License.
 
 #pragma once
-#include <math.h>
+#include "cmmt/common.h"
+
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define LEFT_AXIS_VALUE -1
+#define LEFT_AXIS_VALUE (-1)
 #define RIGHT_AXIS_VALUE 1
-#define BOTTOM_AXIS_VALUE -1
+#define BOTTOM_AXIS_VALUE (-1)
 #define TOP_AXIS_VALUE 1
-#define BACK_AXIS_VALUE -1
+#define BACK_AXIS_VALUE (-1)
 #define FRONT_AXIS_VALUE 1
 
 typedef struct Vec2F
 {
-	float x, y;
+	cmmt_float_t x, y;
 } Vec2F;
 typedef struct Vec3F
 {
-	float x, y, z;
+	cmmt_float_t x, y, z;
 } Vec3F;
 typedef struct Vec4F
 {
-	float x, y, z, w;
+	cmmt_float_t x, y, z, w;
 } Vec4F;
 
 typedef struct Vec2I
 {
-	int32_t x, y;
+	cmmt_int_t x, y;
 } Vec2I;
 typedef struct Vec3I
 {
-	int32_t x, y, z;
+	cmmt_int_t x, y, z;
 } Vec3I;
 typedef struct Vec4I
 {
-	int32_t x, y, z, w;
+	cmmt_int_t x, y, z, w;
 } Vec4I;
 
-typedef struct Vec2U
-{
-	uint32_t x, y;
-} Vec2U;
-typedef struct Vec3U
-{
-	uint32_t x, y, z;
-} Vec3U;
-typedef struct Vec4U
-{
-	uint32_t x, y, z, w;
-} Vec4U;
-
-typedef struct Vec2S
-{
-	size_t x, y;
-} Vec2S;
-typedef struct Vec3S
-{
-	size_t x, y, z;
-} Vec3S;
-typedef struct Vec4S
-{
-	size_t x, y, z, w;
-} Vec4S;
-
 static const Vec2F zeroVec2F = {
-	0.0f, 0.0f,
+	(cmmt_float_t)0.0, (cmmt_float_t)0.0,
 };
 static const Vec2F oneVec2F = {
-	1.0f, 1.0f,
+	(cmmt_float_t)1.0, (cmmt_float_t)1.0,
 };
 static const Vec2F minOneVec2F = {
-	-1.0f, -1.0f,
+	(cmmt_float_t)-1.0, (cmmt_float_t)-1.0,
 };
 static const Vec2F infVec2F = {
 	INFINITY, INFINITY,
@@ -94,13 +69,13 @@ static const Vec2F minInfVec2F = {
 };
 
 static const Vec3F zeroVec3F = {
-	0.0f, 0.0f, 0.0f,
+	(cmmt_float_t)0.0, (cmmt_float_t)0.0, (cmmt_float_t)0.0,
 };
 static const Vec3F oneVec3F = {
-	1.0f, 1.0f, 1.0f,
+	(cmmt_float_t)1.0, (cmmt_float_t)1.0, (cmmt_float_t)1.0,
 };
 static const Vec3F minOneVec3F = {
-	-1.0f, -1.0f, -1.0f,
+	(cmmt_float_t)-1.0, (cmmt_float_t)-1.0, (cmmt_float_t)-1.0,
 };
 static const Vec3F infVec3F = {
 	INFINITY, INFINITY, INFINITY,
@@ -109,32 +84,35 @@ static const Vec3F minInfVec3F = {
 	-INFINITY, -INFINITY, -INFINITY,
 };
 static const Vec3F leftVec3F = {
-	LEFT_AXIS_VALUE, 0.0f, 0.0f,
+	LEFT_AXIS_VALUE, (cmmt_float_t)0.0, (cmmt_float_t)0.0,
 };
 static const Vec3F rightVec3F = {
-	RIGHT_AXIS_VALUE, 0.0f, 0.0f,
+	RIGHT_AXIS_VALUE, (cmmt_float_t)0.0, (cmmt_float_t)0.0,
 };
 static const Vec3F bottomVec3F = {
-	0.0f, BOTTOM_AXIS_VALUE, 0.0f,
+	(cmmt_float_t)0.0, BOTTOM_AXIS_VALUE, (cmmt_float_t)0.0,
 };
 static const Vec3F topVec3F = {
-	0.0f, TOP_AXIS_VALUE, 0.0f,
+	(cmmt_float_t)0.0, TOP_AXIS_VALUE, (cmmt_float_t)0.0,
 };
 static const Vec3F backVec3F = {
-	0.0f, 0.0f, BACK_AXIS_VALUE,
+	(cmmt_float_t)0.0, (cmmt_float_t)0.0, BACK_AXIS_VALUE,
 };
 static const Vec3F frontVec3F = {
-	0.0f, 0.0f, FRONT_AXIS_VALUE
+	(cmmt_float_t)0.0, (cmmt_float_t)0.0, FRONT_AXIS_VALUE
 };
 
 static const Vec4F zeroVec4F = {
-	0.0f, 0.0f, 0.0f, 0.0f,
+	(cmmt_float_t)0.0, (cmmt_float_t)0.0,
+	(cmmt_float_t)0.0, (cmmt_float_t)0.0,
 };
 static const Vec4F oneVec4F = {
-	1.0f, 1.0f, 1.0f, 1.0f,
+	(cmmt_float_t)1.0, (cmmt_float_t)1.0,
+	(cmmt_float_t)1.0, (cmmt_float_t)1.0,
 };
 static const Vec4F minOneVec4F = {
-	-1.0f, -1.0f, -1.0f, -1.0f,
+	(cmmt_float_t)-1.0, (cmmt_float_t)-1.0,
+	(cmmt_float_t)-1.0, (cmmt_float_t)-1.0,
 };
 static const Vec4F infVec4F = {
 	INFINITY, INFINITY, INFINITY, INFINITY,
@@ -209,95 +187,14 @@ static const Vec4I maxVec4I = {
 	INT32_MAX, INT32_MAX, INT32_MAX, INT32_MAX,
 };
 
-static const Vec2U zeroVec2U = {
-	0, 0,
-};
-static const Vec2U oneVec2U = {
-	1, 1,
-};
-static const Vec2U minVec2U = {
-	0, 0,
-};
-static const Vec2U maxVec2U = {
-	UINT32_MAX, UINT32_MAX,
-};
-
-static const Vec3U zeroVec3U = {
-	0, 0, 0,
-};
-static const Vec3U oneVec3U = {
-	1, 1, 1,
-};
-static const Vec3U minVec3U = {
-	0, 0, 0,
-};
-static const Vec3U maxVec3U = {
-	UINT32_MAX, UINT32_MAX, UINT32_MAX,
-};
-
-static const Vec4U zeroVec4U = {
-	0, 0, 0, 0,
-};
-static const Vec4U oneVec4U = {
-	1, 1, 1, 1,
-};
-static const Vec4U minVec4U = {
-	0, 0, 0, 0,
-};
-static const Vec4U maxVec4U = {
-	UINT32_MAX, UINT32_MAX, UINT32_MAX, UINT32_MAX,
-};
-
-static const Vec2S zeroVec2S = {
-	0, 0,
-};
-static const Vec2S oneVec2S = {
-	1, 1,
-};
-static const Vec2S minVec2S = {
-	0, 0,
-};
-static const Vec2S maxVec2S = {
-	SIZE_MAX, SIZE_MAX,
-};
-
-static const Vec3S zeroVec3S = {
-	0, 0, 0,
-};
-static const Vec3S oneVec3S = {
-	1, 1, 1,
-};
-static const Vec3S minVec3S = {
-	0, 0, 0,
-};
-static const Vec3S maxVec3S = {
-	SIZE_MAX, SIZE_MAX, SIZE_MAX,
-};
-
-static const Vec4S zeroVec4S = {
-	0, 0, 0, 0,
-};
-static const Vec4S oneVec4S = {
-	1, 1, 1, 1,
-};
-static const Vec4S minVec4S = {
-	0, 0, 0, 0,
-};
-static const Vec4S maxVec4S = {
-	SIZE_MAX, SIZE_MAX, SIZE_MAX, SIZE_MAX,
-};
-
-inline static Vec2F vec2F(
-	float x,
-	float y)
+inline static Vec2F vec2F(cmmt_float_t x, cmmt_float_t y)
 {
 	Vec2F vector;
 	vector.x = x;
 	vector.y = y;
 	return vector;
 }
-inline static Vec2F valVec2F(
-	float value)
+inline static Vec2F valVec2F(cmmt_float_t value)
 {
 	Vec2F vector;
 	vector.x = value;
@@ -305,122 +202,95 @@ inline static Vec2F valVec2F(
 	return vector;
 }
 
-inline static Vec2F addVec2F(
-	Vec2F a,
-	Vec2F b)
+inline static Vec2F addVec2F(Vec2F a, Vec2F b)
 {
 	a.x += b.x;
 	a.y += b.y;
 	return a;
 }
-inline static Vec2F subVec2F(
-	Vec2F a,
-	Vec2F b)
+inline static Vec2F subVec2F(Vec2F a, Vec2F b)
 {
 	a.x -= b.x;
 	a.y -= b.y;
 	return a;
 }
-inline static Vec2F mulVec2F(
-	Vec2F a,
-	Vec2F b)
+inline static Vec2F mulVec2F(Vec2F a, Vec2F b)
 {
 	a.x *= b.x;
 	a.y *= b.y;
 	return a;
 }
-inline static Vec2F divVec2F(
-	Vec2F a,
-	Vec2F b)
+inline static Vec2F divVec2F(Vec2F a, Vec2F b)
 {
 	a.x /= b.x;
 	a.y /= b.y;
 	return a;
 }
 
-inline static Vec2F addValVec2F(
-	Vec2F vector,
-	float value)
+inline static Vec2F addValVec2F(Vec2F vector, cmmt_float_t value)
 {
 	vector.x += value;
 	vector.y += value;
 	return vector;
 }
-inline static Vec2F subValVec2F(
-	Vec2F vector,
-	float value)
+inline static Vec2F subValVec2F(Vec2F vector, cmmt_float_t value)
 {
 	vector.x -= value;
 	vector.y -= value;
 	return vector;
 }
-inline static Vec2F mulValVec2F(
-	Vec2F vector,
-	float value)
+inline static Vec2F mulValVec2F(Vec2F vector, cmmt_float_t value)
 {
 	vector.x *= value;
 	vector.y *= value;
 	return vector;
 }
-inline static Vec2F divValVec2F(
-	Vec2F vector,
-	float value)
+inline static Vec2F divValVec2F(Vec2F vector, cmmt_float_t value)
 {
 	vector.x /= value;
 	vector.y /= value;
 	return vector;
 }
 
-inline static bool compVec2F(
-	Vec2F a,
-	Vec2F b)
+inline static bool compVec2F(Vec2F a, Vec2F b)
 {
 	return
 		a.x == b.x &&
 		a.y == b.y;
 }
-inline static Vec2F negVec2F(
-	Vec2F vector)
+inline static Vec2F negVec2F(Vec2F vector)
 {
 	vector.x = -vector.x;
 	vector.y = -vector.y;
 	return vector;
 }
-inline static float dotVec2F(
-	Vec2F a,
-	Vec2F b)
+inline static cmmt_float_t dotVec2F(Vec2F a, Vec2F b)
 {
 	return
 		a.x * b.x +
 		a.y * b.y;
 }
-inline static float lenVec2F(
-	Vec2F vector)
+inline static cmmt_float_t lenVec2F(Vec2F vector)
 {
-	return sqrtf(
+	return cmmtSqrt(
 		vector.x * vector.x +
 		vector.y * vector.y);
 }
-inline static float distPowVec2F(
-	Vec2F a,
-	Vec2F b)
+inline static cmmt_float_t distPowVec2F(Vec2F a, Vec2F b)
 {
 	return
 		(a.x - b.x) * (a.x - b.x) +
 		(a.y - b.y) * (a.y - b.y);
 }
-inline static float distVec2F(
-	Vec2F a,
-	Vec2F b)
+inline static cmmt_float_t distVec2F(Vec2F a, Vec2F b)
 {
-	return sqrtf(
+	return cmmtSqrt(
 		(a.x - b.x) * (a.x - b.x) +
 		(a.y - b.y) * (a.y - b.y));
 }
-inline static Vec2F normVec2F(
-	Vec2F vector)
+inline static Vec2F normVec2F(Vec2F vector)
 {
-	float length = sqrtf(
+	cmmt_float_t length = cmmtSqrt(
 		vector.x * vector.x +
 		vector.y * vector.y);
 
@@ -428,42 +298,31 @@ inline static Vec2F normVec2F(
 	vector.y /= length;
 	return vector;
 }
-inline static Vec2F reflVec2F(
-	Vec2F vector,
-	Vec2F normal)
+inline static Vec2F reflVec2F(Vec2F vector, Vec2F normal)
 {
-	float dot =
+	cmmt_float_t dot =
 		(normal.x * vector.x +
-		normal.y * vector.y) * 2.0f;
+		normal.y * vector.y) * (cmmt_float_t)2.0;
 
 	vector.x -= normal.x * dot;
 	vector.y -= normal.y * dot;
 	return vector;
 }
-inline static Vec2F mixValVec2F(
-	Vec2F a,
-	Vec2F b,
-	float v)
+inline static Vec2F mixValVec2F(Vec2F a, Vec2F b, cmmt_float_t v)
 {
-	float n = 1.0f - v;
+	cmmt_float_t n = (cmmt_float_t)1.0 - v;
 	a.x = (a.x * n) + (b.x * v);
 	a.y = (a.y * n) + (b.y * v);
 	return a;
 }
-inline static Vec2F mixVec2F(
-	Vec2F a,
-	Vec2F b,
-	Vec2F v)
+inline static Vec2F mixVec2F(Vec2F a, Vec2F b, Vec2F v)
 {
-	a.x = (a.x * (1.0f - v.x)) + (b.x * v.x);
-	a.y = (a.y * (1.0f - v.y)) + (b.y * v.y);
+	a.x = (a.x * ((cmmt_float_t)1.0 - v.x)) + (b.x * v.x);
+	a.y = (a.y * ((cmmt_float_t)1.0 - v.y)) + (b.y * v.y);
 	return a;
 }
 
-inline static Vec3F vec3F(
-	float x,
-	float y,
-	float z)
+inline static Vec3F vec3F(cmmt_float_t x, cmmt_float_t y, cmmt_float_t z)
 {
 	Vec3F vector;
 	vector.x = x;
@@ -471,8 +330,7 @@ inline static Vec3F vec3F(
 	vector.z = z;
 	return vector;
 }
-inline static Vec3F valVec3F(
-	float value)
+inline static Vec3F valVec3F(cmmt_float_t value)
 {
 	Vec3F vector;
 	vector.x = value;
@@ -481,36 +339,28 @@ inline static Vec3F valVec3F(
 	return vector;
 }
 
-inline static Vec3F addVec3F(
-	Vec3F a,
-	Vec3F b)
+inline static Vec3F addVec3F(Vec3F a, Vec3F b)
 {
 	a.x += b.x;
 	a.y += b.y;
 	a.z += b.z;
 	return a;
 }
-inline static Vec3F subVec3F(
-	Vec3F a,
-	Vec3F b)
+inline static Vec3F subVec3F(Vec3F a, Vec3F b)
 {
 	a.x -= b.x;
 	a.y -= b.y;
 	a.z -= b.z;
 	return a;
 }
-inline static Vec3F mulVec3F(
-	Vec3F a,
-	Vec3F b)
+inline static Vec3F mulVec3F(Vec3F a, Vec3F b)
 {
 	a.x *= b.x;
 	a.y *= b.y;
 	a.z *= b.z;
 	return a;
 }
-inline static Vec3F divVec3F(
-	Vec3F a,
-	Vec3F b)
+inline static Vec3F divVec3F(Vec3F a, Vec3F b)
 {
 	a.x /= b.x;
 	a.y /= b.y;
@@ -518,36 +368,28 @@ inline static Vec3F divVec3F(
 	return a;
 }
 
-inline static Vec3F addValVec3F(
-	Vec3F vector,
-	float value)
+inline static Vec3F addValVec3F(Vec3F vector, cmmt_float_t value)
 {
 	vector.x += value;
 	vector.y += value;
 	vector.z += value;
 	return vector;
 }
-inline static Vec3F subValVec3F(
-	Vec3F vector,
-	float value)
+inline static Vec3F subValVec3F(Vec3F vector, cmmt_float_t value)
 {
 	vector.x -= value;
 	vector.y -= value;
 	vector.z -= value;
 	return vector;
 }
-inline static Vec3F mulValVec3F(
-	Vec3F vector,
-	float value)
+inline static Vec3F mulValVec3F(Vec3F vector, cmmt_float_t value)
 {
 	vector.x *= value;
 	vector.y *= value;
 	vector.z *= value;
 	return vector;
 }
-inline static Vec3F divValVec3F(
-	Vec3F vector,
-	float value)
+inline static Vec3F divValVec3F(Vec3F vector, cmmt_float_t value)
 {
 	vector.x /= value;
 	vector.y /= value;
@@ -555,35 +397,28 @@ inline static Vec3F divValVec3F(
 	return vector;
 }
 
-inline static bool compVec3F(
-	Vec3F a,
-	Vec3F b)
+inline static bool compVec3F(Vec3F a, Vec3F b)
 {
 	return
 		a.x == b.x &&
 		a.y == b.y &&
 		a.z == b.z;
 }
-inline static Vec3F negVec3F(
-	Vec3F vector)
+inline static Vec3F negVec3F(Vec3F vector)
 {
 	vector.x = -vector.x;
 	vector.y = -vector.y;
 	vector.z = -vector.z;
 	return vector;
 }
-inline static float dotVec3F(
-	Vec3F a,
-	Vec3F b)
+inline static cmmt_float_t dotVec3F(Vec3F a, Vec3F b)
 {
 	return
 		(a.x * b.x) +
 		(a.y * b.y) +
 		(a.z * b.z);
 }
-inline static Vec3F crossVec3F(
-	Vec3F a,
-	Vec3F b)
+inline static Vec3F crossVec3F(Vec3F a, Vec3F b)
 {
 	Vec3F vector;
 	vector.x = a.y * b.z - a.z * b.y;
@@ -591,36 +426,30 @@ inline static Vec3F crossVec3F(
 	vector.z = a.x * b.y - a.y * b.x;
 	return vector;
 }
-inline static float lenVec3F(
-	Vec3F vector)
+inline static cmmt_float_t lenVec3F(Vec3F vector)
 {
-	return sqrtf(
+	return cmmtSqrt(
 		vector.x * vector.x +
 		vector.y * vector.y +
 		vector.z * vector.z);
 }
-inline static float distPowVec3F(
-	Vec3F a,
-	Vec3F b)
+inline static cmmt_float_t distPowVec3F(Vec3F a, Vec3F b)
 {
 	return
 		(a.x - b.x) * (a.x - b.x) +
 		(a.y - b.y) * (a.y - b.y) +
 		(a.z - b.z) * (a.z - b.z);
 }
-inline static float distVec3F(
-	Vec3F a,
-	Vec3F b)
+inline static cmmt_float_t distVec3F(Vec3F a, Vec3F b)
 {
-	return sqrtf(
+	return cmmtSqrt(
 		(a.x - b.x) * (a.x - b.x) +
 		(a.y - b.y) * (a.y - b.y) +
 		(a.z - b.z) * (a.z - b.z));
 }
-inline static Vec3F normVec3F(
-	Vec3F vector)
+inline static Vec3F normVec3F(Vec3F vector)
 {
-	float length = sqrtf(
+	cmmt_float_t length = cmmtSqrt(
 		vector.x * vector.x +
 		vector.y * vector.y +
 		vector.z * vector.z);
@@ -630,47 +459,35 @@ inline static Vec3F normVec3F(
 	vector.z /= length;
 	return vector;
 }
-inline static Vec3F reflVec3F(
-	Vec3F vector,
-	Vec3F normal)
+inline static Vec3F reflVec3F(Vec3F vector, Vec3F normal)
 {
-	float dot =
+	cmmt_float_t dot =
 		(normal.x * vector.x +
 		normal.y * vector.y +
-		normal.z * vector.z) * 2.0f;
+		normal.z * vector.z) * (cmmt_float_t)2.0;
 
 	vector.x -= normal.x * dot;
 	vector.y -= normal.y * dot;
 	vector.z -= normal.z * dot;
 	return vector;
 }
-inline static Vec3F mixValVec3F(
-	Vec3F a,
-	Vec3F b,
-	float v)
+inline static Vec3F mixValVec3F(Vec3F a, Vec3F b, cmmt_float_t v)
 {
-	float n = 1.0f - v;
+	cmmt_float_t n = (cmmt_float_t)1.0 - v;
 	a.x = (a.x * n) + (b.x * v);
 	a.y = (a.y * n) + (b.y * v);
 	a.z = (a.z * n) + (b.z * v);
 	return a;
 }
-inline static Vec3F mixVec3F(
-	Vec3F a,
-	Vec3F b,
-	Vec3F v)
+inline static Vec3F mixVec3F(Vec3F a, Vec3F b, Vec3F v)
 {
-	a.x = (a.x * (1.0f - v.x)) + (b.x * v.x);
-	a.y = (a.y * (1.0f - v.y)) + (b.y * v.y);
-	a.z = (a.z * (1.0f - v.z)) + (b.z * v.z);
+	a.x = (a.x * ((cmmt_float_t)1.0 - v.x)) + (b.x * v.x);
+	a.y = (a.y * ((cmmt_float_t)1.0 - v.y)) + (b.y * v.y);
+	a.z = (a.z * ((cmmt_float_t)1.0 - v.z)) + (b.z * v.z);
 	return a;
 }
 
-inline static Vec4F vec4F(
-	float x,
-	float y,
-	float z,
-	float w)
+inline static Vec4F vec4F(cmmt_float_t x, cmmt_float_t y, cmmt_float_t z, cmmt_float_t w)
 {
 	Vec4F vector;
 	vector.x = x;
@@ -679,8 +496,7 @@ inline static Vec4F vec4F(
 	vector.w = w;
 	return vector;
 }
-inline static Vec4F valVec4F(
-	float value)
+inline static Vec4F valVec4F(cmmt_float_t value)
 {
 	Vec4F vector;
 	vector.x = value;
@@ -690,9 +506,7 @@ inline static Vec4F valVec4F(
 	return vector;
 }
 
-inline static Vec4F addVec4F(
-	Vec4F a,
-	Vec4F b)
+inline static Vec4F addVec4F(Vec4F a, Vec4F b)
 {
 	a.x += b.x;
 	a.y += b.y;
@@ -700,9 +514,7 @@ inline static Vec4F addVec4F(
 	a.w += b.w;
 	return a;
 }
-inline static Vec4F subVec4F(
-	Vec4F a,
-	Vec4F b)
+inline static Vec4F subVec4F(Vec4F a, Vec4F b)
 {
 	a.x -= b.x;
 	a.y -= b.y;
@@ -710,9 +522,7 @@ inline static Vec4F subVec4F(
 	a.w -= b.w;
 	return a;
 }
-inline static Vec4F mulVec4F(
-	Vec4F a,
-	Vec4F b)
+inline static Vec4F mulVec4F(Vec4F a, Vec4F b)
 {
 	a.x *= b.x;
 	a.y *= b.y;
@@ -720,9 +530,7 @@ inline static Vec4F mulVec4F(
 	a.w *= b.w;
 	return a;
 }
-inline static Vec4F divVec4F(
-	Vec4F a,
-	Vec4F b)
+inline static Vec4F divVec4F(Vec4F a, Vec4F b)
 {
 	a.x /= b.x;
 	a.y /= b.y;
@@ -731,9 +539,7 @@ inline static Vec4F divVec4F(
 	return a;
 }
 
-inline static Vec4F addValVec4F(
-	Vec4F vector,
-	float value)
+inline static Vec4F addValVec4F(Vec4F vector, cmmt_float_t value)
 {
 	vector.x += value;
 	vector.y += value;
@@ -741,9 +547,7 @@ inline static Vec4F addValVec4F(
 	vector.w += value;
 	return vector;
 }
-inline static Vec4F subValVec4F(
-	Vec4F vector,
-	float value)
+inline static Vec4F subValVec4F(Vec4F vector, cmmt_float_t value)
 {
 	vector.x -= value;
 	vector.y -= value;
@@ -751,9 +555,7 @@ inline static Vec4F subValVec4F(
 	vector.w -= value;
 	return vector;
 }
-inline static Vec4F mulValVec4F(
-	Vec4F vector,
-	float value)
+inline static Vec4F mulValVec4F(Vec4F vector, cmmt_float_t value)
 {
 	vector.x *= value;
 	vector.y *= value;
@@ -761,9 +563,7 @@ inline static Vec4F mulValVec4F(
 	vector.w *= value;
 	return vector;
 }
-inline static Vec4F divValVec4F(
-	Vec4F vector,
-	float value)
+inline static Vec4F divValVec4F(Vec4F vector, cmmt_float_t value)
 {
 	vector.x /= value;
 	vector.y /= value;
@@ -772,9 +572,7 @@ inline static Vec4F divValVec4F(
 	return vector;
 }
 
-inline static bool compVec4F(
-	Vec4F a,
-	Vec4F b)
+inline static bool compVec4F(Vec4F a, Vec4F b)
 {
 	return
 		a.x == b.x &&
@@ -782,8 +580,7 @@ inline static bool compVec4F(
 		a.z == b.z &&
 		a.w == b.w;
 }
-inline static Vec4F negVec4F(
-	Vec4F vector)
+inline static Vec4F negVec4F(Vec4F vector)
 {
 	vector.x = -vector.x;
 	vector.y = -vector.y;
@@ -791,9 +588,7 @@ inline static Vec4F negVec4F(
 	vector.w = -vector.w;
 	return vector;
 }
-inline static float dotVec4F(
-	Vec4F a,
-	Vec4F b)
+inline static cmmt_float_t dotVec4F(Vec4F a, Vec4F b)
 {
 	return
 		a.x * b.x +
@@ -801,18 +596,15 @@ inline static float dotVec4F(
 		a.z * b.z +
 		a.w * b.w;
 }
-inline static float lenVec4F(
-	Vec4F vector)
+inline static cmmt_float_t lenVec4F(Vec4F vector)
 {
-	return sqrtf(
+	return cmmtSqrt(
 		vector.x * vector.x +
 		vector.y * vector.y +
 		vector.z * vector.z +
 		vector.w * vector.w);
 }
-inline static float distPowVec4F(
-	Vec4F a,
-	Vec4F b)
+inline static cmmt_float_t distPowVec4F(Vec4F a, Vec4F b)
 {
 	return
 		(a.x - b.x) * (a.x - b.x) +
@@ -820,20 +612,17 @@ inline static float distPowVec4F(
 		(a.z - b.z) * (a.z - b.z) +
 		(a.w - b.w) * (a.w - b.w);
 }
-inline static float distVec4F(
-	Vec4F a,
-	Vec4F b)
+inline static cmmt_float_t distVec4F(Vec4F a, Vec4F b)
 {
-	return sqrtf(
+	return cmmtSqrt(
 		(a.x - b.x) * (a.x - b.x) +
 		(a.y - b.y) * (a.y - b.y) +
 		(a.z - b.z) * (a.z - b.z) +
 		(a.w - b.w) * (a.w - b.w));
 }
-inline static Vec4F normVec4F(
-	Vec4F vector)
+inline static Vec4F normVec4F(Vec4F vector)
 {
-	float length = sqrtf(
+	cmmt_float_t length = cmmtSqrt(
 		vector.x * vector.x +
 		vector.y * vector.y +
 		vector.z * vector.z +
@@ -845,15 +634,13 @@ inline static Vec4F normVec4F(
 	vector.w /= length;
 	return vector;
 }
-inline static Vec4F reflVec4F(
-	Vec4F vector,
-	Vec4F normal)
+inline static Vec4F reflVec4F(Vec4F vector, Vec4F normal)
 {
-	float dot =
+	cmmt_float_t dot =
 		(normal.x * vector.x +
 		normal.y * vector.y +
 		normal.z * vector.z +
-		normal.w * vector.w) * 2.0f;
+		normal.w * vector.w) * (cmmt_float_t)2.0;
 
 	vector.x -= normal.x * dot;
 	vector.y -= normal.y * dot;
@@ -861,41 +648,32 @@ inline static Vec4F reflVec4F(
 	vector.w -= normal.w * dot;
 	return vector;
 }
-inline static Vec4F mixValVec4F(
-	Vec4F a,
-	Vec4F b,
-	float v)
+inline static Vec4F mixValVec4F(Vec4F a, Vec4F b, cmmt_float_t v)
 {
-	float n = 1.0f - v;
+	cmmt_float_t n = (cmmt_float_t)1.0 - v;
 	a.x = (a.x * n) + (b.x * v);
 	a.y = (a.y * n) + (b.y * v);
 	a.z = (a.z * n) + (b.z * v);
 	a.w = (a.w * n) + (b.w * v);
 	return a;
 }
-inline static Vec4F mixVec4F(
-	Vec4F a,
-	Vec4F b,
-	Vec4F v)
+inline static Vec4F mixVec4F(Vec4F a, Vec4F b, Vec4F v)
 {
-	a.x = (a.x * (1.0f - v.x)) + (b.x * v.x);
-	a.y = (a.y * (1.0f - v.y)) + (b.y * v.y);
-	a.z = (a.z * (1.0f - v.z)) + (b.z * v.z);
-	a.w = (a.w * (1.0f - v.w)) + (b.w * v.w);
+	a.x = (a.x * ((cmmt_float_t)1.0 - v.x)) + (b.x * v.x);
+	a.y = (a.y * ((cmmt_float_t)1.0 - v.y)) + (b.y * v.y);
+	a.z = (a.z * ((cmmt_float_t)1.0 - v.z)) + (b.z * v.z);
+	a.w = (a.w * ((cmmt_float_t)1.0 - v.w)) + (b.w * v.w);
 	return a;
 }
 
-inline static Vec2I vec2I(
-	int32_t x,
-	int32_t y)
+inline static Vec2I vec2I(cmmt_int_t x, cmmt_int_t y)
 {
 	Vec2I vector;
 	vector.x = x;
 	vector.y = y;
 	return vector;
 }
-inline static Vec2I valVec2I(
-	int32_t value)
+inline static Vec2I valVec2I(cmmt_int_t value)
 {
 	Vec2I vector;
 	vector.x = value;
@@ -903,148 +681,158 @@ inline static Vec2I valVec2I(
 	return vector;
 }
 
-inline static Vec2I addVec2I(
-	Vec2I a,
-	Vec2I b)
+inline static Vec2I addVec2I(Vec2I a, Vec2I b)
 {
 	a.x += b.x;
 	a.y += b.y;
 	return a;
 }
-inline static Vec2I subVec2I(
-	Vec2I a,
-	Vec2I b)
+inline static Vec2I subVec2I(Vec2I a, Vec2I b)
 {
 	a.x -= b.x;
 	a.y -= b.y;
 	return a;
 }
-inline static Vec2I mulVec2I(
-	Vec2I a,
-	Vec2I b)
+inline static Vec2I mulVec2I(Vec2I a, Vec2I b)
 {
 	a.x *= b.x;
 	a.y *= b.y;
 	return a;
 }
-inline static Vec2I divVec2I(
-	Vec2I a,
-	Vec2I b)
+inline static Vec2I divVec2I(Vec2I a, Vec2I b)
 {
 	a.x /= b.x;
 	a.y /= b.y;
 	return a;
 }
+inline static Vec2I andVec2I(Vec2I a, Vec2I b)
+{
+	a.x &= b.x;
+	a.y &= b.y;
+	return a;
+}
+inline static Vec2I orVec2I(Vec2I a, Vec2I b)
+{
+	a.x |= b.x;
+	a.y |= b.y;
+	return a;
+}
+inline static Vec2I xorVec2I(Vec2I a, Vec2I b)
+{
+	a.x ^= b.x;
+	a.y ^= b.y;
+	return a;
+}
 
-inline static Vec2I addValVec2I(
-	Vec2I vector,
-	int32_t value)
+inline static Vec2I addValVec2I(Vec2I vector, cmmt_int_t value)
 {
 	vector.x += value;
 	vector.y += value;
 	return vector;
 }
-inline static Vec2I subValVec2I(
-	Vec2I vector,
-	int32_t value)
+inline static Vec2I subValVec2I(Vec2I vector, cmmt_int_t value)
 {
 	vector.x -= value;
 	vector.y -= value;
 	return vector;
 }
-inline static Vec2I mulValVec2I(
-	Vec2I vector,
-	int32_t value)
+inline static Vec2I mulValVec2I(Vec2I vector, cmmt_int_t value)
 {
 	vector.x *= value;
 	vector.y *= value;
 	return vector;
 }
-inline static Vec2I divValVec2I(
-	Vec2I vector,
-	int32_t value)
+inline static Vec2I divValVec2I(Vec2I vector, cmmt_int_t value)
 {
 	vector.x /= value;
 	vector.y /= value;
 	return vector;
 }
+inline static Vec2I andValVec2I(Vec2I vector, cmmt_int_t value)
+{
+	vector.x &= value;
+	vector.y &= value;
+	return vector;
+}
+inline static Vec2I orValVec2I(Vec2I vector, cmmt_int_t value)
+{
+	vector.x |= value;
+	vector.y |= value;
+	return vector;
+}
+inline static Vec2I xorValVec2I(Vec2I vector, cmmt_int_t value)
+{
+	vector.x ^= value;
+	vector.y ^= value;
+	return vector;
+}
 
-inline static bool compVec2I(
-	Vec2I a,
-	Vec2I b)
+inline static bool compVec2I(Vec2I a, Vec2I b)
 {
 	return
 		a.x == b.x &&
 		a.y == b.y;
 }
-inline static Vec2I negVec2I(
-	Vec2I vector)
+inline static Vec2I negVec2I(Vec2I vector)
 {
 	vector.x = -vector.x;
 	vector.y = -vector.y;
 	return vector;
 }
-inline static float dotVec2I(
-	Vec2I a,
-	Vec2I b)
+inline static Vec2I notVec2I(Vec2I vector)
 {
-	return (float)(
+	vector.x = !vector.x;
+	vector.y = !vector.y;
+	return vector;
+}
+inline static cmmt_float_t dotVec2I(Vec2I a, Vec2I b)
+{
+	return (cmmt_float_t)(
 		a.x * b.x +
 		a.y * b.y);
 }
-inline static float lenVec2I(
-	Vec2I vector)
+inline static cmmt_float_t lenVec2I(Vec2I vector)
 {
-	return sqrtf((float)(
+	return cmmtSqrt((cmmt_float_t)(
 		vector.x * vector.x +
 		vector.y * vector.y));
 }
-inline static float distPowVec2I(
-	Vec2I a,
-	Vec2I b)
+inline static cmmt_float_t distPowVec2I(Vec2I a, Vec2I b)
 {
-	return (float)(
+	return (cmmt_float_t)(
 		(a.x - b.x) * (a.x - b.x) +
 		(a.y - b.y) * (a.y - b.y));
 }
-inline static float distVec2I(
-	Vec2I a,
-	Vec2I b)
+inline static cmmt_float_t distVec2I(Vec2I a, Vec2I b)
 {
-	return sqrtf((float)(
+	return cmmtSqrt((cmmt_float_t)(
 		(a.x - b.x) * (a.x - b.x) +
 		(a.y - b.y) * (a.y - b.y)));
 }
-inline static Vec2F normVec2I(
-	Vec2I vector)
+inline static Vec2F normVec2I(Vec2I vector)
 {
-	float length = sqrtf((float)(
+	cmmt_float_t length = cmmtSqrt((cmmt_float_t)(
 		vector.x * vector.x +
 		vector.y * vector.y));
 
 	Vec2F result;
-	result.x = (float)vector.x / length;
-	result.y = (float)vector.y / length;
+	result.x = (cmmt_float_t)vector.x / length;
+	result.y = (cmmt_float_t)vector.y / length;
 	return result;
 }
-inline static Vec2F reflVec2I(
-	Vec2I vector,
-	Vec2I normal)
+inline static Vec2F reflVec2I(Vec2I vector, Vec2I normal)
 {
-	float dot = (float)(
+	cmmt_float_t dot = (cmmt_float_t)(
 		normal.x * vector.x +
-		normal.y * vector.y) * 2.0f;
+		normal.y * vector.y) * (cmmt_float_t)2.0;
 
 	Vec2F result;
-	result.x = (float)vector.x - (float)normal.x * dot;
-	result.y = (float)vector.y - (float)normal.y * dot;
+	result.x = (cmmt_float_t)vector.x - (cmmt_float_t)normal.x * dot;
+	result.y = (cmmt_float_t)vector.y - (cmmt_float_t)normal.y * dot;
 	return result;
 }
 
-inline static Vec3I vec3I(
-	int32_t x,
-	int32_t y,
-	int32_t z)
+inline static Vec3I vec3I(cmmt_int_t x, cmmt_int_t y, cmmt_int_t z)
 {
 	Vec3I vector;
 	vector.x = x;
@@ -1052,8 +840,7 @@ inline static Vec3I vec3I(
 	vector.z = z;
 	return vector;
 }
-inline static Vec3I valVec3I(
-	int32_t value)
+inline static Vec3I valVec3I(cmmt_int_t value)
 {
 	Vec3I vector;
 	vector.x = value;
@@ -1062,167 +849,183 @@ inline static Vec3I valVec3I(
 	return vector;
 }
 
-inline static Vec3I addVec3I(
-	Vec3I a,
-	Vec3I b)
+inline static Vec3I addVec3I(Vec3I a, Vec3I b)
 {
 	a.x += b.x;
 	a.y += b.y;
 	a.z += b.z;
 	return a;
 }
-inline static Vec3I subVec3I(
-	Vec3I a,
-	Vec3I b)
+inline static Vec3I subVec3I(Vec3I a, Vec3I b)
 {
 	a.x -= b.x;
 	a.y -= b.y;
 	a.z -= b.z;
 	return a;
 }
-inline static Vec3I mulVec3I(
-	Vec3I a,
-	Vec3I b)
+inline static Vec3I mulVec3I(Vec3I a, Vec3I b)
 {
 	a.x *= b.x;
 	a.y *= b.y;
 	a.z *= b.z;
 	return a;
 }
-inline static Vec3I divVec3I(
-	Vec3I a,
-	Vec3I b)
+inline static Vec3I divVec3I(Vec3I a, Vec3I b)
 {
 	a.x /= b.x;
 	a.y /= b.y;
 	a.z /= b.z;
 	return a;
 }
+inline static Vec3I andVec3I(Vec3I a, Vec3I b)
+{
+	a.x &= b.x;
+	a.y &= b.y;
+	a.z &= b.z;
+	return a;
+}
+inline static Vec3I orVec3I(Vec3I a, Vec3I b)
+{
+	a.x |= b.x;
+	a.y |= b.y;
+	a.z |= b.z;
+	return a;
+}
+inline static Vec3I xorVec3I(Vec3I a, Vec3I b)
+{
+	a.x ^= b.x;
+	a.y ^= b.y;
+	a.z ^= b.z;
+	return a;
+}
 
-inline static Vec3I addValVec3I(
-	Vec3I vector,
-	int32_t value)
+inline static Vec3I addValVec3I(Vec3I vector, cmmt_int_t value)
 {
 	vector.x += value;
 	vector.y += value;
 	vector.z += value;
 	return vector;
 }
-inline static Vec3I subValVec3I(
-	Vec3I vector,
-	int32_t value)
+inline static Vec3I subValVec3I(Vec3I vector, cmmt_int_t value)
 {
 	vector.x -= value;
 	vector.y -= value;
 	vector.z -= value;
 	return vector;
 }
-inline static Vec3I mulValVec3I(
-	Vec3I vector,
-	int32_t value)
+inline static Vec3I mulValVec3I(Vec3I vector, cmmt_int_t value)
 {
 	vector.x *= value;
 	vector.y *= value;
 	vector.z *= value;
 	return vector;
 }
-inline static Vec3I divValVec3I(
-	Vec3I vector,
-	int32_t value)
+inline static Vec3I divValVec3I(Vec3I vector, cmmt_int_t value)
 {
 	vector.x /= value;
 	vector.y /= value;
 	vector.z /= value;
 	return vector;
 }
+inline static Vec3I andValVec3I(Vec3I vector, cmmt_int_t value)
+{
+	vector.x &= value;
+	vector.y &= value;
+	vector.z &= value;
+	return vector;
+}
+inline static Vec3I orValVec3I(Vec3I vector, cmmt_int_t value)
+{
+	vector.x |= value;
+	vector.y |= value;
+	vector.z |= value;
+	return vector;
+}
+inline static Vec3I xorValVec3I(Vec3I vector, cmmt_int_t value)
+{
+	vector.x ^= value;
+	vector.y ^= value;
+	vector.z ^= value;
+	return vector;
+}
 
-inline static bool compVec3I(
-	Vec3I a,
-	Vec3I b)
+inline static bool compVec3I(Vec3I a, Vec3I b)
 {
 	return
 		a.x == b.x &&
 		a.y == b.y &&
 		a.z == b.z;
 }
-inline static Vec3I negVec3I(
-	Vec3I vector)
+inline static Vec3I negVec3I(Vec3I vector)
 {
 	vector.x = -vector.x;
 	vector.y = -vector.y;
 	vector.z = -vector.z;
 	return vector;
 }
-inline static float dotVec3I(
-	Vec3I a,
-	Vec3I b)
+inline static Vec3I notVec3I(Vec3I vector)
 {
-	return (float)(
+	vector.x = !vector.x;
+	vector.y = !vector.y;
+	vector.z = !vector.z;
+	return vector;
+}
+inline static cmmt_float_t dotVec3I(Vec3I a, Vec3I b)
+{
+	return (cmmt_float_t)(
 		a.x * b.x +
 		a.y * b.y +
 		a.z * b.z);
 }
-inline static float lenVec3I(
-	Vec3I vector)
+inline static cmmt_float_t lenVec3I(Vec3I vector)
 {
-	return sqrtf((float)(
+	return cmmtSqrt((cmmt_float_t)(
 		vector.x * vector.x +
 		vector.y * vector.y +
 		vector.z * vector.z));
 }
-inline static float distPowVec3I(
-	Vec3I a,
-	Vec3I b)
+inline static cmmt_float_t distPowVec3I(Vec3I a, Vec3I b)
 {
-	return (float)(
+	return (cmmt_float_t)(
 		(a.x - b.x) * (a.x - b.x) +
 		(a.y - b.y) * (a.y - b.y) +
 		(a.z - b.z) * (a.z - b.z));
 }
-inline static float distVec3I(
-	Vec3I a,
-	Vec3I b)
+inline static cmmt_float_t distVec3I(Vec3I a,Vec3I b)
 {
-	return sqrtf((float)(
+	return cmmtSqrt((cmmt_float_t)(
 		(a.x - b.x) * (a.x - b.x) +
 		(a.y - b.y) * (a.y - b.y) +
 		(a.z - b.z) * (a.z - b.z)));
 }
-inline static Vec3F normVec3I(
-	Vec3I vector)
+inline static Vec3F normVec3I(Vec3I vector)
 {
-	float length = sqrtf((float)(
+	cmmt_float_t length = cmmtSqrt((cmmt_float_t)(
 		vector.x * vector.x +
 		vector.y * vector.y +
 		vector.z * vector.z));
 
 	Vec3F result;
-	result.x = (float)vector.x / length;
-	result.y = (float)vector.y / length;
-	result.z = (float)vector.z / length;
+	result.x = (cmmt_float_t)vector.x / length;
+	result.y = (cmmt_float_t)vector.y / length;
+	result.z = (cmmt_float_t)vector.z / length;
 	return result;
 }
-inline static Vec3F reflVec3I(
-	Vec3I vector,
-	Vec3I normal)
+inline static Vec3F reflVec3I(Vec3I vector, Vec3I normal)
 {
-	float dot = (float)(
+	cmmt_float_t dot = (cmmt_float_t)(
 		normal.x * vector.x +
 		normal.y * vector.y +
-		normal.z * vector.z) * 2.0f;
+		normal.z * vector.z) * (cmmt_float_t)2.0;
 
 	Vec3F result;
-	result.x = (float)vector.x - (float)normal.x * dot;
-	result.y = (float)vector.y - (float)normal.y * dot;
-	result.z = (float)vector.z - (float)normal.z * dot;
+	result.x = (cmmt_float_t)vector.x - (cmmt_float_t)normal.x * dot;
+	result.y = (cmmt_float_t)vector.y - (cmmt_float_t)normal.y * dot;
+	result.z = (cmmt_float_t)vector.z - (cmmt_float_t)normal.z * dot;
 	return result;
 }
 
-inline static Vec4I vec4I(
-	int32_t x,
-	int32_t y,
-	int32_t z,
-	int32_t w)
+inline static Vec4I vec4I(cmmt_int_t x, cmmt_int_t y, cmmt_int_t z, cmmt_int_t w)
 {
 	Vec4I vector;
 	vector.x = x;
@@ -1231,8 +1034,7 @@ inline static Vec4I vec4I(
 	vector.w = w;
 	return vector;
 }
-inline static Vec4I valVec4I(
-	int32_t value)
+inline static Vec4I valVec4I(cmmt_int_t value)
 {
 	Vec4I vector;
 	vector.x = value;
@@ -1242,9 +1044,7 @@ inline static Vec4I valVec4I(
 	return vector;
 }
 
-inline static Vec4I addVec4I(
-	Vec4I a,
-	Vec4I b)
+inline static Vec4I addVec4I(Vec4I a, Vec4I b)
 {
 	a.x += b.x;
 	a.y += b.y;
@@ -1252,9 +1052,7 @@ inline static Vec4I addVec4I(
 	a.w += b.w;
 	return a;
 }
-inline static Vec4I subVec4I(
-	Vec4I a,
-	Vec4I b)
+inline static Vec4I subVec4I(Vec4I a, Vec4I b)
 {
 	a.x -= b.x;
 	a.y -= b.y;
@@ -1262,9 +1060,7 @@ inline static Vec4I subVec4I(
 	a.w -= b.w;
 	return a;
 }
-inline static Vec4I mulVec4I(
-	Vec4I a,
-	Vec4I b)
+inline static Vec4I mulVec4I(Vec4I a, Vec4I b)
 {
 	a.x *= b.x;
 	a.y *= b.y;
@@ -1272,9 +1068,7 @@ inline static Vec4I mulVec4I(
 	a.w *= b.w;
 	return a;
 }
-inline static Vec4I divVec4I(
-	Vec4I a,
-	Vec4I b)
+inline static Vec4I divVec4I(Vec4I a, Vec4I b)
 {
 	a.x /= b.x;
 	a.y /= b.y;
@@ -1282,10 +1076,32 @@ inline static Vec4I divVec4I(
 	a.w /= b.w;
 	return a;
 }
+inline static Vec4I andVec4I(Vec4I a, Vec4I b)
+{
+	a.x &= b.x;
+	a.y &= b.y;
+	a.z &= b.z;
+	a.w &= b.w;
+	return a;
+}
+inline static Vec4I orVec4I(Vec4I a, Vec4I b)
+{
+	a.x |= b.x;
+	a.y |= b.y;
+	a.z |= b.z;
+	a.w |= b.w;
+	return a;
+}
+inline static Vec4I xorVec4I(Vec4I a, Vec4I b)
+{
+	a.x ^= b.x;
+	a.y ^= b.y;
+	a.z ^= b.z;
+	a.w ^= b.w;
+	return a;
+}
 
-inline static Vec4I addValVec4I(
-	Vec4I vector,
-	int32_t value)
+inline static Vec4I addValVec4I(Vec4I vector, cmmt_int_t value)
 {
 	vector.x += value;
 	vector.y += value;
@@ -1293,9 +1109,7 @@ inline static Vec4I addValVec4I(
 	vector.w += value;
 	return vector;
 }
-inline static Vec4I subValVec4I(
-	Vec4I vector,
-	int32_t value)
+inline static Vec4I subValVec4I(Vec4I vector, cmmt_int_t value)
 {
 	vector.x -= value;
 	vector.y -= value;
@@ -1303,9 +1117,7 @@ inline static Vec4I subValVec4I(
 	vector.w -= value;
 	return vector;
 }
-inline static Vec4I mulValVec4I(
-	Vec4I vector,
-	int32_t value)
+inline static Vec4I mulValVec4I(Vec4I vector, cmmt_int_t value)
 {
 	vector.x *= value;
 	vector.y *= value;
@@ -1313,9 +1125,7 @@ inline static Vec4I mulValVec4I(
 	vector.w *= value;
 	return vector;
 }
-inline static Vec4I divValVec4I(
-	Vec4I vector,
-	int32_t value)
+inline static Vec4I divValVec4I(Vec4I vector, cmmt_int_t value)
 {
 	vector.x /= value;
 	vector.y /= value;
@@ -1323,10 +1133,32 @@ inline static Vec4I divValVec4I(
 	vector.w /= value;
 	return vector;
 }
+inline static Vec4I andValVec4I(Vec4I vector, cmmt_int_t value)
+{
+	vector.x &= value;
+	vector.y &= value;
+	vector.z &= value;
+	vector.w &= value;
+	return vector;
+}
+inline static Vec4I orValVec4I(Vec4I vector, cmmt_int_t value)
+{
+	vector.x |= value;
+	vector.y |= value;
+	vector.z |= value;
+	vector.w |= value;
+	return vector;
+}
+inline static Vec4I xorValVec4I(Vec4I vector, cmmt_int_t value)
+{
+	vector.x ^= value;
+	vector.y ^= value;
+	vector.z ^= value;
+	vector.w ^= value;
+	return vector;
+}
 
-inline static bool compVec4I(
-	Vec4I a,
-	Vec4I b)
+inline static bool compVec4I(Vec4I a, Vec4I b)
 {
 	return
 		a.x == b.x &&
@@ -1334,8 +1166,7 @@ inline static bool compVec4I(
 		a.z == b.z &&
 		a.w == b.w;
 }
-inline static Vec4I negVec4I(
-	Vec4I vector)
+inline static Vec4I negVec4I(Vec4I vector)
 {
 	vector.x = -vector.x;
 	vector.y = -vector.y;
@@ -1343,705 +1174,73 @@ inline static Vec4I negVec4I(
 	vector.w = -vector.w;
 	return vector;
 }
-inline static float dotVec4I(
-	Vec4I a,
-	Vec4I b)
+inline static Vec4I notVec4I(Vec4I vector)
 {
-	return (float)(
+	vector.x = !vector.x;
+	vector.y = !vector.y;
+	vector.z = !vector.z;
+	vector.w = !vector.w;
+	return vector;
+}
+inline static cmmt_float_t dotVec4I(Vec4I a, Vec4I b)
+{
+	return (cmmt_float_t)(
 		a.x * b.x +
 		a.y * b.y +
 		a.z * b.z +
 		a.w * b.w);
 }
-inline static float lenVec4I(
-	Vec4I vector)
+inline static cmmt_float_t lenVec4I(Vec4I vector)
 {
-	return sqrtf((float)(
+	return cmmtSqrt((cmmt_float_t)(
 		vector.x * vector.x +
 		vector.y * vector.y +
 		vector.z * vector.z +
 		vector.w * vector.w));
 }
-inline static float distPowVec4I(
-	Vec4I a,
-	Vec4I b)
+inline static cmmt_float_t distPowVec4I(Vec4I a, Vec4I b)
 {
-	return (float)(
+	return (cmmt_float_t)(
 		(a.x - b.x) * (a.x - b.x) +
 		(a.y - b.y) * (a.y - b.y) +
 		(a.z - b.z) * (a.z - b.z) +
 		(a.w - b.w) * (a.w - b.w));
 }
-inline static float distVec4I(
-	Vec4I a,
-	Vec4I b)
+inline static cmmt_float_t distVec4I(Vec4I a, Vec4I b)
 {
-	return sqrtf((float)(
+	return cmmtSqrt((cmmt_float_t)(
 		(a.x - b.x) * (a.x - b.x) +
 		(a.y - b.y) * (a.y - b.y) +
 		(a.z - b.z) * (a.z - b.z) +
 		(a.w - b.w) * (a.w - b.w)));
 }
-inline static Vec4F normVec4I(
-	Vec4I vector)
+inline static Vec4F normVec4I(Vec4I vector)
 {
-	float length = sqrtf((float)(
+	cmmt_float_t length = cmmtSqrt((cmmt_float_t)(
 		vector.x * vector.x +
 		vector.y * vector.y +
 		vector.z * vector.z +
 		vector.w * vector.w));
 
 	Vec4F result;
-	result.x = (float)vector.x / length;
-	result.y = (float)vector.y / length;
-	result.z = (float)vector.z / length;
-	result.w = (float)vector.w / length;
+	result.x = (cmmt_float_t)vector.x / length;
+	result.y = (cmmt_float_t)vector.y / length;
+	result.z = (cmmt_float_t)vector.z / length;
+	result.w = (cmmt_float_t)vector.w / length;
 	return result;
 }
-inline static Vec4F reflVec4I(
-	Vec4I vector,
-	Vec4I normal)
+inline static Vec4F reflVec4I(Vec4I vector, Vec4I normal)
 {
-	float dot = (float)(
+	cmmt_float_t dot = (cmmt_float_t)(
 		normal.x * vector.x +
 		normal.y * vector.y +
 		normal.z * vector.z +
-		normal.w * vector.w) * 2.0f;
+		normal.w * vector.w) * (cmmt_float_t)2.0;
 
 	Vec4F result;
-	result.x = (float)vector.x - (float)normal.x * dot;
-	result.y = (float)vector.y - (float)normal.y * dot;
-	result.z = (float)vector.z - (float)normal.z * dot;
-	result.w = (float)vector.w - (float)normal.w * dot;
+	result.x = (cmmt_float_t)vector.x - (cmmt_float_t)normal.x * dot;
+	result.y = (cmmt_float_t)vector.y - (cmmt_float_t)normal.y * dot;
+	result.z = (cmmt_float_t)vector.z - (cmmt_float_t)normal.z * dot;
+	result.w = (cmmt_float_t)vector.w - (cmmt_float_t)normal.w * dot;
 	return result;
-}
-
-inline static Vec2U vec2U(
-	uint32_t x,
-	uint32_t y)
-{
-	Vec2U vector;
-	vector.x = x;
-	vector.y = y;
-	return vector;
-}
-inline static Vec2U valVec2U(
-	uint32_t value)
-{
-	Vec2U vector;
-	vector.x = value;
-	vector.y = value;
-	return vector;
-}
-
-inline static Vec2U addVec2U(
-	Vec2U a,
-	Vec2U b)
-{
-	a.x += b.x;
-	a.y += b.y;
-	return a;
-}
-inline static Vec2U subVec2U(
-	Vec2U a,
-	Vec2U b)
-{
-	a.x -= b.x;
-	a.y -= b.y;
-	return a;
-}
-inline static Vec2U mulVec2U(
-	Vec2U a,
-	Vec2U b)
-{
-	a.x *= b.x;
-	a.y *= b.y;
-	return a;
-}
-inline static Vec2U divVec2U(
-	Vec2U a,
-	Vec2U b)
-{
-	a.x /= b.x;
-	a.y /= b.y;
-	return a;
-}
-
-inline static Vec2U addValVec2U(
-	Vec2U vector,
-	uint32_t value)
-{
-	vector.x += value;
-	vector.y += value;
-	return vector;
-}
-inline static Vec2U subValVec2U(
-	Vec2U vector,
-	uint32_t value)
-{
-	vector.x -= value;
-	vector.y -= value;
-	return vector;
-}
-inline static Vec2U mulValVec2U(
-	Vec2U vector,
-	uint32_t value)
-{
-	vector.x *= value;
-	vector.y *= value;
-	return vector;
-}
-inline static Vec2U divValVec2U(
-	Vec2U vector,
-	uint32_t value)
-{
-	vector.x /= value;
-	vector.y /= value;
-	return vector;
-}
-
-inline static bool compVec2U(
-	Vec2U a,
-	Vec2U b)
-{
-	return
-		a.x == b.x &&
-		a.y == b.y;
-}
-
-inline static Vec3U vec3U(
-	uint32_t x,
-	uint32_t y,
-	uint32_t z)
-{
-	Vec3U vector;
-	vector.x = x;
-	vector.y = y;
-	vector.z = z;
-	return vector;
-}
-inline static Vec3U valVec3U(
-	uint32_t value)
-{
-	Vec3U vector;
-	vector.x = value;
-	vector.y = value;
-	vector.z = value;
-	return vector;
-}
-
-inline static Vec3U addVec3U(
-	Vec3U a,
-	Vec3U b)
-{
-	a.x += b.x;
-	a.y += b.y;
-	a.z += b.z;
-	return a;
-}
-inline static Vec3U subVec3U(
-	Vec3U a,
-	Vec3U b)
-{
-	a.x -= b.x;
-	a.y -= b.y;
-	a.z -= b.z;
-	return a;
-}
-inline static Vec3U mulVec3U(
-	Vec3U a,
-	Vec3U b)
-{
-	a.x *= b.x;
-	a.y *= b.y;
-	a.z *= b.z;
-	return a;
-}
-inline static Vec3U divVec3U(
-	Vec3U a,
-	Vec3U b)
-{
-	a.x /= b.x;
-	a.y /= b.y;
-	a.z /= b.z;
-	return a;
-}
-
-inline static Vec3U addValVec3U(
-	Vec3U vector,
-	uint32_t value)
-{
-	vector.x += value;
-	vector.y += value;
-	vector.z += value;
-	return vector;
-}
-inline static Vec3U subValVec3U(
-	Vec3U vector,
-	uint32_t value)
-{
-	vector.x -= value;
-	vector.y -= value;
-	vector.z -= value;
-	return vector;
-}
-inline static Vec3U mulValVec3U(
-	Vec3U vector,
-	uint32_t value)
-{
-	vector.x *= value;
-	vector.y *= value;
-	vector.z *= value;
-	return vector;
-}
-inline static Vec3U divValVec3U(
-	Vec3U vector,
-	uint32_t value)
-{
-	vector.x /= value;
-	vector.y /= value;
-	vector.z /= value;
-	return vector;
-}
-
-inline static bool compVec3U(
-	Vec3U a,
-	Vec3U b)
-{
-	return
-		a.x == b.x &&
-		a.y == b.y &&
-		a.z == b.z;
-}
-
-inline static Vec4U vec4U(
-	uint32_t x,
-	uint32_t y,
-	uint32_t z,
-	uint32_t w)
-{
-	Vec4U vector;
-	vector.x = x;
-	vector.y = y;
-	vector.z = z;
-	vector.w = w;
-	return vector;
-}
-inline static Vec4U valVec4U(
-	uint32_t value)
-{
-	Vec4U vector;
-	vector.x = value;
-	vector.y = value;
-	vector.z = value;
-	vector.w = value;
-	return vector;
-}
-
-inline static Vec4U addVec4U(
-	Vec4U a,
-	Vec4U b)
-{
-	a.x += b.x;
-	a.y += b.y;
-	a.z += b.z;
-	a.w += b.w;
-	return a;
-}
-inline static Vec4U subVec4U(
-	Vec4U a,
-	Vec4U b)
-{
-	a.x -= b.x;
-	a.y -= b.y;
-	a.z -= b.z;
-	a.w -= b.w;
-	return a;
-}
-inline static Vec4U mulVec4U(
-	Vec4U a,
-	Vec4U b)
-{
-	a.x *= b.x;
-	a.y *= b.y;
-	a.z *= b.z;
-	a.w *= b.w;
-	return a;
-}
-inline static Vec4U divVec4U(
-	Vec4U a,
-	Vec4U b)
-{
-	a.x /= b.x;
-	a.y /= b.y;
-	a.z /= b.z;
-	a.w /= b.w;
-	return a;
-}
-
-inline static Vec4U addValVec4U(
-	Vec4U vector,
-	uint32_t value)
-{
-	vector.x += value;
-	vector.y += value;
-	vector.z += value;
-	vector.w += value;
-	return vector;
-}
-inline static Vec4U subValVec4U(
-	Vec4U vector,
-	uint32_t value)
-{
-	vector.x -= value;
-	vector.y -= value;
-	vector.z -= value;
-	vector.w -= value;
-	return vector;
-}
-inline static Vec4U mulValVec4U(
-	Vec4U vector,
-	uint32_t value)
-{
-	vector.x *= value;
-	vector.y *= value;
-	vector.z *= value;
-	vector.w *= value;
-	return vector;
-}
-inline static Vec4U divValVec4U(
-	Vec4U vector,
-	uint32_t value)
-{
-	vector.x /= value;
-	vector.y /= value;
-	vector.z /= value;
-	vector.w /= value;
-	return vector;
-}
-
-inline static bool compVec4U(
-	Vec4U a,
-	Vec4U b)
-{
-	return
-		a.x == b.x &&
-		a.y == b.y &&
-		a.z == b.z &&
-		a.w == b.w;
-}
-
-inline static Vec2S vec2S(
-	size_t x,
-	size_t y)
-{
-	Vec2S vector;
-	vector.x = x;
-	vector.y = y;
-	return vector;
-}
-inline static Vec2S valVec2S(
-	size_t value)
-{
-	Vec2S vector;
-	vector.x = value;
-	vector.y = value;
-	return vector;
-}
-
-inline static Vec2S addVec2S(
-	Vec2S a,
-	Vec2S b)
-{
-	a.x += b.x;
-	a.y += b.y;
-	return a;
-}
-inline static Vec2S subVec2S(
-	Vec2S a,
-	Vec2S b)
-{
-	a.x -= b.x;
-	a.y -= b.y;
-	return a;
-}
-inline static Vec2S mulVec2S(
-	Vec2S a,
-	Vec2S b)
-{
-	a.x *= b.x;
-	a.y *= b.y;
-	return a;
-}
-inline static Vec2S divVec2S(
-	Vec2S a,
-	Vec2S b)
-{
-	a.x /= b.x;
-	a.y /= b.y;
-	return a;
-}
-
-inline static Vec2S addValVec2S(
-	Vec2S vector,
-	size_t value)
-{
-	vector.x += value;
-	vector.y += value;
-	return vector;
-}
-inline static Vec2S subValVec2S(
-	Vec2S vector,
-	size_t value)
-{
-	vector.x -= value;
-	vector.y -= value;
-	return vector;
-}
-inline static Vec2S mulValVec2S(
-	Vec2S vector,
-	size_t value)
-{
-	vector.x *= value;
-	vector.y *= value;
-	return vector;
-}
-inline static Vec2S divValVec2S(
-	Vec2S vector,
-	size_t value)
-{
-	vector.x /= value;
-	vector.y /= value;
-	return vector;
-}
-
-inline static bool compVec2S(
-	Vec2S a,
-	Vec2S b)
-{
-	return
-		a.x == b.x &&
-		a.y == b.y;
-}
-
-inline static Vec3S vec3S(
-	size_t x,
-	size_t y,
-	size_t z)
-{
-	Vec3S vector;
-	vector.x = x;
-	vector.y = y;
-	vector.z = z;
-	return vector;
-}
-inline static Vec3S valVec3S(
-	size_t value)
-{
-	Vec3S vector;
-	vector.x = value;
-	vector.y = value;
-	vector.z = value;
-	return vector;
-}
-
-inline static Vec3S addVec3S(
-	Vec3S a,
-	Vec3S b)
-{
-	a.x += b.x;
-	a.y += b.y;
-	a.z += b.z;
-	return a;
-}
-inline static Vec3S subVec3S(
-	Vec3S a,
-	Vec3I b)
-{
-	a.x -= b.x;
-	a.y -= b.y;
-	a.z -= b.z;
-	return a;
-}
-inline static Vec3S mulVec3S(
-	Vec3S a,
-	Vec3S b)
-{
-	a.x *= b.x;
-	a.y *= b.y;
-	a.z *= b.z;
-	return a;
-}
-inline static Vec3S divVec3S(
-	Vec3S a,
-	Vec3S b)
-{
-	a.x /= b.x;
-	a.y /= b.y;
-	a.z /= b.z;
-	return a;
-}
-
-inline static Vec3S addValVec3S(
-	Vec3S vector,
-	size_t value)
-{
-	vector.x += value;
-	vector.y += value;
-	vector.z += value;
-	return vector;
-}
-inline static Vec3S subValVec3S(
-	Vec3S vector,
-	size_t value)
-{
-	vector.x -= value;
-	vector.y -= value;
-	vector.z -= value;
-	return vector;
-}
-inline static Vec3S mulValVec3S(
-	Vec3S vector,
-	size_t value)
-{
-	vector.x *= value;
-	vector.y *= value;
-	vector.z *= value;
-	return vector;
-}
-inline static Vec3S divValVec3S(
-	Vec3S vector,
-	size_t value)
-{
-	vector.x /= value;
-	vector.y /= value;
-	vector.z /= value;
-	return vector;
-}
-
-inline static bool compVec3S(
-	Vec3S a,
-	Vec3S b)
-{
-	return
-		a.x == b.x &&
-		a.y == b.y &&
-		a.z == b.z;
-}
-
-inline static Vec4S vec4S(
-	size_t x,
-	size_t y,
-	size_t z,
-	size_t w)
-{
-	Vec4S vector;
-	vector.x = x;
-	vector.y = y;
-	vector.z = z;
-	vector.w = w;
-	return vector;
-}
-inline static Vec4S valVec4S(
-	size_t value)
-{
-	Vec4S vector;
-	vector.x = value;
-	vector.y = value;
-	vector.z = value;
-	vector.w = value;
-	return vector;
-}
-
-inline static Vec4S addVec4S(
-	Vec4S a,
-	Vec4S b)
-{
-	a.x += b.x;
-	a.y += b.y;
-	a.z += b.z;
-	a.w += b.w;
-	return a;
-}
-inline static Vec4S subVec4S(
-	Vec4S a,
-	Vec4S b)
-{
-	a.x -= b.x;
-	a.y -= b.y;
-	a.z -= b.z;
-	a.w -= b.w;
-	return a;
-}
-inline static Vec4S mulVec4S(
-	Vec4S a,
-	Vec4S b)
-{
-	a.x *= b.x;
-	a.y *= b.y;
-	a.z *= b.z;
-	a.w *= b.w;
-	return a;
-}
-inline static Vec4S divVec4S(
-	Vec4S a,
-	Vec4S b)
-{
-	a.x /= b.x;
-	a.y /= b.y;
-	a.z /= b.z;
-	a.w /= b.w;
-	return a;
-}
-
-inline static Vec4S addValVec4S(
-	Vec4S vector,
-	size_t value)
-{
-	vector.x += value;
-	vector.y += value;
-	vector.z += value;
-	vector.w += value;
-	return vector;
-}
-inline static Vec4S subValVec4S(
-	Vec4S vector,
-	size_t value)
-{
-	vector.x -= value;
-	vector.y -= value;
-	vector.z -= value;
-	vector.w -= value;
-	return vector;
-}
-inline static Vec4S mulValVec4S(
-	Vec4S vector,
-	size_t value)
-{
-	vector.x *= value;
-	vector.y *= value;
-	vector.z *= value;
-	vector.w *= value;
-	return vector;
-}
-inline static Vec4S divValVec4S(
-	Vec4S vector,
-	size_t value)
-{
-	vector.x /= value;
-	vector.y /= value;
-	vector.z /= value;
-	vector.w /= value;
-	return vector;
-}
-
-inline static bool compVec4S(
-	Vec4S a,
-	Vec4S b)
-{
-	return
-		a.x == b.x &&
-		a.y == b.y &&
-		a.z == b.z &&
-		a.w == b.w;
 }

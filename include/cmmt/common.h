@@ -13,7 +13,51 @@
 // limitations under the License.
 
 #pragma once
+#define _USE_MATH_DEFINES
 #include <math.h>
+
+#if !defined(CMMT_INT32) && !defined(CMMT_INT64)
+#define CMMT_INT32 1
+#endif
+
+#if !defined(CMMT_FLOAT32) && !defined(CMMT_FLOAT64)
+#define CMMT_FLOAT32 1
+#endif
+
+#if CMMT_INT32
+typedef int32_t cmmt_int_t;
+#elif CMMT_INT64
+typedef int64_t cmmt_int_t;
+#endif
+
+#if CMMT_FLOAT32
+typedef float cmmt_float_t;
+#define cmmtSqrt(x) sqrtf(x)
+#define cmmtPow(x, y) powf(x, y)
+#define cmmtSin(x) sinf(x)
+#define cmmtAsin(x) asinf(x)
+#define cmmtCos(x) cosf(x)
+#define cmmtAsos(x) acosf(x)
+#define cmmtTan(x) tanf(x)
+#define cmmtAtan(x) atanf(x)
+#define cmmtAtan2(y, x) atan2f(y, x)
+#define cmmtFmin(x, y) fminf(x, y)
+#define cmmtFmax(x, y) fmaxf(x, y)
+// TODO: add other functions exp, log, floor, etc.
+#elif CMMT_FLOAT64
+typedef double cmmt_float_t;
+#define cmmtSqrt(x) sqrt(x)
+#define cmmtPow(x, y) pow(x, y)
+#define cmmtSin(x) sin(x)
+#define cmmtAsin(x) asin(x)
+#define cmmtCos(x) cos(x)
+#define cmmtAsos(x) acos(x)
+#define cmmtTan(x) tan(x)
+#define cmmtAtan(x) atan(x)
+#define cmmtAtan2(y, x) atan2(y, x)
+#define cmmtFmin(x, y) fmin(x, y)
+#define cmmtFmax(x, y) fmax(x, y)
+#endif
 
 #ifndef min
 #define min(a, b) ((a) < (b) ? (a) : (b))
