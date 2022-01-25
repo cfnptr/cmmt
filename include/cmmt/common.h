@@ -15,6 +15,7 @@
 #pragma once
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <stdint.h>
 
 #if !defined(CMMT_INT32) && !defined(CMMT_INT64)
 #define CMMT_INT32 1
