@@ -47,9 +47,9 @@ inline static Quat eulerQuat(Vec3F eulerAngles)
 	cmmt_float_t sinY = cmmtSin(eulerAngles.y * (cmmt_float_t)0.5);
 	cmmt_float_t sinZ = cmmtSin(eulerAngles.z * (cmmt_float_t)0.5);
 
-	cmmt_float_t cosX = cmmtSin(eulerAngles.x * (cmmt_float_t)0.5);
-	cmmt_float_t cosY = cmmtSin(eulerAngles.y * (cmmt_float_t)0.5);
-	cmmt_float_t cosZ = cmmtSin(eulerAngles.z * (cmmt_float_t)0.5);
+	cmmt_float_t cosX = cmmtCos(eulerAngles.x * (cmmt_float_t)0.5);
+	cmmt_float_t cosY = cmmtCos(eulerAngles.y * (cmmt_float_t)0.5);
+	cmmt_float_t cosZ = cmmtCos(eulerAngles.z * (cmmt_float_t)0.5);
 
 	Quat quaternion;
 	quaternion.x = sinX * cosY * cosZ - cosX * sinY * sinZ;
