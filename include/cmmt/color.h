@@ -186,7 +186,7 @@ inline static cmmt_float_t srgbToLinearValue(uint8_t srgbValue)
 
 	return value <= (cmmt_float_t)0.04045 ?
 		value / (cmmt_float_t)12.92 :
-		cmmtPow((value + (cmmt_float_t)0.055) / (cmmt_float_t)1.055, 2.4);
+		cmmtPow((value + (cmmt_float_t)0.055) / (cmmt_float_t)1.055, (cmmt_float_t)2.4);
 }
 inline static uint8_t linearToSrgbValueF(cmmt_float_t linearValue)
 {

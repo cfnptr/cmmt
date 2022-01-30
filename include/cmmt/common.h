@@ -13,7 +13,11 @@
 // limitations under the License.
 
 #pragma once
+
+#if _WIN32
 #define _USE_MATH_DEFINES
+#endif
+
 #include <math.h>
 #include <stdint.h>
 
@@ -60,11 +64,11 @@ typedef double cmmt_float_t;
 #define cmmtFmax(x, y) fmax(x, y)
 #endif
 
-#ifndef min
+#if !defined(min)
 #define min(a, b) ((a) < (b) ? (a) : (b))
 #endif
 
-#ifndef max
+#if !defined(max)
 #define max(a, b) ((a) > (b) ? (a) : (b))
 #endif
 
