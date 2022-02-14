@@ -22,12 +22,6 @@ A library providing common mathematics functions: vectors, matrices, quaternions
 * [Git 2.30+](https://git-scm.com/)
 * [CMake 3.10+](https://cmake.org/)
 
-## Cloning
-
-```
-git clone https://github.com/cfnptr/cmmt
-```
-
 ### CMake options
 
 | Name             | Description                   | Default value |
@@ -35,6 +29,12 @@ git clone https://github.com/cfnptr/cmmt
 | CMMT_USE_INT64   | Use double precision integers | `OFF`         |
 | CMMT_USE_FLOAT64 | Use double precision floats   | `OFF`         |
 
+## Cloning
+
+```
+git clone https://github.com/cfnptr/cmmt
+```
+
 ## Examples
 
-You can find examples of use in [this](https://github.com/cfnptr/mpgx/) library source code.
+You can find usage examples in source code of the [MPGX](https://github.com/cfnptr/mpgx/) library.
