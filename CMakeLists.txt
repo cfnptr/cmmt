@@ -28,8 +28,22 @@ project(cmmt
 	HOMEPAGE_URL "https://github.com/cfnptr/cmmt"
 	LANGUAGES C)
 
+option(CMMT_USE_INT64 "Use double precision integers" OFF)
+option(CMMT_USE_FLOAT64 "Use double precision floats" OFF)
+
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED TRUE)
+
+if (CMMT_USE_INT64)
+	set(CMMT_USE_INT64 1)
+else ()
+	set(CMMT_USE_INT64 0)
+endif ()
+if (CMMT_USE_FLOAT64)
+	set(CMMT_USE_FLOAT64 1)
+else ()
+	set(CMMT_USE_FLOAT64 0)
+endif ()
 
 configure_file(
 	cmake/defines.h.in

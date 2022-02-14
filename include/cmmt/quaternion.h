@@ -69,6 +69,66 @@ inline static Quat axisQuat(cmmt_float_t angle, Vec3F axis)
 	quaternion.w = cmmtCos(angle * (cmmt_float_t)0.5);
 	return quaternion;
 }
+inline static Quat matQuat4F(Mat4F matrix)
+{
+	cmmt_float_t fourXSquaredMinus1 = matrix.m00 - matrix.m11 - matrix.m22;
+	cmmt_float_t fourYSquaredMinus1 = matrix.m11 - matrix.m00 - matrix.m22;
+	cmmt_float_t fourZSquaredMinus1 = matrix.m22 - matrix.m00 - matrix.m11;
+	cmmt_float_t fourWSquaredMinus1 = matrix.m00 + matrix.m11 + matrix.m22;
+
+	cmmt_float_t fourBiggestSquaredMinus1 = fourWSquaredMinus1;
+	int biggestIndex = 0;
+
+	if (fourXSquaredMinus1 > fourBiggestSquaredMinus1)
+	{
+		fourBiggestSquaredMinus1 = fourXSquaredMinus1;
+		biggestIndex = 1;
+	}
+	if (fourYSquaredMinus1 > fourBiggestSquaredMinus1)
+	{
+		fourBiggestSquaredMinus1 = fourYSquaredMinus1;
+		biggestIndex = 2;
+	}
+	if (fourZSquaredMinus1 > fourBiggestSquaredMinus1)
+	{
+		fourBiggestSquaredMinus1 = fourZSquaredMinus1;
+		biggestIndex = 3;
+	}
+
+	cmmt_float_t biggestValue = cmmtSqrt(
+		fourBiggestSquaredMinus1 + (cmmt_float_t)1.0) * (cmmt_float_t)0.5;
+	cmmt_float_t multiplier = (cmmt_float_t)0.25 / biggestValue;
+
+	switch (biggestIndex)
+	{
+	default:
+		abort();
+	case 0:
+		return quat(
+			(matrix.m12 - matrix.m21) * multiplier,
+			(matrix.m20 - matrix.m02) * multiplier,
+			(matrix.m01 - matrix.m10) * multiplier,
+			biggestValue);
+	case 1:
+		return quat(
+			biggestValue,
+			(matrix.m01 + matrix.m10) * multiplier,
+			(matrix.m20 + matrix.m02) * multiplier,
+			(matrix.m12 - matrix.m21) * multiplier);
+	case 2:
+		return quat(
+			(matrix.m01 + matrix.m10) * multiplier,
+			biggestValue,
+			(matrix.m12 + matrix.m21) * multiplier,
+			(matrix.m20 - matrix.m02) * multiplier);
+	case 3:
+		return quat(
+			(matrix.m20 + matrix.m02) * multiplier,
+			(matrix.m12 + matrix.m21) * multiplier,
+			biggestValue,
+			(matrix.m01 - matrix.m10) * multiplier);
+	}
+}
 
 inline static cmmt_float_t getQuatPitch(Quat quaternion)
 {
@@ -148,66 +208,6 @@ inline static Mat4F getQuatMat4F(Quat quaternion)
 	matrix.m33 = (cmmt_float_t)1.0f;
 	return matrix;
 }
-inline static Quat getMatQuat4F(Mat4F matrix)
-{
-	cmmt_float_t fourXSquaredMinus1 = matrix.m00 - matrix.m11 - matrix.m22;
-	cmmt_float_t fourYSquaredMinus1 = matrix.m11 - matrix.m00 - matrix.m22;
-	cmmt_float_t fourZSquaredMinus1 = matrix.m22 - matrix.m00 - matrix.m11;
-	cmmt_float_t fourWSquaredMinus1 = matrix.m00 + matrix.m11 + matrix.m22;
-
-	cmmt_float_t fourBiggestSquaredMinus1 = fourWSquaredMinus1;
-	int biggestIndex = 0;
-
-	if (fourXSquaredMinus1 > fourBiggestSquaredMinus1)
-	{
-		fourBiggestSquaredMinus1 = fourXSquaredMinus1;
-		biggestIndex = 1;
-	}
-	if (fourYSquaredMinus1 > fourBiggestSquaredMinus1)
-	{
-		fourBiggestSquaredMinus1 = fourYSquaredMinus1;
-		biggestIndex = 2;
-	}
-	if (fourZSquaredMinus1 > fourBiggestSquaredMinus1)
-	{
-		fourBiggestSquaredMinus1 = fourZSquaredMinus1;
-		biggestIndex = 3;
-	}
-
-	cmmt_float_t biggestValue = cmmtSqrt(
-		fourBiggestSquaredMinus1 + (cmmt_float_t)1.0) * (cmmt_float_t)0.5;
-	cmmt_float_t multiplier = (cmmt_float_t)0.25 / biggestValue;
-
-	switch (biggestIndex)
-	{
-	default:
-		abort();
-	case 0:
-		return quat(
-			(matrix.m12 - matrix.m21) * multiplier,
-			(matrix.m20 - matrix.m02) * multiplier,
-			(matrix.m01 - matrix.m10) * multiplier,
-			biggestValue);
-	case 1:
-		return quat(
-			biggestValue,
-			(matrix.m01 + matrix.m10) * multiplier,
-			(matrix.m20 + matrix.m02) * multiplier,
-			(matrix.m12 - matrix.m21) * multiplier);
-	case 2:
-		return quat(
-			(matrix.m01 + matrix.m10) * multiplier,
-			biggestValue,
-			(matrix.m12 + matrix.m21) * multiplier,
-			(matrix.m20 - matrix.m02) * multiplier);
-	case 3:
-		return quat(
-			(matrix.m20 + matrix.m02) * multiplier,
-			(matrix.m12 + matrix.m21) * multiplier,
-			biggestValue,
-			(matrix.m01 - matrix.m10) * multiplier);
-	}
-}
 
 inline static Quat conjQuat(Quat quaternion)
 {
@@ -265,15 +265,7 @@ inline static Quat normQuat(Quat quaternion)
 		(quaternion.y * quaternion.y) +
 		(quaternion.z * quaternion.z) +
 		(quaternion.w * quaternion.w));
-
-	if (length <= (cmmt_float_t)0.0)
-	{
-		quaternion.x = (cmmt_float_t)0.0;
-		quaternion.y = (cmmt_float_t)0.0;
-		quaternion.z = (cmmt_float_t)0.0;
-		quaternion.w = (cmmt_float_t)1.0;
-		return quaternion;
-	}
+	assert(length > (cmmt_float_t)0.0);
 
 	length = (cmmt_float_t)1.0 / length;
 

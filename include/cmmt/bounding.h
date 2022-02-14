@@ -14,7 +14,6 @@
 
 #pragma once
 #include "cmmt/ray.h"
-#include <stdlib.h>
 
 typedef struct Box2F
 {

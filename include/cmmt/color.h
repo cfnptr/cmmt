@@ -14,7 +14,6 @@
 
 #pragma once
 #include "cmmt/vector.h"
-#include <assert.h>
 
 typedef struct SrgbColor
 {

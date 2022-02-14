@@ -15,20 +15,11 @@
 #pragma once
 #include "cmmt/common.h"
 
-inline static double radToDegD(double radians)
+inline static cmmt_float_t radToDeg(cmmt_float_t radians)
 {
-	return radians * (180.0 / M_PI);
+	return radians * (cmmt_float_t)(180.0 / M_PI);
 }
-inline static float radToDegF(float radians)
+inline static cmmt_float_t degToRad(cmmt_float_t degrees)
 {
-	return radians * (180.0f / (float)M_PI);
-}
-
-inline static double degToRadD(double degrees)
-{
-	return degrees * (M_PI / 180.0);
-}
-inline static float degToRadF(float degrees)
-{
-	return degrees * ((float)M_PI / 180.0f);
+	return degrees * (cmmt_float_t)(M_PI / 180.0);
 }

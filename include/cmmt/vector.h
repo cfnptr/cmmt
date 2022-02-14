@@ -15,8 +15,8 @@
 #pragma once
 #include "cmmt/common.h"
 
-#include <stdint.h>
 #include <stdlib.h>
+#include <assert.h>
 #include <stdbool.h>
 
 #define LEFT_AXIS_VALUE (-1)
@@ -293,6 +293,7 @@ inline static Vec2F normVec2F(Vec2F vector)
 	cmmt_float_t length = cmmtSqrt(
 		vector.x * vector.x +
 		vector.y * vector.y);
+	assert(length > (cmmt_float_t)0.0);
 
 	vector.x /= length;
 	vector.y /= length;
@@ -453,6 +454,7 @@ inline static Vec3F normVec3F(Vec3F vector)
 		vector.x * vector.x +
 		vector.y * vector.y +
 		vector.z * vector.z);
+	assert(length > (cmmt_float_t)0.0);
 
 	vector.x /= length;
 	vector.y /= length;
@@ -627,6 +629,7 @@ inline static Vec4F normVec4F(Vec4F vector)
 		vector.y * vector.y +
 		vector.z * vector.z +
 		vector.w * vector.w);
+	assert(length > (cmmt_float_t)0.0);
 
 	vector.x /= length;
 	vector.y /= length;
@@ -814,6 +817,7 @@ inline static Vec2F normVec2I(Vec2I vector)
 	cmmt_float_t length = cmmtSqrt((cmmt_float_t)(
 		vector.x * vector.x +
 		vector.y * vector.y));
+	assert(length > (cmmt_float_t)0.0);
 
 	Vec2F result;
 	result.x = (cmmt_float_t)vector.x / length;
@@ -1004,6 +1008,7 @@ inline static Vec3F normVec3I(Vec3I vector)
 		vector.x * vector.x +
 		vector.y * vector.y +
 		vector.z * vector.z));
+	assert(length > (cmmt_float_t)0.0);
 
 	Vec3F result;
 	result.x = (cmmt_float_t)vector.x / length;
@@ -1221,6 +1226,7 @@ inline static Vec4F normVec4I(Vec4I vector)
 		vector.y * vector.y +
 		vector.z * vector.z +
 		vector.w * vector.w));
+	assert(length > (cmmt_float_t)0.0);
 
 	Vec4F result;
 	result.x = (cmmt_float_t)vector.x / length;
