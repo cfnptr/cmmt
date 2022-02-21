@@ -61,13 +61,13 @@ typedef float cmmt_float_t;
 // TODO: add other functions exp, log, etc.
 #endif
 
-#if !defined(min)
-#define min(a, b) ((a) < (b) ? (a) : (b))
+#if _WIN32
+#undef min
+#undef max
 #endif
 
-#if !defined(max)
+#define min(a, b) ((a) < (b) ? (a) : (b))
 #define max(a, b) ((a) > (b) ? (a) : (b))
-#endif
 
 #define clamp(a, min, max) \
 	((a) < (min) ? (min) : ((a) > (max) ? (max) : (a)))
