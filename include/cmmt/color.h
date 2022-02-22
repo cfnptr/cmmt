@@ -33,6 +33,24 @@ static const SrgbColor blackSrgbColor = {
 static const SrgbColor whiteSrgbColor = {
 	255, 255, 255, 255,
 };
+static const SrgbColor redSrgbColor = {
+	255, 0, 0, 255,
+};
+static const SrgbColor greenSrgbColor = {
+	0, 255, 0, 255,
+};
+static const SrgbColor blueSrgbColor = {
+	0, 0, 255, 255,
+};
+static const SrgbColor cyanSrgbColor = {
+	0, 255, 255, 255,
+};
+static const SrgbColor magentaSrgbColor = {
+	255, 0, 255, 255,
+};
+static const SrgbColor yellowSrgbColor = {
+	255, 255, 0, 255,
+};
 
 static const LinearColor zeroLinearColor = {
 	(cmmt_float_t)0.0, (cmmt_float_t)0.0, (cmmt_float_t)0.0, (cmmt_float_t)0.0,
@@ -42,6 +60,24 @@ static const LinearColor blackLinearColor = {
 };
 static const LinearColor whiteLinearColor = {
 	(cmmt_float_t)1.0, (cmmt_float_t)1.0, (cmmt_float_t)1.0, (cmmt_float_t)1.0,
+};
+static const LinearColor redLinearColor = {
+	(cmmt_float_t)1.0, (cmmt_float_t)0.0, (cmmt_float_t)0.0, (cmmt_float_t)1.0,
+};
+static const LinearColor greenLinearColor = {
+	(cmmt_float_t)0.0, (cmmt_float_t)1.0, (cmmt_float_t)0.0, (cmmt_float_t)1.0,
+};
+static const LinearColor blueLinearColor = {
+	(cmmt_float_t)0.0, (cmmt_float_t)0.0, (cmmt_float_t)1.0, (cmmt_float_t)1.0,
+};
+static const LinearColor cyanLinearColor = {
+	(cmmt_float_t)0.0, (cmmt_float_t)1.0, (cmmt_float_t)1.0, (cmmt_float_t)1.0,
+};
+static const LinearColor magentaLinearColor = {
+	(cmmt_float_t)1.0, (cmmt_float_t)0.0, (cmmt_float_t)1.0, (cmmt_float_t)1.0,
+};
+static const LinearColor yellowLinearColor = {
+	(cmmt_float_t)1.0, (cmmt_float_t)1.0, (cmmt_float_t)0.0, (cmmt_float_t)1.0,
 };
 
 inline static SrgbColor srgbColor(
