@@ -23,7 +23,7 @@ if (TARGET cmmt)
 endif ()
 
 project(cmmt 
-	VERSION 0.1.2
+	VERSION 1.0.0
 	DESCRIPTION "Common mathematics library"
 	HOMEPAGE_URL "https://github.com/cfnptr/cmmt"
 	LANGUAGES C)
