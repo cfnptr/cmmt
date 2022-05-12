@@ -182,7 +182,7 @@ inline static Mat4F orthoNegOneMat4F(
 
 	matrix.m20 = (cmmt_float_t)0.0;
 	matrix.m21 = (cmmt_float_t)0.0;
-	matrix.m22 = (cmmt_float_t)2.0f / (farClipPlane - nearClipPlane);
+	matrix.m22 = (cmmt_float_t)2.0 / (farClipPlane - nearClipPlane);
 	matrix.m23 = (cmmt_float_t)0.0;
 
 	matrix.m30 = -(rightFrustum + leftFrustum) / (rightFrustum - leftFrustum);
