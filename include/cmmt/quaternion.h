@@ -202,10 +202,10 @@ inline static Mat4F getQuatMat4F(Quat quaternion)
 	matrix.m22 = (cmmt_float_t)1.0 - (cmmt_float_t)2.0 * (xx + yy);
 	matrix.m23 = (cmmt_float_t)0.0;
 
-	matrix.m30 = (cmmt_float_t)0.0f;
-	matrix.m31 = (cmmt_float_t)0.0f;
-	matrix.m32 = (cmmt_float_t)0.0f;
-	matrix.m33 = (cmmt_float_t)1.0f;
+	matrix.m30 = (cmmt_float_t)0.0;
+	matrix.m31 = (cmmt_float_t)0.0;
+	matrix.m32 = (cmmt_float_t)0.0;
+	matrix.m33 = (cmmt_float_t)1.0;
 	return matrix;
 }
 
