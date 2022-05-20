@@ -318,8 +318,20 @@ inline static Vec2F mixValVec2F(Vec2F a, Vec2F b, cmmt_float_t v)
 }
 inline static Vec2F mixVec2F(Vec2F a, Vec2F b, Vec2F v)
 {
-	a.x = (a.x * ((cmmt_float_t)1.0 - v.x)) + (b.x * v.x);
-	a.y = (a.y * ((cmmt_float_t)1.0 - v.y)) + (b.y * v.y);
+	a.x = mix(a.x, b.x, v.x);
+	a.y = mix(a.y, b.y, v.y);
+	return a;
+}
+inline static Vec2F lerpVec2F(Vec2F a, Vec2F b, Vec2F v)
+{
+	a.x = lerp(a.x, b.x, v.x);
+	a.y = lerp(a.y, b.y, v.y);
+	return a;
+}
+inline static Vec2F lerpValVec2F(Vec2F a, Vec2F b, cmmt_float_t v)
+{
+	a.x = lerp(a.x, b.x, v);
+	a.y = lerp(a.y, b.y, v);
 	return a;
 }
 
@@ -483,9 +495,23 @@ inline static Vec3F mixValVec3F(Vec3F a, Vec3F b, cmmt_float_t v)
 }
 inline static Vec3F mixVec3F(Vec3F a, Vec3F b, Vec3F v)
 {
-	a.x = (a.x * ((cmmt_float_t)1.0 - v.x)) + (b.x * v.x);
-	a.y = (a.y * ((cmmt_float_t)1.0 - v.y)) + (b.y * v.y);
-	a.z = (a.z * ((cmmt_float_t)1.0 - v.z)) + (b.z * v.z);
+	a.x = mix(a.x, b.x, v.x);
+	a.y = mix(a.y, b.y, v.y);
+	a.z = mix(a.z, b.z, v.z);
+	return a;
+}
+inline static Vec3F lerpVec3F(Vec3F a, Vec3F b, Vec3F v)
+{
+	a.x = lerp(a.x, b.x, v.x);
+	a.y = lerp(a.y, b.y, v.y);
+	a.z = lerp(a.z, b.z, v.z);
+	return a;
+}
+inline static Vec3F lerpValVec3F(Vec3F a, Vec3F b, cmmt_float_t v)
+{
+	a.x = lerp(a.x, b.x, v);
+	a.y = lerp(a.y, b.y, v);
+	a.z = lerp(a.z, b.z, v);
 	return a;
 }
 
@@ -662,10 +688,26 @@ inline static Vec4F mixValVec4F(Vec4F a, Vec4F b, cmmt_float_t v)
 }
 inline static Vec4F mixVec4F(Vec4F a, Vec4F b, Vec4F v)
 {
-	a.x = (a.x * ((cmmt_float_t)1.0 - v.x)) + (b.x * v.x);
-	a.y = (a.y * ((cmmt_float_t)1.0 - v.y)) + (b.y * v.y);
-	a.z = (a.z * ((cmmt_float_t)1.0 - v.z)) + (b.z * v.z);
-	a.w = (a.w * ((cmmt_float_t)1.0 - v.w)) + (b.w * v.w);
+	a.x = mix(a.x, b.x, v.x);
+	a.y = mix(a.y, b.y, v.y);
+	a.z = mix(a.z, b.z, v.z);
+	a.w = mix(a.w, b.w, v.w);
+	return a;
+}
+inline static Vec4F lerpValVec4F(Vec4F a, Vec4F b, cmmt_float_t v)
+{
+	a.x = lerp(a.x, b.x, v);
+	a.y = lerp(a.y, b.y, v);
+	a.z = lerp(a.z, b.z, v);
+	a.w = lerp(a.w, b.w, v);
+	return a;
+}
+inline static Vec4F lerpVec4F(Vec4F a, Vec4F b, Vec4F v)
+{
+	a.x = lerp(a.x, b.x, v.x);
+	a.y = lerp(a.y, b.y, v.y);
+	a.z = lerp(a.z, b.z, v.z);
+	a.w = lerp(a.w, b.w, v.w);
 	return a;
 }
 

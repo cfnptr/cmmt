@@ -14,6 +14,7 @@
 
 #pragma once
 #include "cmmt/matrix.h"
+#include <float.h>
 
 // TODO: quaternion lerp, slerp
 
@@ -102,7 +103,8 @@ inline static Quat matQuat4F(Mat4F matrix)
 	switch (biggestIndex)
 	{
 	default:
-		abort();
+		assert(false);
+		return oneQuat;
 	case 0:
 		return quat(
 			(matrix.m12 - matrix.m21) * multiplier,
@@ -140,6 +142,10 @@ inline static cmmt_float_t getQuatPitch(Quat quaternion)
 		quaternion.x * quaternion.x -
 		quaternion.y * quaternion.y +
 		quaternion.z * quaternion.z;
+
+	if (cmmtFabs(x) <= CMMT_EPSILON && cmmtFabs(y) <= CMMT_EPSILON)
+		return (cmmt_float_t)2.0 * cmmtAtan2(quaternion.x, quaternion.w);
+
 	return cmmtAtan2(y, x);
 }
 inline static cmmt_float_t getQuatYaw(Quat quaternion)
@@ -147,13 +153,7 @@ inline static cmmt_float_t getQuatYaw(Quat quaternion)
 	cmmt_float_t v = (cmmt_float_t)-2.0 *
 		(quaternion.x * quaternion.z -
 		quaternion.w * quaternion.y);
-
-	if (v < (cmmt_float_t)-1.0)
-		v = (cmmt_float_t)-1.0;
-	else if (v > (cmmt_float_t)1.0)
-		v = (cmmt_float_t)1.0;
-
-	return cmmtAsin(v);
+	return cmmtAsin(clamp(v, -1.0, 1.0));
 }
 inline static cmmt_float_t getQuatRoll(Quat quaternion)
 {
@@ -165,6 +165,10 @@ inline static cmmt_float_t getQuatRoll(Quat quaternion)
 		quaternion.x * quaternion.x -
 		quaternion.y * quaternion.y -
 		quaternion.z * quaternion.z;
+
+	if (cmmtFabs(x) <= CMMT_EPSILON && cmmtFabs(y) <= CMMT_EPSILON)
+		return (cmmt_float_t)0.0;
+
 	return cmmtAtan2(y, x);
 }
 inline static Vec3F getQuatEuler(Quat quaternion)
@@ -274,6 +278,47 @@ inline static Quat normQuat(Quat quaternion)
 	quaternion.z *= length;
 	quaternion.w *= length;
 	return quaternion;
+}
+inline static Quat slerpQuat(Quat a, Quat b, cmmt_float_t v)
+{
+	cmmt_float_t cosTheta =
+		(a.x * b.x) + (a.y * b.y) +
+		(a.z * b.z) + (a.w * b.w);
+
+	Quat q;
+
+	if(cosTheta < (cmmt_float_t)0.0)
+	{
+		q.x = -b.x; q.y = -b.y; q.z = -b.z; q.w = -b.w;
+		cosTheta = -cosTheta;
+	}
+	else
+	{
+		q = b;
+	}
+
+	Quat quaternion;
+
+	if(cosTheta > (cmmt_float_t)1.0 - CMMT_EPSILON)
+	{
+		quaternion.x = mix(a.x, q.x, v);
+		quaternion.y = mix(a.y, q.y, v);
+		quaternion.z = mix(a.z, q.z, v);
+		quaternion.w = mix(a.w, q.w, v);
+		return quaternion;
+	}
+	else
+	{
+		cmmt_float_t angle = cmmtAcos(cosTheta);
+		cmmt_float_t sin0 = cmmtSin(((cmmt_float_t)1.0 - v) * angle);
+		cmmt_float_t sin1 = cmmtSin(v * angle);
+		cmmt_float_t sin2 = cmmtSin(angle);
+		quaternion.x = (sin0 * a.x + sin1 * q.x) / sin2;
+		quaternion.y = (sin0 * a.y + sin1 * q.y) / sin2;
+		quaternion.z = (sin0 * a.z + sin1 * q.z) / sin2;
+		quaternion.w = (sin0 * a.w + sin1 * q.w) / sin2;
+		return quaternion;
+	}
 }
 
 inline static bool compQuat(Quat a, Quat b)

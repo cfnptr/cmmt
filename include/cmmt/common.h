@@ -20,6 +20,7 @@
 #endif
 
 #include <math.h>
+#include <float.h>
 #include <stdint.h>
 
 #if CMMT_USE_INT64
@@ -30,6 +31,7 @@ typedef int32_t cmmt_int_t;
 
 #if CMMT_USE_FLOAT64
 typedef double cmmt_float_t;
+#define CMMT_EPSILON DBL_EPSILON
 #define cmmtSqrt(x) sqrt(x)
 #define cmmtPow(x, y) pow(x, y)
 #define cmmtCeil(x) ceil(x)
@@ -37,14 +39,16 @@ typedef double cmmt_float_t;
 #define cmmtSin(x) sin(x)
 #define cmmtAsin(x) asin(x)
 #define cmmtCos(x) cos(x)
-#define cmmtAsos(x) acos(x)
+#define cmmtAcos(x) acos(x)
 #define cmmtTan(x) tan(x)
 #define cmmtAtan(x) atan(x)
 #define cmmtAtan2(y, x) atan2(y, x)
 #define cmmtFmin(x, y) fmin(x, y)
 #define cmmtFmax(x, y) fmax(x, y)
+#define cmmtFabs(x) fabs(x)
 #else
 typedef float cmmt_float_t;
+#define CMMT_EPSILON FLT_EPSILON
 #define cmmtSqrt(x) sqrtf(x)
 #define cmmtPow(x, y) powf(x, y)
 #define cmmtCeil(x) ceilf(x)
@@ -52,12 +56,13 @@ typedef float cmmt_float_t;
 #define cmmtSin(x) sinf(x)
 #define cmmtAsin(x) asinf(x)
 #define cmmtCos(x) cosf(x)
-#define cmmtAsos(x) acosf(x)
+#define cmmtAcos(x) acosf(x)
 #define cmmtTan(x) tanf(x)
 #define cmmtAtan(x) atanf(x)
 #define cmmtAtan2(y, x) atan2f(y, x)
 #define cmmtFmin(x, y) fminf(x, y)
 #define cmmtFmax(x, y) fmaxf(x, y)
+#define cmmtFabs(x) fabsf(x)
 // TODO: add other functions exp, log, etc.
 #endif
 
@@ -68,5 +73,5 @@ typedef float cmmt_float_t;
 
 #define clamp(a, min, max) \
 	((a) < (min) ? (min) : ((a) > (max) ? (max) : (a)))
-#define mix(a, b, v) \
-	(((a) * (v)) + ((b) * ((1) - (v))))
+#define mix(a, b, v) (((a) * (v)) + ((b) * (1 - (v))))
+#define lerp(a, b, v) ((a) + (v) * ((b) - (a)))
