@@ -541,6 +541,13 @@ inline static Vec3F getTranslationMat4F(Mat4F matrix)
 	translation.z = matrix.m32;
 	return translation;
 }
+inline static Mat4F setTranslationMat4F(Mat4F matrix, Vec3F translation)
+{
+	matrix.m30 = translation.x;
+	matrix.m31 = translation.y;
+	matrix.m32 = translation.z;
+	return matrix;
+}
 inline static Mat4F lookAtMat4F(Vec3F eye, Vec3F center, Vec3F up)
 {
 	cmmt_float_t fX = center.x - eye.x;
