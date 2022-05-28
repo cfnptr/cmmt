@@ -153,7 +153,7 @@ inline static cmmt_float_t getQuatYaw(Quat quaternion)
 	cmmt_float_t v = (cmmt_float_t)-2.0 *
 		(quaternion.x * quaternion.z -
 		quaternion.w * quaternion.y);
-	return cmmtAsin(clamp(v, -1.0, 1.0));
+	return cmmtAsin(clamp(v, (cmmt_float_t)-1.0, (cmmt_float_t)1.0));
 }
 inline static cmmt_float_t getQuatRoll(Quat quaternion)
 {
