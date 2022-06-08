@@ -33,9 +33,16 @@ typedef int32_t cmmt_int_t;
 typedef double cmmt_float_t;
 #define CMMT_EPSILON DBL_EPSILON
 #define cmmtSqrt(x) sqrt(x)
+#define cmmtCbrt(x) cbrt(x)
 #define cmmtPow(x, y) pow(x, y)
+#define cmmtLog(x) log(x)
+#define cmmtLog2(x) log2(x)
+#define cmmtExp(x) exp(x)
+#define cmmtExp2(x) exp2(x)
+#define cmmtLog10(x) log10(x)
 #define cmmtCeil(x) ceil(x)
 #define cmmtFloor(x) floor(x)
+#define cmmtRound(x) round(x)
 #define cmmtSin(x) sin(x)
 #define cmmtAsin(x) asin(x)
 #define cmmtCos(x) cos(x)
@@ -50,9 +57,16 @@ typedef double cmmt_float_t;
 typedef float cmmt_float_t;
 #define CMMT_EPSILON FLT_EPSILON
 #define cmmtSqrt(x) sqrtf(x)
+#define cmmtCbrt(x) cbrtf(x)
 #define cmmtPow(x, y) powf(x, y)
+#define cmmtLog(x) logf(x)
+#define cmmtLog2(x) log2f(x)
+#define cmmtLog10(x) log10f(x)
+#define cmmtExp(x) expf(x)
+#define cmmtExp2(x) exp2f(x)
 #define cmmtCeil(x) ceilf(x)
 #define cmmtFloor(x) floorf(x)
+#define cmmtRound(x) roundf(x)
 #define cmmtSin(x) sinf(x)
 #define cmmtAsin(x) asinf(x)
 #define cmmtCos(x) cosf(x)
@@ -63,7 +77,6 @@ typedef float cmmt_float_t;
 #define cmmtFmin(x, y) fminf(x, y)
 #define cmmtFmax(x, y) fmaxf(x, y)
 #define cmmtFabs(x) fabsf(x)
-// TODO: add other functions exp, log, etc.
 #endif
 
 #ifndef _WIN32
