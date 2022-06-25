@@ -47,7 +47,7 @@ endif ()
 
 configure_file(
 	cmake/defines.h.in
-	cmmt/defines.h)
+	include/cmmt/defines.h)
 
 add_library(cmmt INTERFACE)
 
@@ -56,5 +56,5 @@ if(CMAKE_SYSTEM_NAME MATCHES "Linux")
 endif()
 
 target_include_directories(cmmt INTERFACE
-	${PROJECT_BINARY_DIR}
+	${PROJECT_BINARY_DIR}/include
 	${PROJECT_SOURCE_DIR}/include)
