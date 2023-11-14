@@ -1,3 +1,5 @@
+# Successor ----> [Math](https://github.com/cfnptr/math)
+
 # CMMT ![CI](https://github.com/cfnptr/cmmt/actions/workflows/cmake.yml/badge.svg)
 
 A library providing common mathematics functions: vectors, matrices, quaternions, etc.
